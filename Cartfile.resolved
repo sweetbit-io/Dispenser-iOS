@@ -1,0 +1,3 @@
+github "aanuza/LGButton" "6b1a8c04dc6346040552a1c87dc4d268c9eea50f"
+github "apple/swift-protobuf" "1.1.1"
+github "grpc/grpc-swift" "0.6.0"

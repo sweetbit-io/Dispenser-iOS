@@ -1,0 +1,3 @@
+github "aanuza/LGButton" "carthage_support"
+github "apple/swift-protobuf"
+github "grpc/grpc-swift"

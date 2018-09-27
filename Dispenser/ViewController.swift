@@ -1,18 +1,10 @@
-//
-//  ViewController.swift
-//  Dispenser
-//
-//  Created by David Knezic on 26.08.18.
-//  Copyright © 2018 The Lightning Land. All rights reserved.
-//
-
 import UIKit
+//import ExternalAccessory
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, StreamDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +12,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func handleButtonClick(_ sender: UIButton) {
+//        print("hello world")
+//
+//        let accessory = EAAccessoryManager.shared().connectedAccessories.first!
+//        let session = EASession(accessory: accessory, forProtocol: "Hello")
+//
+//        session?.outputStream?.delegate = self
+//        session?.outputStream?.schedule(in: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+//        session?.outputStream?.open()
+//
+//        session?.inputStream?.delegate = self
+//        session?.inputStream?.schedule(in: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+//        session?.inputStream?.open()
+    }
 }
-

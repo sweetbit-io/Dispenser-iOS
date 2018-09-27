@@ -1,21 +1,49 @@
-//
-//  AppDelegate.swift
-//  Dispenser
-//
-//  Created by David Knezic on 26.08.18.
-//  Copyright © 2018 The Lightning Land. All rights reserved.
-//
-
 import UIKit
+import SwiftGRPC
+import SwiftProtobuf
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        if (false) {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController() as! UIViewController
+
+            self.window?.rootViewController = mainViewController
+        } else {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Pairing", bundle: nil)
+            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController() as! UIViewController
+
+            self.window?.rootViewController = mainViewController
+        }
+
+        self.window?.makeKeyAndVisible()
+
+        let service = Sweetrpc_SweetServiceClient(address: "localhost:9000", secure: false)
+
+
+
+
+        var requestMessage = Sweetrpc_SubscribeWpaNetworksRequest()
+
+        var c = try! service.subscribeWpaNetworks(requestMessage, completion: { (callResult) in
+            print(callResult.success, callResult.resultData)
+        })
+
+        try! c.receive { (resultOrError) in
+            if resultOrError.error != nil {
+                print("Error happened", resultOrError.error)
+                return
+            }
+
+            print(resultOrError.result!?.ssid)
+        }
+
         return true
     }
 
@@ -40,7 +68,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-
