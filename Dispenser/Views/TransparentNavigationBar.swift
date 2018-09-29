@@ -3,12 +3,12 @@ import UIKit
 class TransparentNavigationBar: UINavigationBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        restyle()
+        self.restyle()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        restyle()
+        self.restyle()
     }
 
     func restyle() {

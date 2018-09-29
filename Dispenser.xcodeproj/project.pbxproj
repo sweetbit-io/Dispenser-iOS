@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A698D21408EC300695A4D /* NetworkExtension.framework */; };
 		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
+		04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */; };
+		0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588A215FEA8C0021AF0E /* MainTableViewController.swift */; };
+		0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588C215FF0DC0021AF0E /* UIViewController.swift */; };
+		0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588E2160107A0021AF0E /* PairingViewController.swift */; };
 		042A96152149C1DC001F637A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 042A96142149C1DC001F637A /* README.md */; };
 		042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96162149C2F3001F637A /* SwiftGRPC.framework */; };
 		042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96172149C2F3001F637A /* SwiftProtobuf.framework */; };
@@ -36,6 +40,10 @@
 /* Begin PBXFileReference section */
 		040A698D21408EC300695A4D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DispenserModel.xcdatamodel; sourceTree = "<group>"; };
+		0423588A215FEA8C0021AF0E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		0423588C215FF0DC0021AF0E /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		0423588E2160107A0021AF0E /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
 		042A96142149C1DC001F637A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		042A96162149C2F3001F637A /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
 		042A96172149C2F3001F637A /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 				04DA54412132EB0D00EA2B65 /* Info.plist */,
 				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
 				04E38EFB2141BF170017F31E /* Theme.xcassets */,
+				04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */,
 			);
 			path = Dispenser;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 			children = (
 				04E38EFD2141C1A30017F31E /* UIColor.swift */,
 				04235864215FB0280021AF0E /* UIButton.swift */,
+				0423588C215FF0DC0021AF0E /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -157,6 +167,8 @@
 				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
 				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
 				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
+				0423588A215FEA8C0021AF0E /* MainTableViewController.swift */,
+				0423588E2160107A0021AF0E /* PairingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -285,12 +297,16 @@
 				04DA54382132EB0B00EA2B65 /* ViewController.swift in Sources */,
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
+				0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
+				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
 				04CBFEE82152870F0065291E /* rpc.pb.swift in Sources */,
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
 				04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */,
+				04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */,
+				0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +528,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */,
+			);
+			currentVersion = 04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */;
+			path = Dispenser.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 04DA542A2132EB0B00EA2B65 /* Project object */;
 }

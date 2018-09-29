@@ -1,7 +1,10 @@
 import UIKit
 // import NetworkExtension
 
-class ConnectSetupViewController: UIViewController {
+class ConnectSetupViewController: PairingViewController {
+    @IBAction func connect() {
+        jumpTo(storyboard: "Main")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

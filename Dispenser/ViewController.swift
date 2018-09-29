@@ -1,8 +1,7 @@
 import UIKit
-//import ExternalAccessory
+// import ExternalAccessory
 
 class ViewController: UIViewController, StreamDelegate {
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

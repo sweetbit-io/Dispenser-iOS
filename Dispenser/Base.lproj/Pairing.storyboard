@@ -130,7 +130,7 @@
                                     <action selector="needHelp" destination="JAu-N2-ayO" eventType="touchUpInside" id="hPN-yP-d8R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please plug the dispenser into a power outlet. It will buzz after about 30 seconds. After that, the process can be continued." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please plug the dispenser into a power outlet. It will buzz after 1 minute. After that, continue the setup." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
                                 <rect key="frame" x="20" y="356" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -150,7 +150,7 @@
                                     <constraint firstAttribute="height" constant="60" id="ycr-Gl-epp"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Continue"/>
+                                <state key="normal" title="Continue setup"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -208,8 +208,8 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please plug the dispenser into a power outlet. It will buzz after about 30 seconds. After that, the process can be continued." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg3-Fb-fsR" userLabel="Intro">
-                                <rect key="frame" x="20" y="356" width="335" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempting to connect to the candy dispenser through Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg3-Fb-fsR" userLabel="Intro">
+                                <rect key="frame" x="20" y="386" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -228,13 +228,19 @@
                                     <constraint firstAttribute="height" constant="60" id="aUS-WQ-VHw"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Continue"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="2xa-I5-JeQ"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QhM-N2-WM5" userLabel="Loading">
+                                <rect key="frame" x="177.5" y="356" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="Primary"/>
@@ -245,11 +251,13 @@
                             <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="KOh-iO-lwS" secondAttribute="trailing" id="AYT-5W-W02"/>
                             <constraint firstItem="vKl-zA-qEo" firstAttribute="top" secondItem="J6W-UV-kK6" secondAttribute="top" constant="20" id="G4D-G5-Xfs"/>
                             <constraint firstItem="hFX-qG-Fkl" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="Jab-cN-Sng"/>
-                            <constraint firstItem="gg3-Fb-fsR" firstAttribute="top" secondItem="hFX-qG-Fkl" secondAttribute="bottom" constant="20" id="L0S-5X-Dcj"/>
+                            <constraint firstItem="gg3-Fb-fsR" firstAttribute="top" secondItem="QhM-N2-WM5" secondAttribute="bottom" constant="10" id="L0S-5X-Dcj"/>
                             <constraint firstItem="gg3-Fb-fsR" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" constant="20" id="LJY-sG-IxQ"/>
+                            <constraint firstItem="QhM-N2-WM5" firstAttribute="centerX" secondItem="cnt-wU-Sjk" secondAttribute="centerX" id="LgF-dV-QE7"/>
                             <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="gg3-Fb-fsR" secondAttribute="trailing" constant="20" id="T1z-ht-0dg"/>
                             <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="vKl-zA-qEo" secondAttribute="trailing" id="cfW-fd-Sq4"/>
                             <constraint firstItem="vKl-zA-qEo" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="nb2-wz-uMH"/>
+                            <constraint firstItem="QhM-N2-WM5" firstAttribute="top" secondItem="hFX-qG-Fkl" secondAttribute="bottom" constant="20" id="p5Z-Bo-dMt"/>
                             <constraint firstItem="KOh-iO-lwS" firstAttribute="top" secondItem="uZC-T9-dGc" secondAttribute="bottom" constant="20" id="qEV-ar-Uw7"/>
                             <constraint firstItem="hFX-qG-Fkl" firstAttribute="top" secondItem="vKl-zA-qEo" secondAttribute="bottom" constant="40" id="qWp-fc-faT"/>
                             <constraint firstItem="KOh-iO-lwS" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="yjG-y2-bl9"/>

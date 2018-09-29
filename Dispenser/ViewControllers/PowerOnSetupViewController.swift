@@ -1,11 +1,6 @@
 import UIKit
 
-class PowerOnSetupViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+class PowerOnSetupViewController: PairingViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
