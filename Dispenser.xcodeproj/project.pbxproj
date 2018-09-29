@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A698D21408EC300695A4D /* NetworkExtension.framework */; };
+		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
 		042A96152149C1DC001F637A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 042A96142149C1DC001F637A /* README.md */; };
 		042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96162149C2F3001F637A /* SwiftGRPC.framework */; };
 		042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96172149C2F3001F637A /* SwiftProtobuf.framework */; };
@@ -17,13 +18,13 @@
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE82152870F0065291E /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE62152870F0065291E /* rpc.pb.swift */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
+		04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB83D215F131F008809E4 /* Cartfile.resolved */; };
 		04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA54352132EB0B00EA2B65 /* AppDelegate.swift */; };
 		04DA54382132EB0B00EA2B65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA54372132EB0B00EA2B65 /* ViewController.swift */; };
 		04DA543B2132EB0B00EA2B65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DA54392132EB0B00EA2B65 /* Main.storyboard */; };
 		04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DA543C2132EB0D00EA2B65 /* Assets.xcassets */; };
 		04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DA543E2132EB0D00EA2B65 /* LaunchScreen.storyboard */; };
 		04E38EF72141BA770017F31E /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 04E38EF62141BA770017F31E /* Cartfile */; };
-		04E38EF92141BC6D0017F31E /* LGButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E38EF82141BC6D0017F31E /* LGButton.framework */; };
 		04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E38EFB2141BF170017F31E /* Theme.xcassets */; };
 		04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38EFD2141C1A30017F31E /* UIColor.swift */; };
 		04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F032141C3170017F31E /* StartSetupViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		040A698D21408EC300695A4D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		042A96142149C1DC001F637A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		042A96162149C2F3001F637A /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
 		042A96172149C2F3001F637A /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE62152870F0065291E /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
+		04CDB83D215F131F008809E4 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		04DA54322132EB0B00EA2B65 /* Dispenser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dispenser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DA54352132EB0B00EA2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04DA54372132EB0B00EA2B65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +55,6 @@
 		04DA54412132EB0D00EA2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DA544A2132F60100EA2B65 /* Dispenser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dispenser.entitlements; sourceTree = "<group>"; };
 		04E38EF62141BA770017F31E /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		04E38EF82141BC6D0017F31E /* LGButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LGButton.framework; path = Carthage/Build/iOS/LGButton.framework; sourceTree = "<group>"; };
 		04E38EFB2141BF170017F31E /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		04E38EFD2141C1A30017F31E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		04E38F032141C3170017F31E /* StartSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSetupViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +72,6 @@
 				042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */,
 				042A961C2149C2F3001F637A /* CgRPC.framework in Frameworks */,
 				042A961D2149C2F3001F637A /* BoringSSL.framework in Frameworks */,
-				04E38EF92141BC6D0017F31E /* LGButton.framework in Frameworks */,
 				044F526A21408F9600B0C423 /* ExternalAccessory.framework in Frameworks */,
 				040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */,
 			);
@@ -93,6 +94,7 @@
 			children = (
 				042A96142149C1DC001F637A /* README.md */,
 				04E38EF62141BA770017F31E /* Cartfile */,
+				04CDB83D215F131F008809E4 /* Cartfile.resolved */,
 				04DA54342132EB0B00EA2B65 /* Dispenser */,
 				04DA54332132EB0B00EA2B65 /* Products */,
 				04DA54472132F44A00EA2B65 /* Frameworks */,
@@ -134,7 +136,6 @@
 				042A96182149C2F3001F637A /* CgRPC.framework */,
 				042A96162149C2F3001F637A /* SwiftGRPC.framework */,
 				042A96172149C2F3001F637A /* SwiftProtobuf.framework */,
-				04E38EF82141BC6D0017F31E /* LGButton.framework */,
 				044F526921408F9600B0C423 /* ExternalAccessory.framework */,
 				040A698D21408EC300695A4D /* NetworkExtension.framework */,
 			);
@@ -145,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				04E38EFD2141C1A30017F31E /* UIColor.swift */,
+				04235864215FB0280021AF0E /* UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,6 +244,7 @@
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
 				04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */,
+				04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */,
 				04DA543B2132EB0B00EA2B65 /* Main.storyboard in Resources */,
 				04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */,
 			);
@@ -256,14 +259,12 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/LGButton.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftGRPC.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftProtobuf.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BoringSSL.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CgRPC.framework",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LGButton.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftProtobuf.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BoringSSL.framework",
@@ -271,7 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -285,6 +286,7 @@
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
+				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
 				04CBFEE82152870F0065291E /* rpc.pb.swift in Sources */,
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,

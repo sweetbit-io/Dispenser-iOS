@@ -1,14 +1,9 @@
 import UIKit
-import LGButton
 
 class PowerOnSetupViewController: UIViewController {
 
-    @IBOutlet weak var button: LGButton!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.button.bgColor = UIColor.primary
     }
 
     override func didReceiveMemoryWarning() {

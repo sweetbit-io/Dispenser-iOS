@@ -1,14 +1,9 @@
 import UIKit
-import LGButton
 
 class StartSetupViewController: UIViewController {
 
-    @IBOutlet weak var button: LGButton!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.button.bgColor = UIColor.primary
     }
 
     override func didReceiveMemoryWarning() {
@@ -18,8 +13,8 @@ class StartSetupViewController: UIViewController {
     @IBAction func startSetup() {
         performSegue(withIdentifier: "next", sender: nil)
     }
-
-    @IBAction func buyDispenser(_ sender: UIButton) {
+    
+    @IBAction func buyDispenser() {
         print("Buy dispenser")
     }
 
