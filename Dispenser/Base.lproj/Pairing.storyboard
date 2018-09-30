@@ -307,7 +307,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zL3-BR-STt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zL3-BR-STt" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -323,7 +323,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="etr-NK-dHn"/>
-                                    <segue destination="pr3-dT-P2X" kind="show" identifier="next" id="mPz-7k-inb"/>
+                                    <action selector="setup:" destination="Nia-TD-wCr" eventType="touchUpInside" id="37F-jz-3mW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -349,6 +349,10 @@
                         <viewLayoutGuide key="safeArea" id="RhE-1z-YN0"/>
                     </view>
                     <navigationItem key="navigationItem" id="qBQ-mS-ljo"/>
+                    <connections>
+                        <outlet property="setupButton" destination="zL3-BR-STt" id="m2V-M3-zfC"/>
+                        <segue destination="pr3-dT-P2X" kind="show" identifier="setup" id="B1U-k9-GT9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StV-E0-f2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -459,7 +463,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Npa-zJ-uz9"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-So-wdJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-So-wdJ" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -476,15 +480,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="eWx-7d-6jW"/>
-                                    <action selector="connect:" destination="Gct-8W-ngT" eventType="touchUpInside" id="73h-xk-SWV"/>
+                                    <action selector="connect:" destination="Gct-8W-ngT" eventType="touchUpInside" id="YeC-T2-mjt"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2j-nb-dHU" userLabel="Form">
                                 <rect key="frame" x="0.0" y="326" width="375" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKQ-sW-c9H">
-                                        <rect key="frame" x="140" y="0.0" width="215" height="50"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Wi-Fi password..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKQ-sW-c9H">
+                                        <rect key="frame" x="20" y="0.0" width="335" height="50"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -494,24 +497,12 @@
                                             <action selector="valueChanged:" destination="Gct-8W-ngT" eventType="editingChanged" id="D17-5n-kaS"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-C4-FNf" userLabel="Label">
-                                        <rect key="frame" x="20" y="0.0" width="100" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="rSi-c5-n18"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="UKQ-sW-c9H" firstAttribute="leading" secondItem="hzi-C4-FNf" secondAttribute="trailing" constant="20" id="C7v-60-QCs"/>
                                     <constraint firstAttribute="bottom" secondItem="UKQ-sW-c9H" secondAttribute="bottom" id="Ddb-9F-SJB"/>
-                                    <constraint firstItem="hzi-C4-FNf" firstAttribute="top" secondItem="c2j-nb-dHU" secondAttribute="top" id="Lxp-4B-ALy"/>
                                     <constraint firstAttribute="height" constant="50" id="MYb-yt-tl9"/>
+                                    <constraint firstItem="UKQ-sW-c9H" firstAttribute="leading" secondItem="c2j-nb-dHU" secondAttribute="leading" constant="20" id="Nbe-Cn-7Pa"/>
                                     <constraint firstItem="UKQ-sW-c9H" firstAttribute="top" secondItem="c2j-nb-dHU" secondAttribute="top" id="hon-dt-XXv"/>
-                                    <constraint firstItem="hzi-C4-FNf" firstAttribute="leading" secondItem="c2j-nb-dHU" secondAttribute="leading" constant="20" id="hpu-WU-Tw6"/>
-                                    <constraint firstAttribute="bottom" secondItem="hzi-C4-FNf" secondAttribute="bottom" id="pNz-Uv-giK"/>
                                     <constraint firstAttribute="trailing" secondItem="UKQ-sW-c9H" secondAttribute="trailing" constant="20" id="sL2-1t-yww"/>
                                 </constraints>
                             </view>
@@ -540,9 +531,10 @@
                     <navigationItem key="navigationItem" id="VAW-NB-Eeg"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="TlH-Rv-6fp" id="gNg-Sf-YAh"/>
-                        <outlet property="connectButton" destination="VzJ-So-wdJ" id="EEg-dx-qUJ"/>
+                        <outlet property="connectButton" destination="VzJ-So-wdJ" id="izu-Bt-098"/>
                         <outlet property="formView" destination="c2j-nb-dHU" id="olL-46-fXQ"/>
                         <outlet property="password" destination="UKQ-sW-c9H" id="hss-nQ-RTD"/>
+                        <outlet property="titleLabel" destination="G4a-la-BD3" id="feo-vv-C0a"/>
                         <segue destination="hg1-5g-9Mr" kind="show" identifier="connected" id="HcQ-pW-jAu"/>
                     </connections>
                 </viewController>

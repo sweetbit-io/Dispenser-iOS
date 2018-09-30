@@ -4,16 +4,14 @@ class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var service: Sweetrpc_SweetServiceClient?
     var networks: [Sweetrpc_WpaNetwork]?
     var info: Sweetrpc_GetWpaConnectionInfoResponse?
+    var selectedSsid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.networks = getNetworks()
-        self.info = getNetworkInfo()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,29 +23,35 @@ class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let network = self.networks![indexPath.row]
         cell.textLabel?.text = network.ssid
         cell.tintColor = UIColor.primary
+        
         if self.info?.ssid == network.ssid {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "next", sender: nil)
+        if let networks = self.networks {
+            let network = networks[indexPath.row]
+            
+            self.selectedSsid = network.ssid
+            
+            if self.info?.ssid == network.ssid {
+                self.performSegue(withIdentifier: "connected", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "next", sender: nil)
+            }
+        }
     }
     
-    func getNetworks() -> [Sweetrpc_WpaNetwork]? {
-        let req = Sweetrpc_GetWpaNetworksRequest()
-        let res = try? self.service?.getWpaNetworks(req)
-        
-        return res??.networks
-    }
-    
-    func getNetworkInfo() -> Sweetrpc_GetWpaConnectionInfoResponse? {
-        let req = Sweetrpc_GetWpaConnectionInfoRequest()
-        let res = try? self.service?.getWpaConnectionInfo(req)
-        
-        return res ?? nil
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WifiAuthViewController {
+            let vc = segue.destination as! WifiAuthViewController
+            vc.service = self.service
+            vc.ssid = self.selectedSsid
+        }
     }
 }

@@ -11,6 +11,7 @@
 		040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */; };
 		040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* WifiAuthViewController.swift */; };
 		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
+		040DFCAC216173500014F065 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCAB216173500014F065 /* LoadingButton.swift */; };
 		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
 		04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */; };
 		0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588A215FEA8C0021AF0E /* MainTableViewController.swift */; };
@@ -47,6 +48,7 @@
 		040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectedViewController.swift; sourceTree = "<group>"; };
 		040DFCA721614C630014F065 /* WifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiAuthViewController.swift; sourceTree = "<group>"; };
 		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		040DFCAB216173500014F065 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DispenserModel.xcdatamodel; sourceTree = "<group>"; };
 		0423588A215FEA8C0021AF0E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */,
+				040DFCAB216173500014F065 /* LoadingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
+				040DFCAC216173500014F065 /* LoadingButton.swift in Sources */,
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
 				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
