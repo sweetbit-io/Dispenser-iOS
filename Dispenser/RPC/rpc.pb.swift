@@ -19,22 +19,142 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Sweetrpc_Test {
+struct Sweetrpc_GetInfoRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
-
-  var one: Int32 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 }
 
+struct Sweetrpc_GetInfoResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var serial: String = String()
+
+  var version: String = String()
+
+  var commit: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_GetWpaConnectionInfoRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_GetWpaConnectionInfoResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var ssid: String = String()
+
+  var state: String = String()
+
+  var ip: String = String()
+
+  var message: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_ConnectWpaNetworkRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var ssid: String = String()
+
+  var psk: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_ConnectWpaNetworkResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var status: Sweetrpc_ConnectWpaNetworkResponse.WpaConnectionUpdateState = .connecting
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum WpaConnectionUpdateState: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case connecting // = 0
+    case connected // = 1
+    case failed // = 2
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .connecting
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .connecting
+      case 1: self = .connected
+      case 2: self = .failed
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .connecting: return 0
+      case .connected: return 1
+      case .failed: return 2
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+}
+
+#if swift(>=4.2)
+
+extension Sweetrpc_ConnectWpaNetworkResponse.WpaConnectionUpdateState: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Sweetrpc_ConnectWpaNetworkResponse.WpaConnectionUpdateState] = [
+    .connecting,
+    .connected,
+    .failed,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 struct Sweetrpc_WpaNetwork {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
+
+  var bssid: String = String()
+
+  var frequency: String = String()
+
+  var signalLevel: String = String()
+
+  var flags: String = String()
 
   var ssid: String = String()
 
@@ -43,7 +163,41 @@ struct Sweetrpc_WpaNetwork {
   init() {}
 }
 
-struct Sweetrpc_SubscribeWpaNetworksRequest {
+struct Sweetrpc_GetWpaNetworksRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_GetWpaNetworksResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var networks: [Sweetrpc_WpaNetwork] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_UpdateRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var url: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_UpdateResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -57,66 +211,8 @@ struct Sweetrpc_SubscribeWpaNetworksRequest {
 
 fileprivate let _protobuf_package = "sweetrpc"
 
-extension Sweetrpc_Test: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".Test"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "one"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.one)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.one != 0 {
-      try visitor.visitSingularInt32Field(value: self.one, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Sweetrpc_Test, rhs: Sweetrpc_Test) -> Bool {
-    if lhs.one != rhs.one {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Sweetrpc_WpaNetwork: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".WpaNetwork"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "ssid"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.ssid)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.ssid.isEmpty {
-      try visitor.visitSingularStringField(value: self.ssid, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Sweetrpc_WpaNetwork, rhs: Sweetrpc_WpaNetwork) -> Bool {
-    if lhs.ssid != rhs.ssid {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Sweetrpc_SubscribeWpaNetworksRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".SubscribeWpaNetworksRequest"
+extension Sweetrpc_GetInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetInfoRequest"
   static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -128,7 +224,335 @@ extension Sweetrpc_SubscribeWpaNetworksRequest: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: Sweetrpc_SubscribeWpaNetworksRequest, rhs: Sweetrpc_SubscribeWpaNetworksRequest) -> Bool {
+  static func ==(lhs: Sweetrpc_GetInfoRequest, rhs: Sweetrpc_GetInfoRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetInfoResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "serial"),
+    2: .same(proto: "version"),
+    3: .same(proto: "commit"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.serial)
+      case 2: try decoder.decodeSingularStringField(value: &self.version)
+      case 3: try decoder.decodeSingularStringField(value: &self.commit)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.serial.isEmpty {
+      try visitor.visitSingularStringField(value: self.serial, fieldNumber: 1)
+    }
+    if !self.version.isEmpty {
+      try visitor.visitSingularStringField(value: self.version, fieldNumber: 2)
+    }
+    if !self.commit.isEmpty {
+      try visitor.visitSingularStringField(value: self.commit, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetInfoResponse, rhs: Sweetrpc_GetInfoResponse) -> Bool {
+    if lhs.serial != rhs.serial {return false}
+    if lhs.version != rhs.version {return false}
+    if lhs.commit != rhs.commit {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_GetWpaConnectionInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetWpaConnectionInfoRequest"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetWpaConnectionInfoRequest, rhs: Sweetrpc_GetWpaConnectionInfoRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_GetWpaConnectionInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetWpaConnectionInfoResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ssid"),
+    2: .same(proto: "state"),
+    3: .same(proto: "ip"),
+    4: .same(proto: "message"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.ssid)
+      case 2: try decoder.decodeSingularStringField(value: &self.state)
+      case 3: try decoder.decodeSingularStringField(value: &self.ip)
+      case 4: try decoder.decodeSingularStringField(value: &self.message)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.ssid.isEmpty {
+      try visitor.visitSingularStringField(value: self.ssid, fieldNumber: 1)
+    }
+    if !self.state.isEmpty {
+      try visitor.visitSingularStringField(value: self.state, fieldNumber: 2)
+    }
+    if !self.ip.isEmpty {
+      try visitor.visitSingularStringField(value: self.ip, fieldNumber: 3)
+    }
+    if !self.message.isEmpty {
+      try visitor.visitSingularStringField(value: self.message, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetWpaConnectionInfoResponse, rhs: Sweetrpc_GetWpaConnectionInfoResponse) -> Bool {
+    if lhs.ssid != rhs.ssid {return false}
+    if lhs.state != rhs.state {return false}
+    if lhs.ip != rhs.ip {return false}
+    if lhs.message != rhs.message {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_ConnectWpaNetworkRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ConnectWpaNetworkRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ssid"),
+    2: .same(proto: "psk"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.ssid)
+      case 2: try decoder.decodeSingularStringField(value: &self.psk)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.ssid.isEmpty {
+      try visitor.visitSingularStringField(value: self.ssid, fieldNumber: 1)
+    }
+    if !self.psk.isEmpty {
+      try visitor.visitSingularStringField(value: self.psk, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_ConnectWpaNetworkRequest, rhs: Sweetrpc_ConnectWpaNetworkRequest) -> Bool {
+    if lhs.ssid != rhs.ssid {return false}
+    if lhs.psk != rhs.psk {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_ConnectWpaNetworkResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ConnectWpaNetworkResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.status)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != .connecting {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_ConnectWpaNetworkResponse, rhs: Sweetrpc_ConnectWpaNetworkResponse) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_ConnectWpaNetworkResponse.WpaConnectionUpdateState: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "CONNECTING"),
+    1: .same(proto: "CONNECTED"),
+    2: .same(proto: "FAILED"),
+  ]
+}
+
+extension Sweetrpc_WpaNetwork: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".WpaNetwork"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "bssid"),
+    2: .same(proto: "frequency"),
+    3: .standard(proto: "signal_level"),
+    4: .same(proto: "flags"),
+    5: .same(proto: "ssid"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.bssid)
+      case 2: try decoder.decodeSingularStringField(value: &self.frequency)
+      case 3: try decoder.decodeSingularStringField(value: &self.signalLevel)
+      case 4: try decoder.decodeSingularStringField(value: &self.flags)
+      case 5: try decoder.decodeSingularStringField(value: &self.ssid)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.bssid.isEmpty {
+      try visitor.visitSingularStringField(value: self.bssid, fieldNumber: 1)
+    }
+    if !self.frequency.isEmpty {
+      try visitor.visitSingularStringField(value: self.frequency, fieldNumber: 2)
+    }
+    if !self.signalLevel.isEmpty {
+      try visitor.visitSingularStringField(value: self.signalLevel, fieldNumber: 3)
+    }
+    if !self.flags.isEmpty {
+      try visitor.visitSingularStringField(value: self.flags, fieldNumber: 4)
+    }
+    if !self.ssid.isEmpty {
+      try visitor.visitSingularStringField(value: self.ssid, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_WpaNetwork, rhs: Sweetrpc_WpaNetwork) -> Bool {
+    if lhs.bssid != rhs.bssid {return false}
+    if lhs.frequency != rhs.frequency {return false}
+    if lhs.signalLevel != rhs.signalLevel {return false}
+    if lhs.flags != rhs.flags {return false}
+    if lhs.ssid != rhs.ssid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_GetWpaNetworksRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetWpaNetworksRequest"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetWpaNetworksRequest, rhs: Sweetrpc_GetWpaNetworksRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_GetWpaNetworksResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetWpaNetworksResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "networks"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.networks)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.networks.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.networks, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetWpaNetworksResponse, rhs: Sweetrpc_GetWpaNetworksResponse) -> Bool {
+    if lhs.networks != rhs.networks {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UpdateRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "url"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.url)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.url.isEmpty {
+      try visitor.visitSingularStringField(value: self.url, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_UpdateRequest, rhs: Sweetrpc_UpdateRequest) -> Bool {
+    if lhs.url != rhs.url {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_UpdateResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UpdateResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_UpdateResponse, rhs: Sweetrpc_UpdateResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

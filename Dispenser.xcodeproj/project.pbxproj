@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A698D21408EC300695A4D /* NetworkExtension.framework */; };
+		040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */; };
+		040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* WifiAuthViewController.swift */; };
+		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
 		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
 		04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */; };
 		0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588A215FEA8C0021AF0E /* MainTableViewController.swift */; };
 		0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588C215FF0DC0021AF0E /* UIViewController.swift */; };
 		0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588E2160107A0021AF0E /* PairingViewController.swift */; };
+		042358912160235E0021AF0E /* WifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358902160235E0021AF0E /* WifiViewController.swift */; };
+		04235893216024BA0021AF0E /* DispenserConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */; };
+		042358972160339F0021AF0E /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358962160339F0021AF0E /* rpc.pb.swift */; };
 		042A96152149C1DC001F637A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 042A96142149C1DC001F637A /* README.md */; };
 		042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96162149C2F3001F637A /* SwiftGRPC.framework */; };
 		042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96172149C2F3001F637A /* SwiftProtobuf.framework */; };
@@ -20,7 +26,6 @@
 		042A961D2149C2F3001F637A /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96192149C2F3001F637A /* BoringSSL.framework */; };
 		044F526A21408F9600B0C423 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044F526921408F9600B0C423 /* ExternalAccessory.framework */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
-		04CBFEE82152870F0065291E /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE62152870F0065291E /* rpc.pb.swift */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
 		04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB83D215F131F008809E4 /* Cartfile.resolved */; };
 		04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA54352132EB0B00EA2B65 /* AppDelegate.swift */; };
@@ -39,11 +44,17 @@
 
 /* Begin PBXFileReference section */
 		040A698D21408EC300695A4D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectedViewController.swift; sourceTree = "<group>"; };
+		040DFCA721614C630014F065 /* WifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiAuthViewController.swift; sourceTree = "<group>"; };
+		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DispenserModel.xcdatamodel; sourceTree = "<group>"; };
 		0423588A215FEA8C0021AF0E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		0423588C215FF0DC0021AF0E /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0423588E2160107A0021AF0E /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
+		042358902160235E0021AF0E /* WifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiViewController.swift; sourceTree = "<group>"; };
+		04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserConnectedViewController.swift; sourceTree = "<group>"; };
+		042358962160339F0021AF0E /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		042A96142149C1DC001F637A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		042A96162149C2F3001F637A /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
 		042A96172149C2F3001F637A /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
@@ -51,7 +62,6 @@
 		042A96192149C2F3001F637A /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
 		044F526921408F9600B0C423 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
-		04CBFEE62152870F0065291E /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
 		04CDB83D215F131F008809E4 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		04DA54322132EB0B00EA2B65 /* Dispenser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dispenser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,8 +101,8 @@
 		042A960F2149C15E001F637A /* RPC */ = {
 			isa = PBXGroup;
 			children = (
+				042358962160339F0021AF0E /* rpc.pb.swift */,
 				04CBFEE72152870F0065291E /* rpc.grpc.swift */,
-				04CBFEE62152870F0065291E /* rpc.pb.swift */,
 			);
 			path = RPC;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 				04E38EFD2141C1A30017F31E /* UIColor.swift */,
 				04235864215FB0280021AF0E /* UIButton.swift */,
 				0423588C215FF0DC0021AF0E /* UIViewController.swift */,
+				040DFCA92161605A0014F065 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -167,8 +178,12 @@
 				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
 				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
 				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
+				042358902160235E0021AF0E /* WifiViewController.swift */,
 				0423588A215FEA8C0021AF0E /* MainTableViewController.swift */,
 				0423588E2160107A0021AF0E /* PairingViewController.swift */,
+				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
+				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
+				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -293,17 +308,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04235893216024BA0021AF0E /* DispenserConnectedViewController.swift in Sources */,
 				04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */,
 				04DA54382132EB0B00EA2B65 /* ViewController.swift in Sources */,
+				040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */,
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
+				042358912160235E0021AF0E /* WifiViewController.swift in Sources */,
 				0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
+				040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
-				04CBFEE82152870F0065291E /* rpc.pb.swift in Sources */,
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
+				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
+				042358972160339F0021AF0E /* rpc.pb.swift in Sources */,
 				04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */,
 				04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */,
 				0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */,
@@ -459,8 +479,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dispenser/Dispenser.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8S887BASM2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,8 +493,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = land.lightning.Dispenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22489766-a586-4d59-9ff7-35bc2423bd2a";
-				PROVISIONING_PROFILE_SPECIFIER = "Candy Dispenser iOS Provisioning";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,8 +505,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dispenser/Dispenser.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8S887BASM2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -499,8 +519,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = land.lightning.Dispenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22489766-a586-4d59-9ff7-35bc2423bd2a";
-				PROVISIONING_PROFILE_SPECIFIER = "Candy Dispenser iOS Provisioning";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

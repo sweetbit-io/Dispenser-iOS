@@ -9,39 +9,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-
         self.window?.tintColor = UIColor.primary
+        
+        let context = self.persistentContainer.viewContext
+        let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
+        
+        let dispensers = try! context.fetch(fetch) as [Dispenser]
 
-        if false {
+        if dispensers.count > 0 {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController() as! UIViewController
+            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
 
             self.window?.rootViewController = mainViewController
         } else {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Pairing", bundle: nil)
-            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController() as! UIViewController
+            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
 
             self.window?.rootViewController = mainViewController
         }
 
         self.window?.makeKeyAndVisible()
-
-        let service = Sweetrpc_SweetServiceClient(address: "localhost:9000", secure: false)
-
-        var requestMessage = Sweetrpc_SubscribeWpaNetworksRequest()
-
-        var c = try! service.subscribeWpaNetworks(requestMessage, completion: { callResult in
-            print(callResult.success, callResult.resultData)
-        })
-
-        try! c.receive { resultOrError in
-            if resultOrError.error != nil {
-                print("Error happened", resultOrError.error)
-                return
-            }
-
-            print(resultOrError.result!?.ssid)
-        }
 
         return true
     }
@@ -70,8 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
-    // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -98,8 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
-    // MARK: - Core Data Saving support
 
     func saveContext() {
         let context = persistentContainer.viewContext

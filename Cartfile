@@ -1,2 +1,2 @@
-github "apple/swift-protobuf"
+github "apple/swift-protobuf"  ~> 1.0
 github "grpc/grpc-swift"

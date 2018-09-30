@@ -25,60 +25,119 @@ import Dispatch
 import SwiftGRPC
 import SwiftProtobuf
 
-internal protocol Sweetrpc_SweetGetFeatureCall: ClientCallUnary {}
+internal protocol Sweetrpc_SweetGetInfoCall: ClientCallUnary {}
 
-fileprivate final class Sweetrpc_SweetGetFeatureCallBase: ClientCallUnaryBase<Sweetrpc_Test, Sweetrpc_Test>, Sweetrpc_SweetGetFeatureCall {
-  override class var method: String { return "/sweetrpc.Sweet/GetFeature" }
+fileprivate final class Sweetrpc_SweetGetInfoCallBase: ClientCallUnaryBase<Sweetrpc_GetInfoRequest, Sweetrpc_GetInfoResponse>, Sweetrpc_SweetGetInfoCall {
+  override class var method: String { return "/sweetrpc.Sweet/GetInfo" }
 }
 
-internal protocol Sweetrpc_SweetSubscribeWpaNetworksCall: ClientCallServerStreaming {
-  /// Do not call this directly, call `receive()` in the protocol extension below instead.
-  func _receive(timeout: DispatchTime) throws -> Sweetrpc_WpaNetwork?
-  /// Call this to wait for a result. Nonblocking.
-  func receive(completion: @escaping (ResultOrRPCError<Sweetrpc_WpaNetwork?>) -> Void) throws
+internal protocol Sweetrpc_SweetGetWpaConnectionInfoCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetGetWpaConnectionInfoCallBase: ClientCallUnaryBase<Sweetrpc_GetWpaConnectionInfoRequest, Sweetrpc_GetWpaConnectionInfoResponse>, Sweetrpc_SweetGetWpaConnectionInfoCall {
+  override class var method: String { return "/sweetrpc.Sweet/GetWpaConnectionInfo" }
 }
 
-internal extension Sweetrpc_SweetSubscribeWpaNetworksCall {
-  /// Call this to wait for a result. Blocking.
-  func receive(timeout: DispatchTime = .distantFuture) throws -> Sweetrpc_WpaNetwork? { return try self._receive(timeout: timeout) }
+internal protocol Sweetrpc_SweetConnectWpaNetworkCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetConnectWpaNetworkCallBase: ClientCallUnaryBase<Sweetrpc_ConnectWpaNetworkRequest, Sweetrpc_ConnectWpaNetworkResponse>, Sweetrpc_SweetConnectWpaNetworkCall {
+  override class var method: String { return "/sweetrpc.Sweet/ConnectWpaNetwork" }
 }
 
-fileprivate final class Sweetrpc_SweetSubscribeWpaNetworksCallBase: ClientCallServerStreamingBase<Sweetrpc_SubscribeWpaNetworksRequest, Sweetrpc_WpaNetwork>, Sweetrpc_SweetSubscribeWpaNetworksCall {
-  override class var method: String { return "/sweetrpc.Sweet/SubscribeWpaNetworks" }
+internal protocol Sweetrpc_SweetGetWpaNetworksCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetGetWpaNetworksCallBase: ClientCallUnaryBase<Sweetrpc_GetWpaNetworksRequest, Sweetrpc_GetWpaNetworksResponse>, Sweetrpc_SweetGetWpaNetworksCall {
+  override class var method: String { return "/sweetrpc.Sweet/GetWpaNetworks" }
+}
+
+internal protocol Sweetrpc_SweetUpdateCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetUpdateCallBase: ClientCallUnaryBase<Sweetrpc_UpdateRequest, Sweetrpc_UpdateResponse>, Sweetrpc_SweetUpdateCall {
+  override class var method: String { return "/sweetrpc.Sweet/Update" }
 }
 
 
 /// Instantiate Sweetrpc_SweetServiceClient, then call methods of this protocol to make API calls.
 internal protocol Sweetrpc_SweetService: ServiceClient {
   /// Synchronous. Unary.
-  func getFeature(_ request: Sweetrpc_Test) throws -> Sweetrpc_Test
+  func getInfo(_ request: Sweetrpc_GetInfoRequest) throws -> Sweetrpc_GetInfoResponse
   /// Asynchronous. Unary.
-  func getFeature(_ request: Sweetrpc_Test, completion: @escaping (Sweetrpc_Test?, CallResult) -> Void) throws -> Sweetrpc_SweetGetFeatureCall
+  func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall
 
-  /// Asynchronous. Server-streaming.
-  /// Send the initial message.
-  /// Use methods on the returned object to get streamed responses.
-  func subscribeWpaNetworks(_ request: Sweetrpc_SubscribeWpaNetworksRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeWpaNetworksCall
+  /// Synchronous. Unary.
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse
+  /// Asynchronous. Unary.
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall
+
+  /// Synchronous. Unary.
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest) throws -> Sweetrpc_ConnectWpaNetworkResponse
+  /// Asynchronous. Unary.
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall
+
+  /// Synchronous. Unary.
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest) throws -> Sweetrpc_GetWpaNetworksResponse
+  /// Asynchronous. Unary.
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall
+
+  /// Synchronous. Unary.
+  func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse
+  /// Asynchronous. Unary.
+  func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall
 
 }
 
 internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_SweetService {
   /// Synchronous. Unary.
-  internal func getFeature(_ request: Sweetrpc_Test) throws -> Sweetrpc_Test {
-    return try Sweetrpc_SweetGetFeatureCallBase(channel)
+  internal func getInfo(_ request: Sweetrpc_GetInfoRequest) throws -> Sweetrpc_GetInfoResponse {
+    return try Sweetrpc_SweetGetInfoCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func getFeature(_ request: Sweetrpc_Test, completion: @escaping (Sweetrpc_Test?, CallResult) -> Void) throws -> Sweetrpc_SweetGetFeatureCall {
-    return try Sweetrpc_SweetGetFeatureCallBase(channel)
+  internal func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall {
+    return try Sweetrpc_SweetGetInfoCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
-  /// Asynchronous. Server-streaming.
-  /// Send the initial message.
-  /// Use methods on the returned object to get streamed responses.
-  internal func subscribeWpaNetworks(_ request: Sweetrpc_SubscribeWpaNetworksRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeWpaNetworksCall {
-    return try Sweetrpc_SweetSubscribeWpaNetworksCallBase(channel)
+  /// Synchronous. Unary.
+  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse {
+    return try Sweetrpc_SweetGetWpaConnectionInfoCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall {
+    return try Sweetrpc_SweetGetWpaConnectionInfoCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest) throws -> Sweetrpc_ConnectWpaNetworkResponse {
+    return try Sweetrpc_SweetConnectWpaNetworkCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall {
+    return try Sweetrpc_SweetConnectWpaNetworkCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest) throws -> Sweetrpc_GetWpaNetworksResponse {
+    return try Sweetrpc_SweetGetWpaNetworksCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall {
+    return try Sweetrpc_SweetGetWpaNetworksCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse {
+    return try Sweetrpc_SweetUpdateCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall {
+    return try Sweetrpc_SweetUpdateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
