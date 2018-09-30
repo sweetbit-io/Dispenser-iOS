@@ -588,6 +588,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="IZ8-BW-i2g"/>
+                                    <action selector="start:" destination="hg1-5g-9Mr" eventType="touchUpInside" id="YjV-8G-HJb"/>
                                 </connections>
                             </button>
                         </subviews>

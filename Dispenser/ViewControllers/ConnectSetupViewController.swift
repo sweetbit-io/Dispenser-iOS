@@ -7,7 +7,7 @@ class ConnectSetupViewController: PairingViewController {
     var service: Sweetrpc_SweetServiceClient?
 
     @IBAction func connect() {
-        jumpTo(storyboard: "Main")
+        self.performSegue(withIdentifier: "next", sender: nil)
     }
 
     override func viewDidLoad() {

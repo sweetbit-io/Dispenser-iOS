@@ -113,7 +113,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Candy Dispenser" id="Fv6-b3-FOV">
-                        <barButtonItem key="leftBarButtonItem" title="Switch" id="U3I-pm-9Qa"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3aO-da-5Jq">
                             <connections>
                                 <action selector="addDispenser:" destination="cuq-Xc-18n" id="aFs-Jf-Caf"/>

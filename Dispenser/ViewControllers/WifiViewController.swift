@@ -30,7 +30,6 @@ class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.accessoryType = .none
         }
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
