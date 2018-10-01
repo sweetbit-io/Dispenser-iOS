@@ -1,2 +1,8 @@
+github "Alamofire/Alamofire" "4.7.3"
+github "Alamofire/AlamofireImage" "3.4.1"
+github "D-Mx/drift-sdk-ios" "021b4bde97cc4669fc83d4f702f245d5856dc07e"
+github "Hearst-DD/ObjectMapper" "3.3.0"
+github "SVProgressHUD/SVProgressHUD" "2.2.5"
 github "apple/swift-protobuf" "1.1.2"
+github "daltoniam/Starscream" "3.0.5"
 github "grpc/grpc-swift" "0.6.0"

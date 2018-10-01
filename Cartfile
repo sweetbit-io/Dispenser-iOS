@@ -1,2 +1,3 @@
 github "apple/swift-protobuf"  ~> 1.0
 github "grpc/grpc-swift"
+github "D-Mx/drift-sdk-ios" "feature/Carthage-support"

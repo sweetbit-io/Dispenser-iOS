@@ -1,4 +1,5 @@
 import UIKit
+import Drift
 
 class PowerOnSetupViewController: PairingViewController {
     override func didReceiveMemoryWarning() {
@@ -10,6 +11,6 @@ class PowerOnSetupViewController: PairingViewController {
     }
 
     @IBAction func needHelp() {
-        print("Help!")
+        Drift.showConversations()
     }
 }

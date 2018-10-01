@@ -1,6 +1,7 @@
 import UIKit
+import Drift
 
-class DispenserConnectedViewController: UIViewController {
+class DispenserConnectedViewController: PairingViewController {
     var service: Sweetrpc_SweetServiceClient?
     var networks: [Sweetrpc_WpaNetwork]?
     var info: Sweetrpc_GetWpaConnectionInfoResponse?
@@ -8,6 +9,10 @@ class DispenserConnectedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func needHelp(_ sender: UIButton) {
+        Drift.showConversations()
     }
     
     @IBAction func setup(_ sender: UIButton) {

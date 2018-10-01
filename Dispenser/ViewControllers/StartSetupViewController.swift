@@ -1,4 +1,5 @@
 import UIKit
+import Drift
 
 class StartSetupViewController: PairingViewController {
     override func didReceiveMemoryWarning() {
@@ -10,6 +11,6 @@ class StartSetupViewController: PairingViewController {
     }
 
     @IBAction func buyDispenser() {
-        print("Buy dispenser")
+        Drift.showConversations()
     }
 }

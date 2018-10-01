@@ -1,8 +1,9 @@
 import UIKit
+import Drift
 
 let defaultBottomConstraint: CGFloat = 20
 
-class WifiAuthViewController: UIViewController {
+class WifiAuthViewController: PairingViewController {
     var service: Sweetrpc_SweetServiceClient?
     var ssid: String?
     
@@ -79,6 +80,17 @@ class WifiAuthViewController: UIViewController {
                     self.password.shake()
                 }
             }
+        }
+    }
+    
+    @IBAction func needHelp(_ sender: UIButton) {
+        Drift.showConversations()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WifiConnectedViewController {
+            let vc = segue.destination as! WifiConnectedViewController
+            vc.service = self.service
         }
     }
 }

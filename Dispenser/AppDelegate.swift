@@ -2,10 +2,12 @@ import CoreData
 import SwiftGRPC
 import SwiftProtobuf
 import UIKit
+import Drift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var dispenser: Dispenser?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -13,22 +15,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let context = self.persistentContainer.viewContext
         let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
+        fetch.sortDescriptors = [NSSortDescriptor(key: "lastOpened", ascending: false)]
         
-        let dispensers = try! context.fetch(fetch) as [Dispenser]
+        let dispensers = try? context.fetch(fetch) as [Dispenser]
 
-        if dispensers.count > 0 {
+        if let dispenserToOpen = dispensers?.first {
+            self.dispenser = dispenserToOpen
+            self.dispenser?.lastOpened = Date()
+            
+            self.saveContext()
+            
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
-
+            
             self.window?.rootViewController = mainViewController
         } else {
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Pairing", bundle: nil)
-            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
-
-            self.window?.rootViewController = mainViewController
+            let pairingStoryboard: UIStoryboard = UIStoryboard(name: "Pairing", bundle: nil)
+            let pairingViewController: UIViewController = pairingStoryboard.instantiateInitialViewController()! as UIViewController
+            
+            self.window?.rootViewController = pairingViewController
         }
 
         self.window?.makeKeyAndVisible()
+        
+        Drift.setup("ydd7gkth62cx")
+        Drift.registerUser(UIDevice.init().identifierForVendor?.uuidString ?? "", email: "")
 
         return true
     }
@@ -52,8 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
 

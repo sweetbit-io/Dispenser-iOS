@@ -1,5 +1,6 @@
 import NetworkExtension
 import UIKit
+import Drift
 
 class ConnectSetupViewController: PairingViewController {
     @IBOutlet var continueButton: UIButton!
@@ -8,6 +9,10 @@ class ConnectSetupViewController: PairingViewController {
 
     @IBAction func connect() {
         self.performSegue(withIdentifier: "next", sender: nil)
+    }
+    
+    @IBAction func needHelp() {
+        Drift.showConversations()
     }
 
     override func viewDidLoad() {

@@ -12,9 +12,14 @@
 		040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* WifiAuthViewController.swift */; };
 		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
 		040DFCAC216173500014F065 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCAB216173500014F065 /* LoadingButton.swift */; };
+		040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCAD216210EA0014F065 /* Drift.framework */; };
+		040DFCB4216211AA0014F065 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCAF216211AA0014F065 /* AlamofireImage.framework */; };
+		040DFCB5216211AA0014F065 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB0216211AA0014F065 /* Starscream.framework */; };
+		040DFCB6216211AA0014F065 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB1216211AA0014F065 /* SVProgressHUD.framework */; };
+		040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB2216211AA0014F065 /* ObjectMapper.framework */; };
+		040DFCB8216211AA0014F065 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB3216211AA0014F065 /* Alamofire.framework */; };
 		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
 		04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */; };
-		0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588A215FEA8C0021AF0E /* MainTableViewController.swift */; };
 		0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588C215FF0DC0021AF0E /* UIViewController.swift */; };
 		0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588E2160107A0021AF0E /* PairingViewController.swift */; };
 		042358912160235E0021AF0E /* WifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358902160235E0021AF0E /* WifiViewController.swift */; };
@@ -25,6 +30,7 @@
 		042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96172149C2F3001F637A /* SwiftProtobuf.framework */; };
 		042A961C2149C2F3001F637A /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96182149C2F3001F637A /* CgRPC.framework */; };
 		042A961D2149C2F3001F637A /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96192149C2F3001F637A /* BoringSSL.framework */; };
+		043BDFD32162D69900D2CBE1 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */; };
 		044F526A21408F9600B0C423 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044F526921408F9600B0C423 /* ExternalAccessory.framework */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
@@ -49,9 +55,14 @@
 		040DFCA721614C630014F065 /* WifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiAuthViewController.swift; sourceTree = "<group>"; };
 		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		040DFCAB216173500014F065 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		040DFCAD216210EA0014F065 /* Drift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Drift.framework; path = Carthage/Build/iOS/Drift.framework; sourceTree = "<group>"; };
+		040DFCAF216211AA0014F065 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		040DFCB0216211AA0014F065 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		040DFCB1216211AA0014F065 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		040DFCB2216211AA0014F065 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		040DFCB3216211AA0014F065 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DispenserModel.xcdatamodel; sourceTree = "<group>"; };
-		0423588A215FEA8C0021AF0E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		0423588C215FF0DC0021AF0E /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0423588E2160107A0021AF0E /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
 		042358902160235E0021AF0E /* WifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +73,7 @@
 		042A96172149C2F3001F637A /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
 		042A96182149C2F3001F637A /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/iOS/CgRPC.framework; sourceTree = "<group>"; };
 		042A96192149C2F3001F637A /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
+		043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		044F526921408F9600B0C423 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
@@ -88,6 +100,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040DFCB4216211AA0014F065 /* AlamofireImage.framework in Frameworks */,
+				040DFCB5216211AA0014F065 /* Starscream.framework in Frameworks */,
+				040DFCB6216211AA0014F065 /* SVProgressHUD.framework in Frameworks */,
+				040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */,
+				040DFCB8216211AA0014F065 /* Alamofire.framework in Frameworks */,
+				040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */,
 				042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */,
 				042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */,
 				042A961C2149C2F3001F637A /* CgRPC.framework in Frameworks */,
@@ -153,6 +171,12 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				040DFCB3216211AA0014F065 /* Alamofire.framework */,
+				040DFCAF216211AA0014F065 /* AlamofireImage.framework */,
+				040DFCB2216211AA0014F065 /* ObjectMapper.framework */,
+				040DFCB0216211AA0014F065 /* Starscream.framework */,
+				040DFCB1216211AA0014F065 /* SVProgressHUD.framework */,
+				040DFCAD216210EA0014F065 /* Drift.framework */,
 				042A96192149C2F3001F637A /* BoringSSL.framework */,
 				042A96182149C2F3001F637A /* CgRPC.framework */,
 				042A96162149C2F3001F637A /* SwiftGRPC.framework */,
@@ -177,11 +201,11 @@
 		04E38F002141C1F60017F31E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
 				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
 				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
 				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
 				042358902160235E0021AF0E /* WifiViewController.swift */,
-				0423588A215FEA8C0021AF0E /* MainTableViewController.swift */,
 				0423588E2160107A0021AF0E /* PairingViewController.swift */,
 				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
 				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
@@ -293,12 +317,24 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftProtobuf.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BoringSSL.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CgRPC.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Drift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftProtobuf.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BoringSSL.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CgRPC.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Drift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ObjectMapper.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SVProgressHUD.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -318,8 +354,8 @@
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
 				042358912160235E0021AF0E /* WifiViewController.swift in Sources */,
-				0423588B215FEA8C0021AF0E /* MainTableViewController.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
+				043BDFD32162D69900D2CBE1 /* MainTableViewController.swift in Sources */,
 				040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,

@@ -1,6 +1,7 @@
 import UIKit
+import Drift
 
-class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WifiViewController: PairingViewController, UITableViewDataSource, UITableViewDelegate {
     var service: Sweetrpc_SweetServiceClient?
     var networks: [Sweetrpc_WpaNetwork]?
     var info: Sweetrpc_GetWpaConnectionInfoResponse?
@@ -12,6 +13,10 @@ class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    @IBAction func needHelp(_ sender: UIButton) {
+        Drift.showConversations()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +56,9 @@ class WifiViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! WifiAuthViewController
             vc.service = self.service
             vc.ssid = self.selectedSsid
+        } else if segue.destination is WifiConnectedViewController {
+            let vc = segue.destination as! WifiConnectedViewController
+            vc.service = self.service
         }
     }
 }

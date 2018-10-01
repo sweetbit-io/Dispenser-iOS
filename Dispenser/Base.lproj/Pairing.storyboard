@@ -209,6 +209,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOh-iO-lwS" userLabel="Help">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="needHelp" destination="i74-gB-asf" eventType="touchUpInside" id="2UR-Co-fdW"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="vKl-zA-qEo" userLabel="Image">
                                 <rect key="frame" x="0.0" y="84" width="375" height="150"/>
@@ -294,6 +297,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOq-xm-GBe" userLabel="Help">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="needHelp:" destination="Nia-TD-wCr" eventType="touchUpInside" id="e6W-Qb-FVJ"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="fBg-gp-IXu" userLabel="Image">
                                 <rect key="frame" x="0.0" y="84" width="375" height="150"/>
@@ -375,6 +381,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdx-rq-TDf" userLabel="Buy">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="needHelp:" destination="pr3-dT-P2X" eventType="touchUpInside" id="czj-lo-v1I"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="Zpo-ji-VUW" userLabel="Image">
                                 <rect key="frame" x="0.0" y="84" width="375" height="150"/>
@@ -456,6 +465,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVz-Rk-VLa" userLabel="Buy">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="needHelp:" destination="Gct-8W-ngT" eventType="touchUpInside" id="31t-cE-Cev"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="HUI-T1-0bO" userLabel="Image">
                                 <rect key="frame" x="0.0" y="84" width="375" height="150"/>
@@ -559,6 +571,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skK-DR-03a" userLabel="Help">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="needHelp:" destination="hg1-5g-9Mr" eventType="touchUpInside" id="8kR-He-DrO"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="LFN-ct-DNS" userLabel="Image">
                                 <rect key="frame" x="0.0" y="84" width="375" height="180"/>
@@ -587,7 +602,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="IZ8-BW-i2g"/>
                                     <action selector="start:" destination="hg1-5g-9Mr" eventType="touchUpInside" id="YjV-8G-HJb"/>
                                 </connections>
                             </button>
