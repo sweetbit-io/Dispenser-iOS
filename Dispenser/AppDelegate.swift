@@ -3,11 +3,29 @@ import SwiftGRPC
 import SwiftProtobuf
 import UIKit
 import Drift
+import ReSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let store: Store<AppState>
     var window: UIWindow?
     var dispenser: Dispenser?
+    
+    // Allow view controllers to conveniently access the app delegate and its store
+    // ex. AppDelegate.shared.store.dispatch(Action())
+    open class var shared: AppDelegate {
+        get {
+            return UIApplication.shared.delegate as! AppDelegate
+        }
+    }
+    
+    // Initialize an empty store that will hold the entire state of the app
+    override init() {
+        self.store = Store<AppState>(
+            reducer: appReducer,
+            state: nil,
+            middleware: [])
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)

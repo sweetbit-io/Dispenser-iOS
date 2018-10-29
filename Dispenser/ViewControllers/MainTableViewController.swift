@@ -1,74 +1,131 @@
+import ReSwift
 import UIKit
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UITableViewController, StoreSubscriber {
+    static let UpdateSection = 1
     
+    var showUpdateCell = false
+    
+    @IBOutlet var updateCell: UITableViewCell!
+    @IBOutlet var unpairCell: UITableViewCell!
+    @IBOutlet var unlockCell: UITableViewCell!
     
     @IBAction func addDispenser(_ sender: Any) {
         jumpTo(storyboard: "Pairing")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        if cell == self.updateCell {
+            // do nothing
+        } else if cell == self.unlockCell {
+            self.unlock()
+            cell?.isSelected = false
+        } else if cell == self.unpairCell {
+            self.unpair()
+            cell?.isSelected = false
         }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if cell == self.updateCell && !self.showUpdateCell {
+            return 0
+        }
+        
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
+            return 0.1
+        } else {
+            return super.tableView(tableView, heightForHeaderInSection: section)
+        }
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
+            return 0.1
+        } else {
+            return super.tableView(tableView, heightForFooterInSection: section)
+        }
     }
-    */
+    
+    func unpair() {
+        let alert = UIAlertController(
+            title: "Unpair",
+            message: "Unpairing the dispenser will remove the connection but still keep it running. Do you really want to do that?",
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Unpair", style: .destructive, handler: { _ in
+                    print("unpair")
+                }
+            )
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Cancel", style: .cancel, handler: { _ in
+                    // do nothing
+                }
+            )
+        )
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func unlock() {
+    }
+    
+    func toggleUpdateCell() {
+        self.showUpdateCell.toggle()
+        
+        // This has a nicer animation, but the cell does not reappear
+        // let indexPath = IndexPath(row: 0, section: updateSection)
+        // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppDelegate.shared.store.subscribe(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        AppDelegate.shared.store.unsubscribe(self)
+    }
+    
+    func newState(state: AppState) {
+        guard let dispenser = state.dispenser else {
+            return
+        }
+        
+        switch (dispenser.update) {
+        case .updating:
+            fallthrough
+        case .available(_):
+            if !self.showUpdateCell {
+                self.toggleUpdateCell()
+            }
+        case .none:
+            fallthrough
+        case .searching:
+            fallthrough
+        default:
+            if self.showUpdateCell {
+                self.toggleUpdateCell()
+            }
+        }
+    }
 }

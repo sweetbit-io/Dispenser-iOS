@@ -61,6 +61,8 @@ class WifiConnectedViewController: PairingViewController {
         
         appDelegate.dispenser = dispenserToOpen
         
+        
+        
         jumpTo(storyboard: "Main")
     }
     

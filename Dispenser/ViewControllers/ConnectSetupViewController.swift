@@ -17,6 +17,8 @@ class ConnectSetupViewController: PairingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("View did load")
 
         self.continueButton.isEnabled = false
 
@@ -30,6 +32,8 @@ class ConnectSetupViewController: PairingViewController {
                 }
                 else {
                     print("No Connected")
+                    self.continueButton.isEnabled = true
+                    self.performSegue(withIdentifier: "failed", sender: nil)
                 }
             }
             else {

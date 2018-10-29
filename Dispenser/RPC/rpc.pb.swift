@@ -207,6 +207,32 @@ struct Sweetrpc_UpdateResponse {
   init() {}
 }
 
+struct Sweetrpc_ConnectToRemoteNodeRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var uri: String = String()
+
+  var cert: Data = SwiftProtobuf.Internal.emptyData
+
+  var macaroon: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_ConnectToRemoteNodeResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "sweetrpc"
@@ -553,6 +579,66 @@ extension Sweetrpc_UpdateResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   static func ==(lhs: Sweetrpc_UpdateResponse, rhs: Sweetrpc_UpdateResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_ConnectToRemoteNodeRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ConnectToRemoteNodeRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uri"),
+    2: .same(proto: "cert"),
+    3: .same(proto: "macaroon"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.uri)
+      case 2: try decoder.decodeSingularBytesField(value: &self.cert)
+      case 3: try decoder.decodeSingularBytesField(value: &self.macaroon)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.uri.isEmpty {
+      try visitor.visitSingularStringField(value: self.uri, fieldNumber: 1)
+    }
+    if !self.cert.isEmpty {
+      try visitor.visitSingularBytesField(value: self.cert, fieldNumber: 2)
+    }
+    if !self.macaroon.isEmpty {
+      try visitor.visitSingularBytesField(value: self.macaroon, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_ConnectToRemoteNodeRequest, rhs: Sweetrpc_ConnectToRemoteNodeRequest) -> Bool {
+    if lhs.uri != rhs.uri {return false}
+    if lhs.cert != rhs.cert {return false}
+    if lhs.macaroon != rhs.macaroon {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_ConnectToRemoteNodeResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ConnectToRemoteNodeResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_ConnectToRemoteNodeResponse, rhs: Sweetrpc_ConnectToRemoteNodeResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

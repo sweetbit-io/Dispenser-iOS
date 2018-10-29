@@ -31,7 +31,18 @@
 		042A961C2149C2F3001F637A /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96182149C2F3001F637A /* CgRPC.framework */; };
 		042A961D2149C2F3001F637A /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96192149C2F3001F637A /* BoringSSL.framework */; };
 		043BDFD32162D69900D2CBE1 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */; };
+		043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BDFD42163F9A000D2CBE1 /* DispenserTableViewCell.swift */; };
 		044F526A21408F9600B0C423 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044F526921408F9600B0C423 /* ExternalAccessory.framework */; };
+		0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450C70121641D2300B40F3B /* ReleasesService.swift */; };
+		0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */; };
+		0450C708216499F700B40F3B /* Semver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C706216499F700B40F3B /* Semver.framework */; };
+		0450C709216499F700B40F3B /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C707216499F700B40F3B /* Down.framework */; };
+		04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870E121657AE00097A91C /* UpdateViewController.swift */; };
+		04A870E82168C8A00097A91C /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A870E72168C8A00097A91C /* ReSwift.framework */; };
+		04A870EC21690E7D0097A91C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870EB21690E7D0097A91C /* AppState.swift */; };
+		04A870EF216A08D60097A91C /* DispenserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870EE216A08D60097A91C /* DispenserActions.swift */; };
+		04A870F1216A09D60097A91C /* SweetConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870F0216A09D60097A91C /* SweetConnectionService.swift */; };
+		04A870F3216A0FF20097A91C /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870F2216A0FF20097A91C /* Reducers.swift */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
 		04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB83D215F131F008809E4 /* Cartfile.resolved */; };
@@ -47,6 +58,11 @@
 		04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */; };
 		04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */; };
 		04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */; };
+		04E7165F21809FCE0011909C /* ConnectionFailedSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */; };
+		04E716612180A3490011909C /* ReplaceStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */; };
+		04E716632180BC200011909C /* RemoteNodeConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */; };
+		04E71669218191D00011909C /* RemoteNodeConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */; };
+		04E7166B21864E8E0011909C /* RemoteNodeConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +90,18 @@
 		042A96182149C2F3001F637A /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/iOS/CgRPC.framework; sourceTree = "<group>"; };
 		042A96192149C2F3001F637A /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
 		043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		043BDFD42163F9A000D2CBE1 /* DispenserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserTableViewCell.swift; sourceTree = "<group>"; };
 		044F526921408F9600B0C423 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		0450C70121641D2300B40F3B /* ReleasesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleasesService.swift; sourceTree = "<group>"; };
+		0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
+		0450C706216499F700B40F3B /* Semver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Semver.framework; path = Carthage/Build/iOS/Semver.framework; sourceTree = "<group>"; };
+		0450C707216499F700B40F3B /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
+		04A870E121657AE00097A91C /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		04A870E72168C8A00097A91C /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
+		04A870EB21690E7D0097A91C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		04A870EE216A08D60097A91C /* DispenserActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserActions.swift; sourceTree = "<group>"; };
+		04A870F0216A09D60097A91C /* SweetConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweetConnectionService.swift; sourceTree = "<group>"; };
+		04A870F2216A0FF20097A91C /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
 		04CDB83D215F131F008809E4 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
@@ -93,6 +120,11 @@
 		04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
 		04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerOnSetupViewController.swift; sourceTree = "<group>"; };
 		04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSetupViewController.swift; sourceTree = "<group>"; };
+		04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionFailedSetupViewController.swift; sourceTree = "<group>"; };
+		04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceStoryboardSegue.swift; sourceTree = "<group>"; };
+		04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNodeConnectViewController.swift; sourceTree = "<group>"; };
+		04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNodeConnectionModel.swift; sourceTree = "<group>"; };
+		04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNodeConfirmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +132,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A870E82168C8A00097A91C /* ReSwift.framework in Frameworks */,
+				0450C708216499F700B40F3B /* Semver.framework in Frameworks */,
+				0450C709216499F700B40F3B /* Down.framework in Frameworks */,
+				0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */,
+				040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */,
 				040DFCB4216211AA0014F065 /* AlamofireImage.framework in Frameworks */,
 				040DFCB5216211AA0014F065 /* Starscream.framework in Frameworks */,
 				040DFCB6216211AA0014F065 /* SVProgressHUD.framework in Frameworks */,
-				040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */,
 				040DFCB8216211AA0014F065 /* Alamofire.framework in Frameworks */,
 				040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */,
 				042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */,
@@ -125,6 +161,39 @@
 				04CBFEE72152870F0065291E /* rpc.grpc.swift */,
 			);
 			path = RPC;
+			sourceTree = "<group>";
+		};
+		0450C70021641CCD00B40F3B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0450C70121641D2300B40F3B /* ReleasesService.swift */,
+				04A870F0216A09D60097A91C /* SweetConnectionService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		04A870E921690E560097A91C /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				04A870F2216A0FF20097A91C /* Reducers.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		04A870EA21690E670097A91C /* State */ = {
+			isa = PBXGroup;
+			children = (
+				04A870EB21690E7D0097A91C /* AppState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		04A870ED216A08480097A91C /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				04A870EE216A08D60097A91C /* DispenserActions.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		04DA54292132EB0B00EA2B65 = {
@@ -150,20 +219,26 @@
 		04DA54342132EB0B00EA2B65 /* Dispenser */ = {
 			isa = PBXGroup;
 			children = (
+				04DA54352132EB0B00EA2B65 /* AppDelegate.swift */,
+				04DA54372132EB0B00EA2B65 /* ViewController.swift */,
+				04A870ED216A08480097A91C /* Actions */,
+				04A870EA21690E670097A91C /* State */,
+				04A870E921690E560097A91C /* Reducers */,
+				0450C70021641CCD00B40F3B /* Service */,
 				042A960F2149C15E001F637A /* RPC */,
 				04E38F052141C7B40017F31E /* Views */,
 				04E38F002141C1F60017F31E /* ViewControllers */,
 				04E38EFF2141C1A90017F31E /* Extensions */,
-				04DA544A2132F60100EA2B65 /* Dispenser.entitlements */,
-				04DA54352132EB0B00EA2B65 /* AppDelegate.swift */,
-				04DA54372132EB0B00EA2B65 /* ViewController.swift */,
-				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
-				04DA543C2132EB0D00EA2B65 /* Assets.xcassets */,
+				04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */,
+				04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */,
 				04DA543E2132EB0D00EA2B65 /* LaunchScreen.storyboard */,
-				04DA54412132EB0D00EA2B65 /* Info.plist */,
+				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
 				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
+				04DA543C2132EB0D00EA2B65 /* Assets.xcassets */,
 				04E38EFB2141BF170017F31E /* Theme.xcassets */,
+				04DA54412132EB0D00EA2B65 /* Info.plist */,
 				04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */,
+				04DA544A2132F60100EA2B65 /* Dispenser.entitlements */,
 			);
 			path = Dispenser;
 			sourceTree = "<group>";
@@ -171,6 +246,10 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04A870E72168C8A00097A91C /* ReSwift.framework */,
+				0450C707216499F700B40F3B /* Down.framework */,
+				0450C706216499F700B40F3B /* Semver.framework */,
+				0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */,
 				040DFCB3216211AA0014F065 /* Alamofire.framework */,
 				040DFCAF216211AA0014F065 /* AlamofireImage.framework */,
 				040DFCB2216211AA0014F065 /* ObjectMapper.framework */,
@@ -201,15 +280,19 @@
 		04E38F002141C1F60017F31E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
 				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
 				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
 				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
+				04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */,
+				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
+				04A870E121657AE00097A91C /* UpdateViewController.swift */,
 				042358902160235E0021AF0E /* WifiViewController.swift */,
 				0423588E2160107A0021AF0E /* PairingViewController.swift */,
 				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
 				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
 				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
+				04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */,
+				04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +302,7 @@
 			children = (
 				04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */,
 				040DFCAB216173500014F065 /* LoadingButton.swift */,
+				043BDFD42163F9A000D2CBE1 /* DispenserTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,6 +345,9 @@
 								enabled = 1;
 							};
 							com.apple.NetworkExtensions.iOS = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 							com.apple.WAC = {
@@ -323,6 +410,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Semver.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReSwift.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
@@ -335,6 +426,10 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ObjectMapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SVProgressHUD.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireObjectMapper.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Down.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Semver.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -347,26 +442,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */,
 				04235893216024BA0021AF0E /* DispenserConnectedViewController.swift in Sources */,
+				04E716612180A3490011909C /* ReplaceStoryboardSegue.swift in Sources */,
 				04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */,
+				04A870EC21690E7D0097A91C /* AppState.swift in Sources */,
 				04DA54382132EB0B00EA2B65 /* ViewController.swift in Sources */,
 				040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */,
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
 				042358912160235E0021AF0E /* WifiViewController.swift in Sources */,
+				04E7165F21809FCE0011909C /* ConnectionFailedSetupViewController.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
+				04E71669218191D00011909C /* RemoteNodeConnectionModel.swift in Sources */,
 				043BDFD32162D69900D2CBE1 /* MainTableViewController.swift in Sources */,
 				040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
+				04A870F1216A09D60097A91C /* SweetConnectionService.swift in Sources */,
 				040DFCAC216173500014F065 /* LoadingButton.swift in Sources */,
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
 				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
+				04E716632180BC200011909C /* RemoteNodeConnectViewController.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
 				042358972160339F0021AF0E /* rpc.pb.swift in Sources */,
+				04A870EF216A08D60097A91C /* DispenserActions.swift in Sources */,
+				0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */,
+				043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */,
 				04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */,
+				04A870F3216A0FF20097A91C /* Reducers.swift in Sources */,
 				04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */,
 				0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */,
+				04E7166B21864E8E0011909C /* RemoteNodeConfirmViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

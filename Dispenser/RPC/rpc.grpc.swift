@@ -55,6 +55,12 @@ fileprivate final class Sweetrpc_SweetUpdateCallBase: ClientCallUnaryBase<Sweetr
   override class var method: String { return "/sweetrpc.Sweet/Update" }
 }
 
+internal protocol Sweetrpc_SweetConnectToRemoteNodeCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetConnectToRemoteNodeCallBase: ClientCallUnaryBase<Sweetrpc_ConnectToRemoteNodeRequest, Sweetrpc_ConnectToRemoteNodeResponse>, Sweetrpc_SweetConnectToRemoteNodeCall {
+  override class var method: String { return "/sweetrpc.Sweet/ConnectToRemoteNode" }
+}
+
 
 /// Instantiate Sweetrpc_SweetServiceClient, then call methods of this protocol to make API calls.
 internal protocol Sweetrpc_SweetService: ServiceClient {
@@ -82,6 +88,11 @@ internal protocol Sweetrpc_SweetService: ServiceClient {
   func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse
   /// Asynchronous. Unary.
   func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall
+
+  /// Synchronous. Unary.
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse
+  /// Asynchronous. Unary.
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall
 
 }
 
@@ -138,6 +149,17 @@ internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_Sw
   /// Asynchronous. Unary.
   internal func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall {
     return try Sweetrpc_SweetUpdateCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse {
+    return try Sweetrpc_SweetConnectToRemoteNodeCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall {
+    return try Sweetrpc_SweetConnectToRemoteNodeCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
