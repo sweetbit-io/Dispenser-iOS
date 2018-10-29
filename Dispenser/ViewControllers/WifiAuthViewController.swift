@@ -16,8 +16,8 @@ class WifiAuthViewController: PairingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WifiAuthViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -32,17 +32,17 @@ class WifiAuthViewController: PairingViewController {
     
     @IBAction func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+        let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         bottomConstraint.constant = keyboardSize - self.view.safeAreaInsets.bottom + defaultBottomConstraint
         
-        let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         
         UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
     }
     
     @IBAction func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
-        let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         bottomConstraint.constant = defaultBottomConstraint
         
         UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }

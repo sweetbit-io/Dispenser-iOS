@@ -58,7 +58,7 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         let alert = UIAlertController(
             title: "Unpair",
             message: "Unpairing the dispenser will remove the connection but still keep it running. Do you really want to do that?",
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         
         alert.addAction(

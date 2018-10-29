@@ -41,7 +41,7 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
-            view.bringSubview(toFront: qrCodeFrameView)
+            view.bringSubviewToFront(qrCodeFrameView)
         }
         
         // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
