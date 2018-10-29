@@ -16,8 +16,42 @@ class DispenserActions {
     
     struct resetCapturedRemoteConnection: Action {}
     
+    struct setConnectingToRemoteNode: Action {
+        let remoteNodeConnection: RemoteNodeConnection
+    }
+    
+    struct setRemoteNodeConnectionFailed: Action {
+        let remoteNodeConnection: RemoteNodeConnection
+    }
+    
+    struct setRemoteNodeConnectionSuccessful: Action {
+        let remoteNodeConnection: RemoteNodeConnection
+    }
+    
     struct setLatestRelease: Action {
         let oAuthUrl: URL?
+    }
+    
+    static func connectToRemoteNode(nodeConnection: RemoteNodeConnection) -> ActionCreator {
+        return { (state: AppState, store: Store<AppState>) -> Action? in
+            store.dispatch(setConnectingToRemoteNode(remoteNodeConnection: nodeConnection))
+            
+            // TODO: Reuse service client connection
+            let service = Sweetrpc_SweetServiceClient(address: "172.20.10.4:9000", secure: false)
+            
+            var req = Sweetrpc_ConnectToRemoteNodeRequest()
+            req.uri = nodeConnection.uri
+            req.cert = nodeConnection.cert.data(using: .utf8)!
+            req.macaroon = Data(base64Encoded: nodeConnection.macaroon)!
+            
+            guard let res = try? service.connectToRemoteNode(req) else {
+                return setRemoteNodeConnectionFailed(remoteNodeConnection: nodeConnection)
+            }
+
+            print(res)
+            
+            return setRemoteNodeConnectionSuccessful(remoteNodeConnection: nodeConnection)
+        }
     }
     
     static func update(state: AppState, store: Store<AppState>) -> Action? {
@@ -33,20 +67,6 @@ class DispenserActions {
                 store.dispatch(setLatestRelease(oAuthUrl: nil))
             }
         }
-        
-        return nil
-    }
-    
-    static func connectRemoteNode(state: AppState, store: Store<AppState>) -> Action? {
-        // TODO: Reuse service client connection
-        let service = Sweetrpc_SweetServiceClient(address: "192.168.27.1:9000", secure: false)
-
-        var req = Sweetrpc_ConnectToRemoteNodeRequest()
-        req.uri = "coincenter.lnd.lightning.land:10009"
-        req.cert = Data(base64Encoded: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM5RENDQXB1Z0F3SUJBZ0lRVHd5Zm9YZnBqYkJuRXZBZDBja1I0ekFLQmdncWhrak9QUVFEQWpBeE1SOHcKSFFZRFZRUUtFeFpzYm1RZ1lYVjBiMmRsYm1WeVlYUmxaQ0JqWlhKME1RNHdEQVlEVlFRREV3VnZkSFJsY2pBZQpGdzB4T0RFd01Ea3lNVEE1TXpsYUZ3MHhPVEV5TURReU1UQTVNemxhTURFeEh6QWRCZ05WQkFvVEZteHVaQ0JoCmRYUnZaMlZ1WlhKaGRHVmtJR05sY25ReERqQU1CZ05WQkFNVEJXOTBkR1Z5TUZrd0V3WUhLb1pJemowQ0FRWUkKS29aSXpqMERBUWNEUWdBRUY1aFlKVHhyNVZVK2laTjRtTnBlVDQwWHFvbllENGx5ZWE3NWllKzlxY1l0QllIdgpvS05Lei9VZmRxSFdXek5DYUh5SnZyWjl6NjdweUxDUHVjR3JIS09DQVpNd2dnR1BNQTRHQTFVZER3RUIvd1FFCkF3SUNwREFQQmdOVkhSTUJBZjhFQlRBREFRSC9NSUlCYWdZRFZSMFJCSUlCWVRDQ0FWMkNCVzkwZEdWeWdnbHMKYjJOaGJHaHZjM1NDSFdOdmFXNWpaVzUwWlhJdWJHNWtMbXhwWjJoMGJtbHVaeTVzWVc1a2dnUjFibWw0Z2dwMQpibWw0Y0dGamEyVjBod1IvQUFBQmh4QUFBQUFBQUFBQUFBQUFBQUFBQUFBQmh3VEFxQUpsaHdTc0VRQUJod1NzCkVnQUJoeEFxQWdGb2ZqWXNPN1Q3OHVWd0tOYjZoeEFxQWdGb2ZqWXNPd0UzV0plRG5PQitoeEFxQWdGb2ZqWXMKT3kydlFIQnYrZnlpaHhBcUFnRm9mallzTzJYeEx2U3VIaHRyaHhBcUFnRm9mallzTzJucUU5Unh6UGNQaHhBcQpBZ0ZvZmpZc085VWErL051VXdZNGh4QXFBZ0ZvZmpZc08vRmVCQ1VtaEoyZmh4QXFBZ0ZvZmpZc08rQTM2OWZyCnI0S0poeEQrZ0FBQUFBQUFBSjFUcXQrekM2bGhoeEQrZ0FBQUFBQUFBQUJDTnYvK2FRaFBoeEQrZ0FBQUFBQUEKQUdoYjh2LytjYkQ5aHhEK2dBQUFBQUFBQUt5LzB2LytqWC9UaHhEK2dBQUFBQUFBQUNqWTlmLys3d2VPaHdSdAp5c0FMTUFvR0NDcUdTTTQ5QkFNQ0EwY0FNRVFDSUdFQUpTb0JmOFI0czFWRkpqNWxLOEhJWTJrL0Nwc3kyaVpvCk1CSytzMkF5QWlCTDljbTJOdmswSWRUcjZ3VysxM1laMTZuUktCbzZubFBiU1h2ejcvbUk3QT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K")!
-        req.macaroon = Data(base64Encoded: "AgEDbG5kArsBAwoQNLTf9mTC3chI53oKNtTbZxIBMBoWCgdhZGRyZXNzEgRyZWFkEgV3cml0ZRoTCgRpbmZvEgRyZWFkEgV3cml0ZRoXCghpbnZvaWNlcxIEcmVhZBIFd3JpdGUaFgoHbWVzc2FnZRIEcmVhZBIFd3JpdGUaFwoIb2ZmY2hhaW4SBHJlYWQSBXdyaXRlGhYKB29uY2hhaW4SBHJlYWQSBXdyaXRlGhQKBXBlZXJzEgRyZWFkEgV3cml0ZQAABiCWcke69HRv3Nfu2igj558bUpYzSFBigdnIUiqj1N74uA==")!
-        
-        _ = try? service.connectToRemoteNode(req)
         
         return nil
     }

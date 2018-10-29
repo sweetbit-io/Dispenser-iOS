@@ -15,6 +15,12 @@ func connectRemoteNodeReducer(action: Action, state: ConnectRemoteNodeState?) ->
         return .captured(payload.remoteNodeConnection)
     case _ as DispenserActions.resetCapturedRemoteConnection:
         return .none
+    case let payload as DispenserActions.setConnectingToRemoteNode:
+        return .connecting(payload.remoteNodeConnection)
+    case let payload as DispenserActions.setRemoteNodeConnectionFailed:
+        return .failed(payload.remoteNodeConnection)
+    case let payload as DispenserActions.setRemoteNodeConnectionSuccessful:
+        return .connected(payload.remoteNodeConnection)
     default: break
     }
     

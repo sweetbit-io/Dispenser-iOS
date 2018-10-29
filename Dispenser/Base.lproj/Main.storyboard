@@ -131,9 +131,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Candy Dispenser" id="Fv6-b3-FOV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3aO-da-5Jq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="3aO-da-5Jq">
                             <connections>
                                 <action selector="addDispenser:" destination="cuq-Xc-18n" id="aFs-Jf-Caf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="HeY-WL-rGT">
+                            <connections>
+                                <action selector="help:" destination="cuq-Xc-18n" id="hBe-xl-JFA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -320,6 +325,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="connectButton" destination="Bqp-Uf-AsY" id="ywQ-bz-uvH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLr-sF-rVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,6 +522,7 @@ Read balances</string>
     </scenes>
     <resources>
         <image name="Dispenser" width="371" height="584"/>
+        <image name="Help" width="50" height="50"/>
         <namedColor name="Destructive">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

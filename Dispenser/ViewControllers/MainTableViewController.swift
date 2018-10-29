@@ -1,5 +1,6 @@
 import ReSwift
 import UIKit
+import Drift
 
 class MainTableViewController: UITableViewController, StoreSubscriber {
     static let UpdateSection = 1
@@ -12,6 +13,10 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
     
     @IBAction func addDispenser(_ sender: Any) {
         jumpTo(storyboard: "Pairing")
+    }
+    
+    @IBAction func help(_ sender: Any) {
+        Drift.showConversations()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

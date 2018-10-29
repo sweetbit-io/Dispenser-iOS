@@ -3,6 +3,9 @@ import ReSwift
 
 class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
     
+    @IBOutlet weak var connectButton: LoadingButton!
+    var remoteNodeConnection: RemoteNodeConnection?
+    
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: {
             AppDelegate.shared.store.dispatch(DispenserActions.resetCapturedRemoteConnection())
@@ -10,9 +13,13 @@ class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
     }
     
     @IBAction func connect(_ sender: LoadingButton) {
-        sender.showLoading()
+        guard let remoteNodeConnection = self.remoteNodeConnection else {
+            return
+        }
         
-        AppDelegate.shared.store.dispatch(DispenserActions.connectRemoteNode(state: <#T##AppState#>, store: <#T##Store<AppState>#>)())
+        let action = DispenserActions.connectToRemoteNode(nodeConnection: remoteNodeConnection)
+        
+        AppDelegate.shared.store.dispatch(action)
     }
     
     override func viewDidLoad() {
@@ -34,7 +41,15 @@ class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
     func newState(state: AppState) {
         switch (state.connectRemoteNode) {
         case let .captured(remoteNodeConnection):
-            print(remoteNodeConnection.uri)
+            self.remoteNodeConnection = remoteNodeConnection
+            self.connectButton.hideLoading()
+        case .connecting(_):
+            self.connectButton.showLoading()
+        case .failed(_):
+            self.connectButton.hideLoading()
+        case .connected(_):
+            self.connectButton.hideLoading()
+            self.dismiss(self)
         default:
             return
         }
