@@ -48,7 +48,7 @@
                                     <action selector="buyDispenser" destination="xqP-rh-mL1" eventType="touchUpInside" id="e7g-Jq-rnL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to set up your Bitcoin candy dispenser, you'll need to plug it into a power source and have access to a Wi-Fi." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFa-0p-ejO" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to set up your Bitcoin candy dispenser, you'll need to plug it into a power source and have access to a Wi-Fi." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFa-0p-ejO" userLabel="Intro">
                                 <rect key="frame" x="20" y="326" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -130,7 +130,7 @@
                                     <action selector="needHelp" destination="JAu-N2-ayO" eventType="touchUpInside" id="hPN-yP-d8R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
                                 <rect key="frame" x="20" y="326" width="335" height="81.5"/>
                                 <string key="text">Please plug the USB cable into an outlet. When powered, the dispenser will buzz after about one minute. After that, continue the setup.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -240,7 +240,7 @@
                                     <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="2xa-I5-JeQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempting to connect to the candy dispenser through Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg3-Fb-fsR" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempting to connect to the candy dispenser through Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg3-Fb-fsR" userLabel="Intro">
                                 <rect key="frame" x="20" y="282" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -308,7 +308,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="GMi-Km-Sso"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The dispenser is ready to be configured. Let's connect it to your Wi-Fi network." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4R-g5-nwc" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The dispenser is ready to be configured. Let's connect it to your Wi-Fi network." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4R-g5-nwc" userLabel="Intro">
                                 <rect key="frame" x="20" y="282" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -582,7 +582,7 @@
                                     <constraint firstAttribute="height" constant="180" id="Dk3-TG-L42"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The dispenser is connected to your Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m80-Y9-8ae" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The dispenser is connected to your Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m80-Y9-8ae" userLabel="Intro">
                                 <rect key="frame" x="20" y="312" width="335" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -678,7 +678,7 @@
                                     <segue destination="i74-gB-asf" kind="custom" identifier="retry" customClass="ReplaceStoryboardSegue" customModule="Dispenser" customModuleProvider="target" id="w59-oD-9EO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
                                 <rect key="frame" x="20" y="282" width="335" height="81.5"/>
                                 <string key="text">Connecting with the candy dispenser failed. Please make sure that the dispenser is plugged in correctly and buzzes after a minute.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

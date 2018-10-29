@@ -5,7 +5,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     let captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    // var captured = false
 
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true)
@@ -63,9 +62,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     }
     
     override func viewDidAppear(_ animated: Bool) {
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
         // Start video capture.
         captureSession.startRunning()
     }
@@ -84,18 +80,14 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
-        // Check if the metadataObjects array is not nil and it contains at least one object.
-        if metadataObjects.count == 0 {
+        if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
-            print("No QR code is detected")
             return
         }
         
-        // Get the metadata object.
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        let metadataObj = metadataObjects.first as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == AVMetadataObject.ObjectType.qr {
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
@@ -128,8 +120,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
                 cert: cert,
                 macaroon: macaroon
             )
-            
-            // self.captured = true
             
             let action = DispenserActions.captureRemoteNodeConnection(remoteNodeConnection: remoteNodeConnection)
             

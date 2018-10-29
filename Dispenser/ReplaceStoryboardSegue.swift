@@ -4,7 +4,7 @@ class ReplaceStoryboardSegue: UIStoryboardSegue {
     override func perform() {
         guard var viewControllers = self.source.navigationController?.viewControllers else { return }
 
-        viewControllers.popLast()
+        _ = viewControllers.popLast()
         
         viewControllers.append(self.destination)
         
