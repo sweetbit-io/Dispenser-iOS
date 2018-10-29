@@ -5,6 +5,7 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     let captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    var remoteNodeConnection: RemoteNodeConnection?
 
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true)
@@ -115,17 +116,20 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
             // also freezes the picture on the QR code, which is nice
             captureSession.stopRunning()
             
-            let remoteNodeConnection = RemoteNodeConnection(
+            self.remoteNodeConnection = RemoteNodeConnection(
                 uri: uri,
                 cert: cert,
                 macaroon: macaroon
             )
-            
-            let action = DispenserActions.captureRemoteNodeConnection(remoteNodeConnection: remoteNodeConnection)
-            
-            AppDelegate.shared.store.dispatch(action)
-            
+
             self.performSegue(withIdentifier: "confirm", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is RemoteNodeConfirmViewController {
+            let vc = segue.destination as! RemoteNodeConfirmViewController
+            vc.remoteNodeConnection = self.remoteNodeConnection
         }
     }
 }

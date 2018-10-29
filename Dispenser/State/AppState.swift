@@ -30,6 +30,11 @@ struct DispenserState {
     var serial: String
     var name: String
     var update: UpdateState
+    var version: String
+    var commit: String
+    var dispenseOnTouch: Bool
+    var buzzOnDispense: Bool
+    var lightningNode: LightningNodeState
 }
 
 struct PairingState {
@@ -39,6 +44,14 @@ struct RemoteNodeConnection {
     var uri: String
     var cert: String
     var macaroon: String
+}
+
+enum LightningNodeState {
+    case none
+    case captured(RemoteNodeConnection)
+    case connecting(RemoteNodeConnection)
+    case connected(RemoteNodeConnection)
+    case failed(RemoteNodeConnection)
 }
 
 enum ConnectRemoteNodeState {

@@ -1,9 +1,8 @@
-import UIKit
 import ReSwift
+import UIKit
 
 class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
-    
-    @IBOutlet weak var connectButton: LoadingButton!
+    @IBOutlet var connectButton: LoadingButton!
     var remoteNodeConnection: RemoteNodeConnection?
     
     @IBAction func dismiss(_ sender: Any) {
@@ -29,6 +28,8 @@ class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.connectButton.hideLoading()
+        
         AppDelegate.shared.store.subscribe(self)
     }
     
@@ -39,15 +40,12 @@ class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: AppState) {
-        switch (state.connectRemoteNode) {
-        case let .captured(remoteNodeConnection):
-            self.remoteNodeConnection = remoteNodeConnection
-            self.connectButton.hideLoading()
-        case .connecting(_):
+        switch state.connectRemoteNode {
+        case .connecting:
             self.connectButton.showLoading()
-        case .failed(_):
+        case .failed:
             self.connectButton.hideLoading()
-        case .connected(_):
+        case .connected:
             self.connectButton.hideLoading()
             self.dismiss(self)
         default:

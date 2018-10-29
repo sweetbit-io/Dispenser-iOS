@@ -1,4 +1,5 @@
 import CoreData
+import NetworkExtension
 import Drift
 import UIKit
 
@@ -61,7 +62,7 @@ class WifiConnectedViewController: PairingViewController {
         
         appDelegate.dispenser = dispenserToOpen
         
-        
+        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: "candy")
         
         jumpTo(storyboard: "Main")
     }

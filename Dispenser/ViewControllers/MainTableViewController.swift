@@ -1,15 +1,18 @@
+import Drift
 import ReSwift
 import UIKit
-import Drift
 
 class MainTableViewController: UITableViewController, StoreSubscriber {
     static let UpdateSection = 1
     
-    var showUpdateCell = false
+    var showUpdateCell = true
     
     @IBOutlet var updateCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
     @IBOutlet var unlockCell: UITableViewCell!
+    @IBOutlet weak var disconnectCell: UITableViewCell!
+    @IBOutlet weak var dispenseOnTouchSwitch: UISwitch!
+    @IBOutlet weak var buzzOnDispenseSwitch: UISwitch!
     
     @IBAction func addDispenser(_ sender: Any) {
         jumpTo(storyboard: "Pairing")
@@ -25,7 +28,10 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         if cell == self.updateCell {
             // do nothing
         } else if cell == self.unlockCell {
-            self.unlock()
+            self.connect()
+            cell?.isSelected = false
+        } else if cell == self.disconnectCell {
+            self.disconnect()
             cell?.isSelected = false
         } else if cell == self.unpairCell {
             self.unpair()
@@ -59,10 +65,36 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         }
     }
     
+    func disconnect() {
+        let alert = UIAlertController(
+            title: "Disconnect",
+            message: "This will stop dispensing candy for incoming payments through the currently connected node. You can re-connect anytime again.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Disconnect", style: .destructive, handler: { _ in
+                    print("disconnect")
+                }
+            )
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Cancel", style: .cancel, handler: { _ in
+                    // do nothing
+                }
+            )
+        )
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func unpair() {
         let alert = UIAlertController(
             title: "Unpair",
-            message: "Unpairing the dispenser will remove the connection but still keep it running. Do you really want to do that?",
+            message: "This will drop the connection to the dispenser, but still keep it running. You can pair anytime again.",
             preferredStyle: UIAlertController.Style.alert
         )
         
@@ -85,7 +117,12 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func unlock() {
+    func connect() {}
+    
+    @IBAction func toggleDispenseOnTouch(_ sender: UISwitch) {
+    }
+    
+    @IBAction func toggleBuzzOnDispense(_ sender: UISwitch) {
     }
     
     func toggleUpdateCell() {
@@ -116,10 +153,10 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
             return
         }
         
-        switch (dispenser.update) {
+        switch dispenser.update {
         case .updating:
             fallthrough
-        case .available(_):
+        case .available:
             if !self.showUpdateCell {
                 self.toggleUpdateCell()
             }

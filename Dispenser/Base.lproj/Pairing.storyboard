@@ -395,6 +395,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K9W-BX-9NA">
                                 <rect key="frame" x="0.0" y="282" width="375" height="305"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="i07-dN-KTB">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="networkCell" textLabel="af1-Pv-2rn" style="IBUITableViewCellStyleDefault" id="Yr5-rm-1q1">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -679,8 +684,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="81.5"/>
-                                <string key="text">Connecting with the candy dispenser failed. Please make sure that the dispenser is plugged in correctly and buzzes after a minute.</string>
+                                <rect key="frame" x="20" y="282" width="335" height="122"/>
+                                <string key="text">Connecting with the candy dispenser failed. Please make sure that the dispenser is plugged in correctly and buzzes after a minute. If you're running a personal hotspot, you'll need to disable it during pairing.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
