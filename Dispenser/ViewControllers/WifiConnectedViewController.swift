@@ -22,17 +22,26 @@ class WifiConnectedViewController: PairingViewController {
         
         let context = appDelegate.persistentContainer.viewContext
         
-        let req = Sweetrpc_GetInfoRequest()
-        
         guard let service = self.service else {
             print("No service available")
             return
         }
         
+        let req = Sweetrpc_GetInfoRequest()
+        
         print("Calling getInfo")
         
         guard let info = try? service.getInfo(req) else {
             print("Got invalid response for getInfo")
+            return
+        }
+        
+        let connectionInfoReq = Sweetrpc_GetWpaConnectionInfoRequest()
+        
+        print("Calling getInfo")
+        
+        guard let connectionInfo = try? service.getWpaConnectionInfo(connectionInfoReq) else {
+            print("Got invalid response for getWpaConnectionInfo")
             return
         }
         
@@ -48,6 +57,7 @@ class WifiConnectedViewController: PairingViewController {
             dispenserToOpen?.serial = info.serial
             dispenserToOpen?.version = info.version
             dispenserToOpen?.commit = info.commit
+            dispenserToOpen?.ip = connectionInfo.ip
             dispenserToOpen?.lastOpened = Date()
             appDelegate.saveContext()
         } else {
@@ -56,6 +66,7 @@ class WifiConnectedViewController: PairingViewController {
             dispenserToOpen?.serial = info.serial
             dispenserToOpen?.version = info.version
             dispenserToOpen?.commit = info.commit
+            dispenserToOpen?.ip = connectionInfo.ip
             dispenserToOpen?.lastOpened = Date()
             appDelegate.saveContext()
         }

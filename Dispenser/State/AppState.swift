@@ -29,6 +29,7 @@ extension UpdateState: Equatable {
 struct DispenserState {
     var serial: String
     var name: String
+    var ip: String
     var update: UpdateState
     var version: String
     var commit: String

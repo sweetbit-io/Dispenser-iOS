@@ -2,7 +2,6 @@ github "apple/swift-protobuf"  ~> 1.0
 github "grpc/grpc-swift"
 github "D-Mx/drift-sdk-ios" "feature/Carthage-support"
 github "Alamofire/Alamofire" ~> 4.7
-github "ddddxxx/Semver"
 github "iwasrobbed/Down"
 github "Hearst-DD/ObjectMapper" ~> 3.3
 github "tristanhimmelman/AlamofireObjectMapper" ~> 5.0

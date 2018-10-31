@@ -27,6 +27,27 @@ func connectRemoteNodeReducer(action: Action, state: ConnectRemoteNodeState?) ->
     return state
 }
 
+func dispenserReducer(action: Action, state: DispenserState?) -> DispenserState? {
+    switch action {
+    case let payload as DispenserActions.open:
+        return DispenserState(
+            serial: payload.serial,
+            name: "Candy Dispenser",
+            ip: payload.ip,
+            update: .none,
+            version: payload.version,
+            commit: payload.commit,
+            dispenseOnTouch: true,
+            buzzOnDispense: false,
+            lightningNode: .none
+        )
+        // return payload.commit
+    default: break
+    }
+    
+    return state
+}
+
 func appReducer(action: Action, state: AppState?) -> AppState {
     return AppState(
         pairing: nil,

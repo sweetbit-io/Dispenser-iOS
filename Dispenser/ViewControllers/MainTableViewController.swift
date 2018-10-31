@@ -5,7 +5,7 @@ import UIKit
 class MainTableViewController: UITableViewController, StoreSubscriber {
     static let UpdateSection = 1
     
-    var showUpdateCell = true
+    var showUpdateCell = false
     
     @IBOutlet var updateCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
@@ -102,6 +102,8 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
             UIAlertAction(
                 title: "Unpair", style: .destructive, handler: { _ in
                     print("unpair")
+                    
+                    self.jumpTo(storyboard: "Pairing")
                 }
             )
         )
@@ -140,6 +142,8 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         super.viewWillAppear(animated)
         
         AppDelegate.shared.store.subscribe(self)
+        
+        AppDelegate.shared.store.dispatch(DispenserActions.check)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

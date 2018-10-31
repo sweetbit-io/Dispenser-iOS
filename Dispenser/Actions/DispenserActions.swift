@@ -8,6 +8,7 @@ class DispenserActions {
         let serial: String
         let version: String
         let commit: String
+        let ip: String
     }
     
     struct captureRemoteNodeConnection: Action {

@@ -43,6 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.saveContext()
             
+            AppDelegate.shared.store.dispatch(DispenserActions.open(
+                serial: dispenserToOpen.serial!,
+                version: dispenserToOpen.version!,
+                commit: dispenserToOpen.commit!,
+                ip: dispenserToOpen.ip ?? ""
+            ))
+            
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
             

@@ -94,3 +94,8 @@ func GetLatestRelease(completionHandler: @escaping (Release?) -> Void) {
             completionHandler(release)
         }
 }
+
+func isVersion(_ version: String, higherThan: String) -> Bool {
+    return version.compare(higherThan, options: .numeric) == .orderedDescending
+}
+
