@@ -81,6 +81,7 @@
 		04E71694218B3D500011909C /* UpdateConnectionFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71693218B3D500011909C /* UpdateConnectionFailedViewController.swift */; };
 		04E71696218B42DA0011909C /* UpdateRestartingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */; };
 		04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */; };
+		04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E7169A218B74C90011909C /* RemoteNode.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		04E71693218B3D500011909C /* UpdateConnectionFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConnectionFailedViewController.swift; sourceTree = "<group>"; };
 		04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartingViewController.swift; sourceTree = "<group>"; };
 		04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartFailedViewController.swift; sourceTree = "<group>"; };
+		04E7169A218B74C90011909C /* RemoteNode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemoteNode.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,7 +264,7 @@
 				04E7166E2189B9AE0011909C /* AppCoordinator.swift */,
 				04E716722189BF580011909C /* PairingCoordinator.swift */,
 				04E716742189C1C00011909C /* DispenserCoordinator.swift */,
-				04E7167E218A43890011909C /* RemoteNodeCoordinator.swift */,
+				04E71699218B74900011909C /* RemoteNode */,
 				04A870ED216A08480097A91C /* Actions */,
 				04A870EA21690E670097A91C /* State */,
 				04A870E921690E560097A91C /* Reducers */,
@@ -337,12 +339,9 @@
 				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
 				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
 				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
-				04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */,
-				04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */,
 				04E716762189D0A90011909C /* PairingNavigationController.swift */,
 				04E716782189D1440011909C /* DispenserNavigationController.swift */,
 				04E7167A2189D66D0011909C /* NoConnectionViewController.swift */,
-				04E71680218A43F90011909C /* RemoteNodeNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -371,6 +370,18 @@
 				04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */,
 			);
 			path = Update;
+			sourceTree = "<group>";
+		};
+		04E71699218B74900011909C /* RemoteNode */ = {
+			isa = PBXGroup;
+			children = (
+				04E7167E218A43890011909C /* RemoteNodeCoordinator.swift */,
+				04E7169A218B74C90011909C /* RemoteNode.storyboard */,
+				04E71680218A43F90011909C /* RemoteNodeNavigationController.swift */,
+				04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */,
+				04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */,
+			);
+			path = RemoteNode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,6 +463,7 @@
 			files = (
 				04E71685218ADF550011909C /* Update.storyboard in Resources */,
 				04E38EF72141BA770017F31E /* Cartfile in Resources */,
+				04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */,
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
