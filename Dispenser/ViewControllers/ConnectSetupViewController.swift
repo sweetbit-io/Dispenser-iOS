@@ -1,7 +1,5 @@
 import Drift
-import NetworkExtension
 import UIKit
-import SystemConfiguration.CaptiveNetwork
 
 class ConnectSetupViewController: PairingViewController {
     @IBOutlet var continueButton: UIButton!
@@ -19,60 +17,20 @@ class ConnectSetupViewController: PairingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("View did load")
-
         self.continueButton.isEnabled = false
         
-        let configuration = NEHotspotConfiguration(ssid: "candy", passphrase: "reckless", isWEP: false)
-        configuration.joinOnce = true
-        
-        NEHotspotConfigurationManager.shared.apply(configuration) { error in
-            if error != nil {
-                if error?.localizedDescription == "already associated." {
-                    // already connected to WiFi
-                    self.continueButton.isEnabled = true
-                    self.performSegue(withIdentifier: "next", sender: nil)
-                } else {
-                    // connection failed
-                    self.continueButton.isEnabled = true
-                    self.performSegue(withIdentifier: "failed", sender: nil)
-                }
-            } else {
-                if self.isConnectedToSsid(ssid: "candy") {
-                    // connection succeeded
-                    self.continueButton.isEnabled = true
-                    self.performSegue(withIdentifier: "next", sender: nil)
-                } else {
-                    // not connected to WiFi for some reason
-                    self.continueButton.isEnabled = true
-                    self.performSegue(withIdentifier: "failed", sender: nil)
-                }
+        WiFiService.connect(ssid: "candy", password: "reckless") {
+            switch $0 {
+            case .alreadyConnected:
+                fallthrough
+            case .connected:
+                self.continueButton.isEnabled = true
+                self.performSegue(withIdentifier: "next", sender: nil)
+            default:
+                self.continueButton.isEnabled = true
+                self.performSegue(withIdentifier: "failed", sender: nil)
             }
         }
-    }
-    
-    func isConnectedToSsid(ssid: String) -> Bool {
-        guard let interfaceNames = CNCopySupportedInterfaces() as? [String] else {
-            return false
-        }
-        
-        for interfaceName in interfaceNames {
-            guard let info = CNCopyCurrentNetworkInfo(interfaceName as CFString) as? [String:AnyObject] else {
-                continue
-            }
-            
-            guard let connectedSsid = info[kCNNetworkInfoKeySSID as String] as? String else {
-                continue
-            }
-            
-            return connectedSsid == ssid
-        }
-        
-        return false
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

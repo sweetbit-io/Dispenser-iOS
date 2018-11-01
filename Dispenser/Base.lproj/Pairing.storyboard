@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Pairing Navigation Controller-->
         <scene sceneID="Gyg-M6-gZG">
             <objects>
-                <navigationController id="1Xn-Bo-feU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PairingNavigationController" id="1Xn-Bo-feU" customClass="PairingNavigationController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mtv-Fe-bif" customClass="TransparentNavigationBar" customModule="Dispenser" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,7 +30,7 @@
         <!--Start Setup View Controller-->
         <scene sceneID="TdI-3l-hXu">
             <objects>
-                <viewController id="xqP-rh-mL1" customClass="StartSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartSetupViewController" id="xqP-rh-mL1" customClass="StartSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mhs-d3-1VI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -684,8 +684,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="122"/>
-                                <string key="text">Connecting with the candy dispenser failed. Please make sure that the dispenser is plugged in correctly and buzzes after a minute. If you're running a personal hotspot, you'll need to disable it during pairing.</string>
+                                <rect key="frame" x="20" y="282" width="335" height="101.5"/>
+                                <string key="text">Please make sure that the dispenser is plugged in correctly and buzzes after a minute. If you're running a personal hotspot, you'll need to disable it during pairing.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

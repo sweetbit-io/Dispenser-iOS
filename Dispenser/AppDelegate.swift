@@ -7,12 +7,16 @@ import ReSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let store: Store<AppState>
     var window: UIWindow?
+    var coordinator: AppCoordinator?
+    
+    // TODO: to be removed
+    let store: Store<AppState>
+    // TODO: to be removed
     var dispenser: Dispenser?
     
-    // Allow view controllers to conveniently access the app delegate and its store
-    // ex. AppDelegate.shared.store.dispatch(Action())
+    // Allow convenient access the this app delegate
+    // ex. AppDelegate.shared
     open class var shared: AppDelegate {
         get {
             return UIApplication.shared.delegate as! AppDelegate
@@ -28,41 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // New window gets a tint color
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // The app coordinator manages the pairing flow and the dispenser screen
+        self.coordinator = AppCoordinator(window: self.window)
+        self.coordinator?.start()
+
+        // Set global tint color and make window visible
         self.window?.tintColor = UIColor.primary
-        
-        let context = self.persistentContainer.viewContext
-        let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
-        fetch.sortDescriptors = [NSSortDescriptor(key: "lastOpened", ascending: false)]
-        
-        let dispensers = try? context.fetch(fetch) as [Dispenser]
-
-        if let dispenserToOpen = dispensers?.first {
-            self.dispenser = dispenserToOpen
-            self.dispenser?.lastOpened = Date()
-            
-            self.saveContext()
-            
-            AppDelegate.shared.store.dispatch(DispenserActions.open(
-                serial: dispenserToOpen.serial!,
-                version: dispenserToOpen.version!,
-                commit: dispenserToOpen.commit!,
-                ip: dispenserToOpen.ip ?? ""
-            ))
-            
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController: UIViewController = mainStoryboard.instantiateInitialViewController()! as UIViewController
-            
-            self.window?.rootViewController = mainViewController
-        } else {
-            let pairingStoryboard: UIStoryboard = UIStoryboard(name: "Pairing", bundle: nil)
-            let pairingViewController: UIViewController = pairingStoryboard.instantiateInitialViewController()! as UIViewController
-            
-            self.window?.rootViewController = pairingViewController
-        }
-
         self.window?.makeKeyAndVisible()
         
+        // Set up Drift messaging, that is available throughout the app
         Drift.setup("ydd7gkth62cx")
         Drift.registerUser(UIDevice.init().identifierForVendor?.uuidString ?? "", email: "")
 

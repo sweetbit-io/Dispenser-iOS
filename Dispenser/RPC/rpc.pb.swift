@@ -34,11 +34,43 @@ struct Sweetrpc_GetInfoResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var serial: String = String()
+  var serial: String {
+    get {return _storage._serial}
+    set {_uniqueStorage()._serial = newValue}
+  }
 
-  var version: String = String()
+  var version: String {
+    get {return _storage._version}
+    set {_uniqueStorage()._version = newValue}
+  }
 
-  var commit: String = String()
+  var commit: String {
+    get {return _storage._commit}
+    set {_uniqueStorage()._commit = newValue}
+  }
+
+  var remoteNode: Sweetrpc_RemoteNode {
+    get {return _storage._remoteNode ?? Sweetrpc_RemoteNode()}
+    set {_uniqueStorage()._remoteNode = newValue}
+  }
+  /// Returns true if `remoteNode` has been explicitly set.
+  var hasRemoteNode: Bool {return _storage._remoteNode != nil}
+  /// Clears the value of `remoteNode`. Subsequent reads from it will return its default value.
+  mutating func clearRemoteNode() {_uniqueStorage()._remoteNode = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Sweetrpc_RemoteNode {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var uri: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -233,6 +265,46 @@ struct Sweetrpc_ConnectToRemoteNodeResponse {
   init() {}
 }
 
+struct Sweetrpc_DisconnectFromRemoteNodeRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_DisconnectFromRemoteNodeResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_RebootRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_RebootResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "sweetrpc"
@@ -262,36 +334,109 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     1: .same(proto: "serial"),
     2: .same(proto: "version"),
     3: .same(proto: "commit"),
+    4: .same(proto: "remoteNode"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _serial: String = String()
+    var _version: String = String()
+    var _commit: String = String()
+    var _remoteNode: Sweetrpc_RemoteNode? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _serial = source._serial
+      _version = source._version
+      _commit = source._commit
+      _remoteNode = source._remoteNode
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._serial)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._version)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._commit)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._remoteNode)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._serial.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._serial, fieldNumber: 1)
+      }
+      if !_storage._version.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._version, fieldNumber: 2)
+      }
+      if !_storage._commit.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._commit, fieldNumber: 3)
+      }
+      if let v = _storage._remoteNode {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_GetInfoResponse, rhs: Sweetrpc_GetInfoResponse) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._serial != rhs_storage._serial {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._commit != rhs_storage._commit {return false}
+        if _storage._remoteNode != rhs_storage._remoteNode {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_RemoteNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RemoteNode"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uri"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.serial)
-      case 2: try decoder.decodeSingularStringField(value: &self.version)
-      case 3: try decoder.decodeSingularStringField(value: &self.commit)
+      case 1: try decoder.decodeSingularStringField(value: &self.uri)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.serial.isEmpty {
-      try visitor.visitSingularStringField(value: self.serial, fieldNumber: 1)
-    }
-    if !self.version.isEmpty {
-      try visitor.visitSingularStringField(value: self.version, fieldNumber: 2)
-    }
-    if !self.commit.isEmpty {
-      try visitor.visitSingularStringField(value: self.commit, fieldNumber: 3)
+    if !self.uri.isEmpty {
+      try visitor.visitSingularStringField(value: self.uri, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: Sweetrpc_GetInfoResponse, rhs: Sweetrpc_GetInfoResponse) -> Bool {
-    if lhs.serial != rhs.serial {return false}
-    if lhs.version != rhs.version {return false}
-    if lhs.commit != rhs.commit {return false}
+  static func ==(lhs: Sweetrpc_RemoteNode, rhs: Sweetrpc_RemoteNode) -> Bool {
+    if lhs.uri != rhs.uri {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -639,6 +784,82 @@ extension Sweetrpc_ConnectToRemoteNodeResponse: SwiftProtobuf.Message, SwiftProt
   }
 
   static func ==(lhs: Sweetrpc_ConnectToRemoteNodeResponse, rhs: Sweetrpc_ConnectToRemoteNodeResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_DisconnectFromRemoteNodeRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".DisconnectFromRemoteNodeRequest"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_DisconnectFromRemoteNodeRequest, rhs: Sweetrpc_DisconnectFromRemoteNodeRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_DisconnectFromRemoteNodeResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".DisconnectFromRemoteNodeResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_DisconnectFromRemoteNodeResponse, rhs: Sweetrpc_DisconnectFromRemoteNodeResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_RebootRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RebootRequest"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_RebootRequest, rhs: Sweetrpc_RebootRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_RebootResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RebootResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_RebootResponse, rhs: Sweetrpc_RebootResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

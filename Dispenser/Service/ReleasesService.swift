@@ -5,7 +5,7 @@ import ObjectMapper
 
 class ReleaseResponse: Mappable {
     var name: String?
-    var tagName: String?
+    var version: String?
     var publishedAt: Date?
     var body: String?
     var assets: [ReleaseAssetResponse]?
@@ -14,10 +14,13 @@ class ReleaseResponse: Mappable {
     
     func mapping(map: Map) {
         name <- map["name"]
-        tagName <- map["tag_name"]
         publishedAt <- (map["published_at"], CustomDateFormatTransform(formatString: "yyy-MM-dd'T'HH:mm:ssZ"))
         body <- map["body"]
         assets <- map["assets"]
+        
+        if let version = map["tag_name"].currentValue as? String {
+            self.version = String(version.dropFirst())
+        }
     }
 }
 
@@ -62,14 +65,20 @@ func GetLatestRelease(completionHandler: @escaping (Release?) -> Void) {
     // Draft and prereleases are not returned by this endpoint
     Alamofire.request("https://api.github.com/repos/the-lightning-land/sweetd/releases/latest")
         .responseObject(queue: DispatchQueue.global(qos: .background)) { (response: DataResponse<ReleaseResponse>) in
-            let releaseResponse = response.result.value
+            guard let releaseResponse = response.result.value else {
+                // throw an error?
+                DispatchQueue.main.async {
+                    completionHandler(nil)
+                }
+                return
+            }
             
             let release = Release(
-                name: (releaseResponse?.name)!,
-                version: (releaseResponse?.tagName)!,
-                publishedAt: (releaseResponse?.publishedAt)!,
-                notes: (releaseResponse?.body)!,
-                packages: (releaseResponse?.assets)!.map { (asset: ReleaseAssetResponse) -> Package? in
+                name: releaseResponse.name!,
+                version: releaseResponse.version!,
+                publishedAt: releaseResponse.publishedAt!,
+                notes: releaseResponse.body!,
+                packages: releaseResponse.assets!.map { (asset: ReleaseAssetResponse) -> Package? in
                     // Only select release assets
                     guard asset.name!.hasSuffix(assetNameEnding) else {
                         return nil
@@ -91,11 +100,10 @@ func GetLatestRelease(completionHandler: @escaping (Release?) -> Void) {
                 }.filter { $0 != nil }.map { $0! }
             )
             
-            completionHandler(release)
+            print("Got release \(release.name)")
+            
+            DispatchQueue.main.async {
+                completionHandler(release)
+            }
         }
 }
-
-func isVersion(_ version: String, higherThan: String) -> Bool {
-    return version.compare(higherThan, options: .numeric) == .orderedDescending
-}
-

@@ -1,21 +1,32 @@
 import Drift
-import ReSwift
+import RxSwift
 import UIKit
 
-class MainTableViewController: UITableViewController, StoreSubscriber {
+class MainTableViewController: UITableViewController, Storyboarded {
     static let UpdateSection = 1
+    static let ControlsSection = 2
+    static let RemoteNodeSection = 3
     
+    var coordinator: DispenserCoordinator?
     var showUpdateCell = false
+    var showRemoteNodeConnectCell = false
+    var showRemoteNodeDisconnectCell = false
+    var showControlSection = false
+    var showRemoteNodeSection = false
+    var disposeBag = DisposeBag()
     
+    @IBOutlet weak var dispenseOnTouchCell: UITableViewCell!
+    @IBOutlet weak var buzzOnDispenseCell: UITableViewCell!
     @IBOutlet var updateCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
     @IBOutlet var unlockCell: UITableViewCell!
-    @IBOutlet weak var disconnectCell: UITableViewCell!
-    @IBOutlet weak var dispenseOnTouchSwitch: UISwitch!
-    @IBOutlet weak var buzzOnDispenseSwitch: UISwitch!
+    @IBOutlet var disconnectCell: UITableViewCell!
+    @IBOutlet var dispenseOnTouchSwitch: UISwitch!
+    @IBOutlet var buzzOnDispenseSwitch: UISwitch!
+    @IBOutlet weak var remoteNodeDisconnectCellSubtitle: UILabel!
     
     @IBAction func addDispenser(_ sender: Any) {
-        jumpTo(storyboard: "Pairing")
+        self.coordinator?.pairNewDispenser()
     }
     
     @IBAction func help(_ sender: Any) {
@@ -26,7 +37,7 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         let cell = tableView.cellForRow(at: indexPath)
         
         if cell == self.updateCell {
-            // do nothing
+            self.coordinator?.showUpdate()
         } else if cell == self.unlockCell {
             self.connect()
             cell?.isSelected = false
@@ -34,7 +45,7 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
             self.disconnect()
             cell?.isSelected = false
         } else if cell == self.unpairCell {
-            self.unpair()
+            self.coordinator?.unpair()
             cell?.isSelected = false
         }
     }
@@ -44,6 +55,14 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
         
         if cell == self.updateCell && !self.showUpdateCell {
             return 0
+        } else if cell == self.dispenseOnTouchCell && !self.showControlSection {
+            return 0
+        } else if cell == self.buzzOnDispenseCell && !self.showControlSection {
+            return 0
+        } else if cell == self.unlockCell && (!self.showRemoteNodeSection || !self.showRemoteNodeConnectCell) {
+            return 0
+        } else if cell == self.disconnectCell && (!self.showRemoteNodeSection || !self.showRemoteNodeDisconnectCell) {
+            return 0
         }
         
         return super.tableView(tableView, heightForRowAt: indexPath)
@@ -51,6 +70,10 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
+            return 0.1
+        } else if section == MainTableViewController.ControlsSection && !self.showControlSection {
+            return 0.1
+        } else if section == MainTableViewController.RemoteNodeSection && !self.showRemoteNodeSection {
             return 0.1
         } else {
             return super.tableView(tableView, heightForHeaderInSection: section)
@@ -60,118 +83,89 @@ class MainTableViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
             return 0.1
+        } else if section == MainTableViewController.ControlsSection && !self.showControlSection {
+            return 0.1
+        } else if section == MainTableViewController.RemoteNodeSection && !self.showRemoteNodeSection {
+            return 0.1
         } else {
             return super.tableView(tableView, heightForFooterInSection: section)
         }
     }
     
+    func connect() {
+        self.coordinator?.connectRemoteNode()
+    }
+    
     func disconnect() {
-        let alert = UIAlertController(
-            title: "Disconnect",
-            message: "This will stop dispensing candy for incoming payments through the currently connected node. You can re-connect anytime again.",
-            preferredStyle: UIAlertController.Style.alert
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Disconnect", style: .destructive, handler: { _ in
-                    print("disconnect")
-                }
-            )
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Cancel", style: .cancel, handler: { _ in
-                    // do nothing
-                }
-            )
-        )
-        
-        self.present(alert, animated: true, completion: nil)
+        self.coordinator?.disconnectRemoteNode()
     }
-    
-    func unpair() {
-        let alert = UIAlertController(
-            title: "Unpair",
-            message: "This will drop the connection to the dispenser, but still keep it running. You can pair anytime again.",
-            preferredStyle: UIAlertController.Style.alert
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Unpair", style: .destructive, handler: { _ in
-                    print("unpair")
-                    
-                    self.jumpTo(storyboard: "Pairing")
-                }
-            )
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Cancel", style: .cancel, handler: { _ in
-                    // do nothing
-                }
-            )
-        )
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func connect() {}
     
     @IBAction func toggleDispenseOnTouch(_ sender: UISwitch) {
+        self.coordinator?.toggleDispenseOnTouch(enable: sender.isOn)
     }
     
     @IBAction func toggleBuzzOnDispense(_ sender: UISwitch) {
+        self.coordinator?.toggleBuzzOnDispense(enable: sender.isOn)
     }
     
-    func toggleUpdateCell() {
-        self.showUpdateCell.toggle()
+    override func viewDidLoad() {
+        self.coordinator?.version
+            .subscribe(onNext: {
+                guard let version = $0 else {
+                    return
+                }
+                
+                print("Version is \(version)")
+
+//                if isVersion(version, higherOrEqual: "0.3.0") {
+//                    self.showRemoteNodeSection = true
+//                }
+//                if isVersion(version, higherOrEqual: "0.4.0") {
+//                    self.showControlSection = true
+//                }
+                
+                // This has a nicer animation, but the cell does not reappear
+                // let indexPath = IndexPath(row: 0, section: updateSection)
+                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            })
+            .disposed(by: self.disposeBag)
         
-        // This has a nicer animation, but the cell does not reappear
-        // let indexPath = IndexPath(row: 0, section: updateSection)
-        // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        self.coordinator?.remoteNodeUrl
+            .subscribe(onNext: {
+                print("Remote node \($0)")
+                
+                if let url = $0 {
+                    self.showRemoteNodeConnectCell = false
+                    self.showRemoteNodeDisconnectCell = true
+                    self.remoteNodeDisconnectCellSubtitle.text = url
+                } else {
+                    self.showRemoteNodeConnectCell = true
+                    self.showRemoteNodeDisconnectCell = false
+                }
+                
+                // This has a nicer animation, but the cell does not reappear
+                // let indexPath = IndexPath(row: 0, section: updateSection)
+                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            })
+            .disposed(by: self.disposeBag)
         
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        AppDelegate.shared.store.subscribe(self)
-        
-        AppDelegate.shared.store.dispatch(DispenserActions.check)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        AppDelegate.shared.store.unsubscribe(self)
-    }
-    
-    func newState(state: AppState) {
-        guard let dispenser = state.dispenser else {
-            return
-        }
-        
-        switch dispenser.update {
-        case .updating:
-            fallthrough
-        case .available:
-            if !self.showUpdateCell {
-                self.toggleUpdateCell()
-            }
-        case .none:
-            fallthrough
-        case .searching:
-            fallthrough
-        default:
-            if self.showUpdateCell {
-                self.toggleUpdateCell()
-            }
-        }
+        self.coordinator?.updateAvailable
+            .subscribe(onNext: {
+                self.showUpdateCell = $0
+                
+                // This has a nicer animation, but the cell does not reappear
+                // let indexPath = IndexPath(row: 0, section: updateSection)
+                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            })
+            .disposed(by: self.disposeBag)
     }
 }

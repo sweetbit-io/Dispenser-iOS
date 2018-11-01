@@ -1,7 +1,8 @@
 import UIKit
 import AVFoundation
 
-class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, Storyboarded {
+    var coordinator: RemoteNodeCoordinator?
     let captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?

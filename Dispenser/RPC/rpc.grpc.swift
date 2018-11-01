@@ -61,6 +61,18 @@ fileprivate final class Sweetrpc_SweetConnectToRemoteNodeCallBase: ClientCallUna
   override class var method: String { return "/sweetrpc.Sweet/ConnectToRemoteNode" }
 }
 
+internal protocol Sweetrpc_SweetDisconnectFromRemoteNodeCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetDisconnectFromRemoteNodeCallBase: ClientCallUnaryBase<Sweetrpc_DisconnectFromRemoteNodeRequest, Sweetrpc_DisconnectFromRemoteNodeResponse>, Sweetrpc_SweetDisconnectFromRemoteNodeCall {
+  override class var method: String { return "/sweetrpc.Sweet/DisconnectFromRemoteNode" }
+}
+
+internal protocol Sweetrpc_SweetRebootCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetRebootCallBase: ClientCallUnaryBase<Sweetrpc_RebootRequest, Sweetrpc_RebootResponse>, Sweetrpc_SweetRebootCall {
+  override class var method: String { return "/sweetrpc.Sweet/Reboot" }
+}
+
 
 /// Instantiate Sweetrpc_SweetServiceClient, then call methods of this protocol to make API calls.
 internal protocol Sweetrpc_SweetService: ServiceClient {
@@ -93,6 +105,16 @@ internal protocol Sweetrpc_SweetService: ServiceClient {
   func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse
   /// Asynchronous. Unary.
   func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall
+
+  /// Synchronous. Unary.
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse
+  /// Asynchronous. Unary.
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall
+
+  /// Synchronous. Unary.
+  func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse
+  /// Asynchronous. Unary.
+  func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall
 
 }
 
@@ -160,6 +182,28 @@ internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_Sw
   /// Asynchronous. Unary.
   internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall {
     return try Sweetrpc_SweetConnectToRemoteNodeCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse {
+    return try Sweetrpc_SweetDisconnectFromRemoteNodeCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall {
+    return try Sweetrpc_SweetDisconnectFromRemoteNodeCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse {
+    return try Sweetrpc_SweetRebootCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall {
+    return try Sweetrpc_SweetRebootCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

@@ -1,7 +1,8 @@
 import ReSwift
 import UIKit
 
-class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber {
+class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber, Storyboarded {
+    var coordinator: RemoteNodeCoordinator?
     @IBOutlet var connectButton: LoadingButton!
     var remoteNodeConnection: RemoteNodeConnection?
     
