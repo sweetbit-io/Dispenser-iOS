@@ -40,13 +40,13 @@ class RemoteNodeCoordinator {
             return
         }
         
-        guard let res = try? client.connectToRemoteNode(req) else {
+        let res = try? client.connectToRemoteNode(req)
+        
+        if res == nil {
             return
         }
         
-        print(res)
-        
-        self.navigationController.dismiss(animated: true)
+        self.coordinator.completeRemoteNodeConnection(uri: nodeConnection.uri)
     }
     
     func dismiss() {

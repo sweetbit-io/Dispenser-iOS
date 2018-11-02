@@ -63,6 +63,16 @@ struct Sweetrpc_GetInfoResponse {
     set {_uniqueStorage()._name = newValue}
   }
 
+  var dispenseOnTouch: Bool {
+    get {return _storage._dispenseOnTouch}
+    set {_uniqueStorage()._dispenseOnTouch = newValue}
+  }
+
+  var buzzOnDispense: Bool {
+    get {return _storage._buzzOnDispense}
+    set {_uniqueStorage()._buzzOnDispense = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -95,6 +105,50 @@ struct Sweetrpc_SetNameRequest {
 }
 
 struct Sweetrpc_SetNameResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetDispenseOnTouchRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var dispenseOnTouch: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetDispenseOnTouchResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetBuzzOnDispenseRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var buzzOnDispense: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetBuzzOnDispenseResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -363,6 +417,8 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     3: .same(proto: "commit"),
     4: .same(proto: "remoteNode"),
     5: .same(proto: "name"),
+    6: .same(proto: "dispenseOnTouch"),
+    7: .same(proto: "buzzOnDispense"),
   ]
 
   fileprivate class _StorageClass {
@@ -371,6 +427,8 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     var _commit: String = String()
     var _remoteNode: Sweetrpc_RemoteNode? = nil
     var _name: String = String()
+    var _dispenseOnTouch: Bool = false
+    var _buzzOnDispense: Bool = false
 
     static let defaultInstance = _StorageClass()
 
@@ -382,6 +440,8 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       _commit = source._commit
       _remoteNode = source._remoteNode
       _name = source._name
+      _dispenseOnTouch = source._dispenseOnTouch
+      _buzzOnDispense = source._buzzOnDispense
     }
   }
 
@@ -402,6 +462,8 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
         case 3: try decoder.decodeSingularStringField(value: &_storage._commit)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._remoteNode)
         case 5: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 6: try decoder.decodeSingularBoolField(value: &_storage._dispenseOnTouch)
+        case 7: try decoder.decodeSingularBoolField(value: &_storage._buzzOnDispense)
         default: break
         }
       }
@@ -425,6 +487,12 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       if !_storage._name.isEmpty {
         try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 5)
       }
+      if _storage._dispenseOnTouch != false {
+        try visitor.visitSingularBoolField(value: _storage._dispenseOnTouch, fieldNumber: 6)
+      }
+      if _storage._buzzOnDispense != false {
+        try visitor.visitSingularBoolField(value: _storage._buzzOnDispense, fieldNumber: 7)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -439,6 +507,8 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
         if _storage._commit != rhs_storage._commit {return false}
         if _storage._remoteNode != rhs_storage._remoteNode {return false}
         if _storage._name != rhs_storage._name {return false}
+        if _storage._dispenseOnTouch != rhs_storage._dispenseOnTouch {return false}
+        if _storage._buzzOnDispense != rhs_storage._buzzOnDispense {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -520,6 +590,102 @@ extension Sweetrpc_SetNameResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   static func ==(lhs: Sweetrpc_SetNameResponse, rhs: Sweetrpc_SetNameResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetDispenseOnTouchRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetDispenseOnTouchRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "dispenseOnTouch"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.dispenseOnTouch)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.dispenseOnTouch != false {
+      try visitor.visitSingularBoolField(value: self.dispenseOnTouch, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetDispenseOnTouchRequest, rhs: Sweetrpc_SetDispenseOnTouchRequest) -> Bool {
+    if lhs.dispenseOnTouch != rhs.dispenseOnTouch {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetDispenseOnTouchResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetDispenseOnTouchResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetDispenseOnTouchResponse, rhs: Sweetrpc_SetDispenseOnTouchResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetBuzzOnDispenseRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetBuzzOnDispenseRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "buzzOnDispense"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.buzzOnDispense)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.buzzOnDispense != false {
+      try visitor.visitSingularBoolField(value: self.buzzOnDispense, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetBuzzOnDispenseRequest, rhs: Sweetrpc_SetBuzzOnDispenseRequest) -> Bool {
+    if lhs.buzzOnDispense != rhs.buzzOnDispense {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetBuzzOnDispenseResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetBuzzOnDispenseResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetBuzzOnDispenseResponse, rhs: Sweetrpc_SetBuzzOnDispenseResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

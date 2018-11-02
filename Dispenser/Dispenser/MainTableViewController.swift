@@ -133,6 +133,18 @@ class MainTableViewController: UITableViewController, Storyboarded {
             })
             .disposed(by: self.disposeBag)
         
+        self.coordinator?.dispenseOnTouch
+            .subscribe(onNext: { dispenseOnTouch in
+                self.dispenseOnTouchSwitch.setOn(dispenseOnTouch, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.coordinator?.buzzOnDispense
+            .subscribe(onNext: { buzzOnDispense in
+                self.buzzOnDispenseSwitch.setOn(buzzOnDispense, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
         self.coordinator?.version
             .subscribe(onNext: { version in
                 print("Version is \(version)")

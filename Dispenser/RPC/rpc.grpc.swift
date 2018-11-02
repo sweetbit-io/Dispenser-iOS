@@ -37,6 +37,18 @@ fileprivate final class Sweetrpc_SweetSetNameCallBase: ClientCallUnaryBase<Sweet
   override class var method: String { return "/sweetrpc.Sweet/SetName" }
 }
 
+internal protocol Sweetrpc_SweetSetDispenseOnTouchCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetSetDispenseOnTouchCallBase: ClientCallUnaryBase<Sweetrpc_SetDispenseOnTouchRequest, Sweetrpc_SetDispenseOnTouchResponse>, Sweetrpc_SweetSetDispenseOnTouchCall {
+  override class var method: String { return "/sweetrpc.Sweet/SetDispenseOnTouch" }
+}
+
+internal protocol Sweetrpc_SweetSetBuzzOnDispenseCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetSetBuzzOnDispenseCallBase: ClientCallUnaryBase<Sweetrpc_SetBuzzOnDispenseRequest, Sweetrpc_SetBuzzOnDispenseResponse>, Sweetrpc_SweetSetBuzzOnDispenseCall {
+  override class var method: String { return "/sweetrpc.Sweet/SetBuzzOnDispense" }
+}
+
 internal protocol Sweetrpc_SweetGetWpaConnectionInfoCall: ClientCallUnary {}
 
 fileprivate final class Sweetrpc_SweetGetWpaConnectionInfoCallBase: ClientCallUnaryBase<Sweetrpc_GetWpaConnectionInfoRequest, Sweetrpc_GetWpaConnectionInfoResponse>, Sweetrpc_SweetGetWpaConnectionInfoCall {
@@ -91,6 +103,16 @@ internal protocol Sweetrpc_SweetService: ServiceClient {
   func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse
   /// Asynchronous. Unary.
   func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall
+
+  /// Synchronous. Unary.
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest) throws -> Sweetrpc_SetDispenseOnTouchResponse
+  /// Asynchronous. Unary.
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall
+
+  /// Synchronous. Unary.
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest) throws -> Sweetrpc_SetBuzzOnDispenseResponse
+  /// Asynchronous. Unary.
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall
 
   /// Synchronous. Unary.
   func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse
@@ -149,6 +171,28 @@ internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_Sw
   /// Asynchronous. Unary.
   internal func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall {
     return try Sweetrpc_SweetSetNameCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest) throws -> Sweetrpc_SetDispenseOnTouchResponse {
+    return try Sweetrpc_SweetSetDispenseOnTouchCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall {
+    return try Sweetrpc_SweetSetDispenseOnTouchCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest) throws -> Sweetrpc_SetBuzzOnDispenseResponse {
+    return try Sweetrpc_SweetSetBuzzOnDispenseCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall {
+    return try Sweetrpc_SweetSetBuzzOnDispenseCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

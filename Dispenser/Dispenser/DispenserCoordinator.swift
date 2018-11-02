@@ -16,6 +16,8 @@ class DispenserCoordinator {
     var remoteNodeUrl = BehaviorSubject<String?>(value: nil)
     var name: BehaviorSubject<String>
     var version: BehaviorSubject<String>
+    var dispenseOnTouch: BehaviorSubject<Bool>
+    var buzzOnDispense: BehaviorSubject<Bool>
     
     init(coordinator: AppCoordinator, dispenser: Dispenser) {
         self.navigationController = DispenserNavigationController.instantiate()
@@ -25,6 +27,8 @@ class DispenserCoordinator {
         // Subjects to push dispenser info changes into
         self.name = BehaviorSubject<String>(value: self.dispenser.name!)
         self.version = BehaviorSubject<String>(value: self.dispenser.version!)
+        self.dispenseOnTouch = BehaviorSubject<Bool>(value: false)
+        self.buzzOnDispense = BehaviorSubject<Bool>(value: false)
         
         self.updateAvailable = Observable.combineLatest(
             self.version, self.latestRelease, resultSelector: { version, release in
@@ -69,6 +73,11 @@ class DispenserCoordinator {
         
         // Notify potential name change
         self.name.onNext(info.name)
+        self.version.onNext(info.version)
+        
+        // Notify settings
+        self.dispenseOnTouch.onNext(info.dispenseOnTouch)
+        self.buzzOnDispense.onNext(info.buzzOnDispense)
         
         print("Got remote node \(info.remoteNode.uri)")
         
@@ -109,9 +118,37 @@ class DispenserCoordinator {
     }
     
     func toggleDispenseOnTouch(enable: Bool) {
+        guard let client = self.client else {
+            return
+        }
+        
+        var req = Sweetrpc_SetDispenseOnTouchRequest()
+        req.dispenseOnTouch = enable
+        
+        let res = try? client.setDispenseOnTouch(req)
+        
+        if res == nil {
+            return
+        }
+        
+        self.dispenseOnTouch.onNext(enable)
     }
     
     func toggleBuzzOnDispense(enable: Bool) {
+        guard let client = self.client else {
+            return
+        }
+        
+        var req = Sweetrpc_SetBuzzOnDispenseRequest()
+        req.buzzOnDispense = enable
+        
+        let res = try? client.setBuzzOnDispense(req)
+        
+        if res == nil {
+            return
+        }
+        
+        self.buzzOnDispense.onNext(enable)
     }
     
     func connectRemoteNode() {
@@ -129,9 +166,19 @@ class DispenserCoordinator {
         )
         
         let disconnectAction = UIAlertAction(title: "Disconnect", style: .destructive, handler: { _ in
+            guard let client = self.client else {
+                return
+            }
+            
             let req = Sweetrpc_DisconnectFromRemoteNodeRequest()
             
-            _ = try? self.client?.disconnectFromRemoteNode(req)
+            let res = try? client.disconnectFromRemoteNode(req)
+            
+            if res == nil {
+                return
+            }
+            
+            self.remoteNodeUrl.onNext(nil)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -255,6 +302,12 @@ class DispenserCoordinator {
         }
         
         self.name.onNext(name)
+    }
+    
+    func completeRemoteNodeConnection(uri: String) {
+        self.remoteNodeUrl.onNext(uri)
+        
+        self.remoteNodeCoordinator?.dismiss()
     }
 }
 
