@@ -62,6 +62,7 @@ class WifiConnectedViewController: PairingViewController {
         } else {
             print("Dispenser is new. Creating and opening it...")
             dispenserToOpen = Dispenser(context: context)
+            dispenserToOpen?.name = "Candy Dispenser"
             dispenserToOpen?.serial = info.serial
             dispenserToOpen?.version = info.version
             dispenserToOpen?.commit = info.commit

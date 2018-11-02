@@ -9,25 +9,26 @@ class DispenserCoordinator {
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
     
+    var disposeBag = DisposeBag()
+    
     var latestRelease = BehaviorSubject<Release?>(value: nil)
-    var version = BehaviorSubject<String?>(value: nil)
     var updateAvailable: Observable<Bool>
     var remoteNodeUrl = BehaviorSubject<String?>(value: nil)
+    var name: BehaviorSubject<String>
+    var version: BehaviorSubject<String>
     
     init(coordinator: AppCoordinator, dispenser: Dispenser) {
         self.navigationController = DispenserNavigationController.instantiate()
         self.dispenser = dispenser
         self.coordinator = coordinator
         
-        self.version.onNext(self.dispenser.version)
+        // Subjects to push dispenser info changes into
+        self.name = BehaviorSubject<String>(value: self.dispenser.name!)
+        self.version = BehaviorSubject<String>(value: self.dispenser.version!)
         
         self.updateAvailable = Observable.combineLatest(
             self.version, self.latestRelease, resultSelector: { version, release in
-                print("Update available? Current: \(version ?? "-") Available: \(release?.version ?? "-")")
-                
-                guard let version = version else {
-                    return false
-                }
+                print("Update available? Current: \(version) Available: \(release?.version ?? "-")")
                 
                 guard let release = release else {
                     return false
@@ -36,6 +37,13 @@ class DispenserCoordinator {
                 return isVersion(release.version, higherThan: version)
             }
         )
+        
+        self.name
+            .subscribe(onNext: { name in
+                self.dispenser.name = name
+                AppDelegate.shared.saveContext()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func start() {
@@ -58,6 +66,9 @@ class DispenserCoordinator {
             self.showNoConnection()
             return
         }
+        
+        // Notify potential name change
+        self.name.onNext(info.name)
         
         print("Got remote node \(info.remoteNode.uri)")
         
@@ -130,6 +141,36 @@ class DispenserCoordinator {
         self.navigationController.present(alert, animated: true, completion: nil)
     }
     
+    func restart() {
+        let alert = UIAlertController(
+            title: "Restart",
+            message: "You'll lose the connection to your dispenser for one or two minutes.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        let unpairAction = UIAlertAction(
+            title: "Restart", style: .destructive, handler: { _ in
+                guard let client = self.client else {
+                    return
+                }
+                
+                let req = Sweetrpc_RebootRequest()
+                
+                let res = try? client.reboot(req)
+                
+                if res == nil {
+                    return
+                }
+            }
+        )
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(unpairAction)
+        alert.addAction(cancelAction)
+        
+        self.navigationController.present(alert, animated: true, completion: nil)
+    }
+    
     func unpair() {
         let alert = UIAlertController(
             title: "Unpair",
@@ -140,7 +181,7 @@ class DispenserCoordinator {
         let unpairAction = UIAlertAction(
             title: "Unpair", style: .destructive, handler: { _ in
                 self.coordinator.unpair(dispenser: self.dispenser)
-            }
+        }
         )
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -165,7 +206,7 @@ class DispenserCoordinator {
                 continue
             }
             
-            let action = UIAlertAction(title: dispenser.serial, style: .default) { _ in
+            let action = UIAlertAction(title: dispenser.name, style: .default) { _ in
                 self.coordinator.open(dispenser: dispenser)
             }
             
@@ -173,7 +214,7 @@ class DispenserCoordinator {
         }
         
         // Show option for pairing a new dispenser
-        let addAction = UIAlertAction(title: "Add a new candy dispenser...", style: .default) { _ in
+        let addAction = UIAlertAction(title: "Add a candy dispenser...", style: .default) { _ in
             self.coordinator.pairNewDispenser()
         }
         
@@ -188,8 +229,32 @@ class DispenserCoordinator {
         self.navigationController.present(optionMenu, animated: true, completion: nil)
     }
     
+    func showDetails() {
+        let vc = DetailsViewController.instantiate()
+        vc.coordinator = self
+        
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
     func help() {
         self.coordinator.help()
+    }
+    
+    func changeName(name: String) {
+        guard let client = self.client else {
+            return
+        }
+        
+        var req = Sweetrpc_SetNameRequest()
+        req.name = name
+        
+        let res = try? client.setName(req)
+        
+        if res == nil {
+            return
+        }
+        
+        self.name.onNext(name)
     }
 }
 

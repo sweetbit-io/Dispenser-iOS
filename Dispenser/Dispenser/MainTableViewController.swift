@@ -11,19 +11,22 @@ class MainTableViewController: UITableViewController, Storyboarded {
     var showUpdateCell = false
     var showRemoteNodeConnectCell = false
     var showRemoteNodeDisconnectCell = false
-    var showControlSection = false
+    var showControlSection = true
     var showRemoteNodeSection = true
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var dispenseOnTouchCell: UITableViewCell!
     @IBOutlet weak var buzzOnDispenseCell: UITableViewCell!
+    @IBOutlet weak var detailsCell: DispenserTableViewCell!
     @IBOutlet var updateCell: UITableViewCell!
+    @IBOutlet weak var restartCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
     @IBOutlet var unlockCell: UITableViewCell!
     @IBOutlet var disconnectCell: UITableViewCell!
     @IBOutlet var dispenseOnTouchSwitch: UISwitch!
     @IBOutlet var buzzOnDispenseSwitch: UISwitch!
     @IBOutlet weak var remoteNodeDisconnectCellSubtitle: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     @IBAction func help(_ sender: Any) {
         Drift.showConversations()
@@ -32,13 +35,18 @@ class MainTableViewController: UITableViewController, Storyboarded {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
-        if cell == self.updateCell {
+        if cell == self.detailsCell {
+            self.coordinator?.showDetails()
+        } else if cell == self.updateCell {
             self.coordinator?.showUpdate()
         } else if cell == self.unlockCell {
             self.connect()
             cell?.isSelected = false
         } else if cell == self.disconnectCell {
             self.disconnect()
+            cell?.isSelected = false
+        } else if cell == self.restartCell {
+            self.coordinator?.restart()
             cell?.isSelected = false
         } else if cell == self.unpairCell {
             self.coordinator?.unpair()
@@ -118,12 +126,15 @@ class MainTableViewController: UITableViewController, Storyboarded {
                 action: #selector(MainTableViewController.addDispenser))
         }
         
+        self.coordinator?.name
+            .subscribe(onNext: { name in
+                self.title = name
+                self.nameLabel.text = name
+            })
+            .disposed(by: self.disposeBag)
+        
         self.coordinator?.version
-            .subscribe(onNext: {
-                guard let version = $0 else {
-                    return
-                }
-                
+            .subscribe(onNext: { version in
                 print("Version is \(version)")
 
 //                if isVersion(version, higherOrEqual: "0.3.0") {

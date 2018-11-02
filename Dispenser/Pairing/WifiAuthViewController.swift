@@ -48,7 +48,7 @@ class WifiAuthViewController: PairingViewController {
         UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
     }
     
-    @IBAction func dismissKeyboard() {
+    @IBAction override func dismissKeyboard() {
         self.view.endEditing(true)
     }
     

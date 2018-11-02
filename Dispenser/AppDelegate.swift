@@ -22,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
 //        let dispenserToOpen = Dispenser(context: self.persistentContainer.viewContext)
-//        dispenserToOpen.serial = "007"
+//        dispenserToOpen.serial = "008"
 //        dispenserToOpen.version = "0.3.0"
 //        dispenserToOpen.commit = "deadbeef"
 //        dispenserToOpen.ip = "172.20.10.4"
-//        dispenserToOpen.name = "Candy Dispenser"
+//        dispenserToOpen.name = "Best Candy"
 //        dispenserToOpen.lastOpened = Date()
 //        self.saveContext()
         

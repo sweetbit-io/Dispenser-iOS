@@ -78,6 +78,7 @@
 		04E71696218B42DA0011909C /* UpdateRestartingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */; };
 		04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */; };
 		04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E7169A218B74C90011909C /* RemoteNode.storyboard */; };
+		04E7169E218C92700011909C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,7 @@
 		04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartingViewController.swift; sourceTree = "<group>"; };
 		04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartFailedViewController.swift; sourceTree = "<group>"; };
 		04E7169A218B74C90011909C /* RemoteNode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemoteNode.storyboard; sourceTree = "<group>"; };
+		04E7169D218C92700011909C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +243,6 @@
 				04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */,
 				04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */,
 				04DA543E2132EB0D00EA2B65 /* LaunchScreen.storyboard */,
-				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
 				04DA543C2132EB0D00EA2B65 /* Assets.xcassets */,
 				04E38EFB2141BF170017F31E /* Theme.xcassets */,
 				04DA54412132EB0D00EA2B65 /* Info.plist */,
@@ -293,9 +294,11 @@
 			isa = PBXGroup;
 			children = (
 				04E716742189C1C00011909C /* DispenserCoordinator.swift */,
+				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
 				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
 				04E716782189D1440011909C /* DispenserNavigationController.swift */,
 				04E7167A2189D66D0011909C /* NoConnectionViewController.swift */,
+				04E7169D218C92700011909C /* DetailsViewController.swift */,
 			);
 			path = Dispenser;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
 				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
 				04E7166F2189B9AE0011909C /* AppCoordinator.swift in Sources */,
+				04E7169E218C92700011909C /* DetailsViewController.swift in Sources */,
 				04E716632180BC200011909C /* RemoteNodeConnectViewController.swift in Sources */,
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
 				042358972160339F0021AF0E /* rpc.pb.swift in Sources */,

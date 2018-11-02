@@ -92,15 +92,24 @@ class AppCoordinator {
         let context = AppDelegate.shared.persistentContainer.viewContext
         context.delete(dispenser)
         
-        self.pairingCoordinator = PairingCoordinator(coordinator: self)
-        self.pairingCoordinator?.start()
+        var viewControllerToPresent: UIViewController?
+        
+        if let dispenserToOpen = self.getLastOpenedDispenser() {
+            self.dispenserCoordinator = DispenserCoordinator(coordinator: self, dispenser: dispenserToOpen)
+            self.dispenserCoordinator?.start()
+            viewControllerToPresent = self.dispenserCoordinator?.navigationController
+        } else {
+            self.pairingCoordinator = PairingCoordinator(coordinator: self)
+            self.pairingCoordinator?.start()
+            viewControllerToPresent = self.pairingCoordinator?.navigationController
+        }
         
         // Leads to nice animation
-        self.pairingCoordinator?.navigationController.view.frame = self.window!.rootViewController!.view.frame
-        self.pairingCoordinator?.navigationController.view.layoutIfNeeded()
+        viewControllerToPresent?.view.frame = self.window!.rootViewController!.view.frame
+        viewControllerToPresent?.view.layoutIfNeeded()
         
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.window?.rootViewController = self.pairingCoordinator?.navigationController
+            self.window?.rootViewController = viewControllerToPresent
         }, completion: { _ in
             self.dispenserCoordinator = nil
         })

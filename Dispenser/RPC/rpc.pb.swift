@@ -58,6 +58,11 @@ struct Sweetrpc_GetInfoResponse {
   /// Clears the value of `remoteNode`. Subsequent reads from it will return its default value.
   mutating func clearRemoteNode() {_uniqueStorage()._remoteNode = nil}
 
+  var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -71,6 +76,28 @@ struct Sweetrpc_RemoteNode {
   // methods supported on all messages.
 
   var uri: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetNameRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var name: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Sweetrpc_SetNameResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -335,6 +362,7 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     2: .same(proto: "version"),
     3: .same(proto: "commit"),
     4: .same(proto: "remoteNode"),
+    5: .same(proto: "name"),
   ]
 
   fileprivate class _StorageClass {
@@ -342,6 +370,7 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     var _version: String = String()
     var _commit: String = String()
     var _remoteNode: Sweetrpc_RemoteNode? = nil
+    var _name: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -352,6 +381,7 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       _version = source._version
       _commit = source._commit
       _remoteNode = source._remoteNode
+      _name = source._name
     }
   }
 
@@ -371,6 +401,7 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
         case 2: try decoder.decodeSingularStringField(value: &_storage._version)
         case 3: try decoder.decodeSingularStringField(value: &_storage._commit)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._remoteNode)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._name)
         default: break
         }
       }
@@ -391,6 +422,9 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       if let v = _storage._remoteNode {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -404,6 +438,7 @@ extension Sweetrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
         if _storage._version != rhs_storage._version {return false}
         if _storage._commit != rhs_storage._commit {return false}
         if _storage._remoteNode != rhs_storage._remoteNode {return false}
+        if _storage._name != rhs_storage._name {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -437,6 +472,54 @@ extension Sweetrpc_RemoteNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 
   static func ==(lhs: Sweetrpc_RemoteNode, rhs: Sweetrpc_RemoteNode) -> Bool {
     if lhs.uri != rhs.uri {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetNameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetNameRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "name"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.name)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetNameRequest, rhs: Sweetrpc_SetNameRequest) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Sweetrpc_SetNameResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetNameResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Sweetrpc_SetNameResponse, rhs: Sweetrpc_SetNameResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

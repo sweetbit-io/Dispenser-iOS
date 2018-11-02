@@ -31,6 +31,12 @@ fileprivate final class Sweetrpc_SweetGetInfoCallBase: ClientCallUnaryBase<Sweet
   override class var method: String { return "/sweetrpc.Sweet/GetInfo" }
 }
 
+internal protocol Sweetrpc_SweetSetNameCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetSetNameCallBase: ClientCallUnaryBase<Sweetrpc_SetNameRequest, Sweetrpc_SetNameResponse>, Sweetrpc_SweetSetNameCall {
+  override class var method: String { return "/sweetrpc.Sweet/SetName" }
+}
+
 internal protocol Sweetrpc_SweetGetWpaConnectionInfoCall: ClientCallUnary {}
 
 fileprivate final class Sweetrpc_SweetGetWpaConnectionInfoCallBase: ClientCallUnaryBase<Sweetrpc_GetWpaConnectionInfoRequest, Sweetrpc_GetWpaConnectionInfoResponse>, Sweetrpc_SweetGetWpaConnectionInfoCall {
@@ -82,6 +88,11 @@ internal protocol Sweetrpc_SweetService: ServiceClient {
   func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall
 
   /// Synchronous. Unary.
+  func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse
+  /// Asynchronous. Unary.
+  func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall
+
+  /// Synchronous. Unary.
   func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse
   /// Asynchronous. Unary.
   func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall
@@ -127,6 +138,17 @@ internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_Sw
   /// Asynchronous. Unary.
   internal func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall {
     return try Sweetrpc_SweetGetInfoCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse {
+    return try Sweetrpc_SweetSetNameCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall {
+    return try Sweetrpc_SweetSetNameCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
