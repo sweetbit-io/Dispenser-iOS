@@ -286,11 +286,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Candy Dispenser" id="Fv6-b3-FOV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="3aO-da-5Jq">
-                            <connections>
-                                <action selector="addDispenser:" destination="cuq-Xc-18n" id="aFs-Jf-Caf"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="HeY-WL-rGT">
                             <connections>
                                 <action selector="help:" destination="cuq-Xc-18n" id="hBe-xl-JFA"/>

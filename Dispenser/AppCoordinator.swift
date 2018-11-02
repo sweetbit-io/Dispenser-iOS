@@ -45,6 +45,16 @@ class AppCoordinator {
         return dispensers?.first
     }
     
+    func getDispensers() -> [Dispenser] {
+        let context = AppDelegate.shared.persistentContainer.viewContext
+        let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
+        fetch.sortDescriptors = [NSSortDescriptor(key: "lastOpened", ascending: false)]
+        
+        let dispensers = try? context.fetch(fetch) as [Dispenser]
+        
+        return dispensers ?? []
+    }
+    
     func open(dispenser: Dispenser) {
         dispenser.lastOpened = Date()
         AppDelegate.shared.saveContext()

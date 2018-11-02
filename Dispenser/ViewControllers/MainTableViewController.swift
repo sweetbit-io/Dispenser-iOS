@@ -25,10 +25,6 @@ class MainTableViewController: UITableViewController, Storyboarded {
     @IBOutlet var buzzOnDispenseSwitch: UISwitch!
     @IBOutlet weak var remoteNodeDisconnectCellSubtitle: UILabel!
     
-    @IBAction func addDispenser(_ sender: Any) {
-        self.coordinator?.pairNewDispenser()
-    }
-    
     @IBAction func help(_ sender: Any) {
         Drift.showConversations()
     }
@@ -109,6 +105,19 @@ class MainTableViewController: UITableViewController, Storyboarded {
     }
     
     override func viewDidLoad() {
+        if (self.coordinator?.coordinator.getDispensers().count ?? 0) > 1 {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                image: #imageLiteral(resourceName: "Menu"),
+                style: .plain,
+                target: self,
+                action: #selector(MainTableViewController.switchDispenser))
+        } else {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .add,
+                target: self,
+                action: #selector(MainTableViewController.addDispenser))
+        }
+        
         self.coordinator?.version
             .subscribe(onNext: {
                 guard let version = $0 else {
@@ -135,7 +144,7 @@ class MainTableViewController: UITableViewController, Storyboarded {
         
         self.coordinator?.remoteNodeUrl
             .subscribe(onNext: {
-                print("Remote node \($0)")
+                print("Remote node \($0 ?? "")")
                 
                 if let url = $0 {
                     self.showRemoteNodeConnectCell = false
@@ -167,5 +176,13 @@ class MainTableViewController: UITableViewController, Storyboarded {
                 self.tableView.endUpdates()
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    @IBAction func switchDispenser() {
+        self.coordinator?.switchDispenser()
+    }
+    
+    @IBAction func addDispenser() {
+        self.coordinator?.addDispenser()
     }
 }

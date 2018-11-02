@@ -150,8 +150,42 @@ class DispenserCoordinator {
         self.navigationController.present(alert, animated: true, completion: nil)
     }
     
-    func pairNewDispenser() {
+    func addDispenser() {
         self.coordinator.pairNewDispenser()
+    }
+    
+    func switchDispenser() {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let dispensers = self.coordinator.getDispensers()
+        
+        for dispenser in dispensers {
+            // Don't display currently opened dispenser
+            if self.dispenser == dispenser {
+                continue
+            }
+            
+            let action = UIAlertAction(title: dispenser.serial, style: .default) { _ in
+                self.coordinator.open(dispenser: dispenser)
+            }
+            
+            optionMenu.addAction(action)
+        }
+        
+        // Show option for pairing a new dispenser
+        let addAction = UIAlertAction(title: "Add a new candy dispenser...", style: .default) { _ in
+            self.coordinator.pairNewDispenser()
+        }
+        
+        // Color the option differently
+        addAction.setValue(UIColor.darkText, forKey: "titleTextColor")
+        
+        optionMenu.addAction(addAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        
+        self.navigationController.present(optionMenu, animated: true, completion: nil)
     }
     
     func help() {

@@ -1,6 +1,7 @@
 import ReSwift
 import UIKit
 
+// TODO: remove store and actions
 class RemoteNodeConfirmViewController: UIViewController, StoreSubscriber, Storyboarded {
     var coordinator: RemoteNodeCoordinator?
     @IBOutlet var connectButton: LoadingButton!
