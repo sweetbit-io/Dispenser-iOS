@@ -37,10 +37,6 @@
 		0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */; };
 		0450C709216499F700B40F3B /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C707216499F700B40F3B /* Down.framework */; };
 		04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870E121657AE00097A91C /* UpdateViewController.swift */; };
-		04A870E82168C8A00097A91C /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A870E72168C8A00097A91C /* ReSwift.framework */; };
-		04A870EC21690E7D0097A91C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870EB21690E7D0097A91C /* AppState.swift */; };
-		04A870EF216A08D60097A91C /* DispenserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870EE216A08D60097A91C /* DispenserActions.swift */; };
-		04A870F3216A0FF20097A91C /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870F2216A0FF20097A91C /* Reducers.swift */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
 		04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB83D215F131F008809E4 /* Cartfile.resolved */; };
@@ -117,9 +113,6 @@
 		0450C707216499F700B40F3B /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
 		04A870E121657AE00097A91C /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		04A870E72168C8A00097A91C /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
-		04A870EB21690E7D0097A91C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		04A870EE216A08D60097A91C /* DispenserActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserActions.swift; sourceTree = "<group>"; };
-		04A870F2216A0FF20097A91C /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
 		04CDB83D215F131F008809E4 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
@@ -174,7 +167,6 @@
 				04E71683218AD41D0011909C /* NMSSH.framework in Frameworks */,
 				04E7167D2189DD0D0011909C /* RxSwift.framework in Frameworks */,
 				04E7166D2188859E0011909C /* SystemConfiguration.framework in Frameworks */,
-				04A870E82168C8A00097A91C /* ReSwift.framework in Frameworks */,
 				0450C709216499F700B40F3B /* Down.framework in Frameworks */,
 				0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */,
 				040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */,
@@ -204,37 +196,13 @@
 			path = RPC;
 			sourceTree = "<group>";
 		};
-		0450C70021641CCD00B40F3B /* Service */ = {
+		0450C70021641CCD00B40F3B /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				0450C70121641D2300B40F3B /* ReleasesService.swift */,
 				04E71691218B347D0011909C /* WiFiService.swift */,
 			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		04A870E921690E560097A91C /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				04A870F2216A0FF20097A91C /* Reducers.swift */,
-			);
-			path = Reducers;
-			sourceTree = "<group>";
-		};
-		04A870EA21690E670097A91C /* State */ = {
-			isa = PBXGroup;
-			children = (
-				04A870EB21690E7D0097A91C /* AppState.swift */,
-			);
-			path = State;
-			sourceTree = "<group>";
-		};
-		04A870ED216A08480097A91C /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				04A870EE216A08D60097A91C /* DispenserActions.swift */,
-			);
-			path = Actions;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		04DA54292132EB0B00EA2B65 = {
@@ -262,23 +230,18 @@
 			children = (
 				04DA54352132EB0B00EA2B65 /* AppDelegate.swift */,
 				04E7166E2189B9AE0011909C /* AppCoordinator.swift */,
-				04E716722189BF580011909C /* PairingCoordinator.swift */,
-				04E716742189C1C00011909C /* DispenserCoordinator.swift */,
+				04E7169C218C851B0011909C /* Pairing */,
+				04E38F002141C1F60017F31E /* Dispenser */,
+				04E71686218ADFAF0011909C /* Update */,
 				04E71699218B74900011909C /* RemoteNode */,
-				04A870ED216A08480097A91C /* Actions */,
-				04A870EA21690E670097A91C /* State */,
-				04A870E921690E560097A91C /* Reducers */,
-				0450C70021641CCD00B40F3B /* Service */,
+				0450C70021641CCD00B40F3B /* Services */,
 				042A960F2149C15E001F637A /* RPC */,
 				04E38F052141C7B40017F31E /* Views */,
-				04E38F002141C1F60017F31E /* ViewControllers */,
 				04E38EFF2141C1A90017F31E /* Extensions */,
-				04E71686218ADFAF0011909C /* Update */,
 				04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */,
 				04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */,
 				04DA543E2132EB0D00EA2B65 /* LaunchScreen.storyboard */,
 				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
-				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
 				04DA543C2132EB0D00EA2B65 /* Assets.xcassets */,
 				04E38EFB2141BF170017F31E /* Theme.xcassets */,
 				04DA54412132EB0D00EA2B65 /* Info.plist */,
@@ -326,24 +289,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		04E38F002141C1F60017F31E /* ViewControllers */ = {
+		04E38F002141C1F60017F31E /* Dispenser */ = {
 			isa = PBXGroup;
 			children = (
-				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
-				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
-				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
-				04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */,
+				04E716742189C1C00011909C /* DispenserCoordinator.swift */,
 				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
-				042358902160235E0021AF0E /* WifiViewController.swift */,
-				0423588E2160107A0021AF0E /* PairingViewController.swift */,
-				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
-				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
-				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
-				04E716762189D0A90011909C /* PairingNavigationController.swift */,
 				04E716782189D1440011909C /* DispenserNavigationController.swift */,
 				04E7167A2189D66D0011909C /* NoConnectionViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Dispenser;
 			sourceTree = "<group>";
 		};
 		04E38F052141C7B40017F31E /* Views */ = {
@@ -382,6 +336,25 @@
 				04E7166A21864E8E0011909C /* RemoteNodeConfirmViewController.swift */,
 			);
 			path = RemoteNode;
+			sourceTree = "<group>";
+		};
+		04E7169C218C851B0011909C /* Pairing */ = {
+			isa = PBXGroup;
+			children = (
+				04E716722189BF580011909C /* PairingCoordinator.swift */,
+				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
+				04E716762189D0A90011909C /* PairingNavigationController.swift */,
+				0423588E2160107A0021AF0E /* PairingViewController.swift */,
+				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
+				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
+				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
+				04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */,
+				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
+				042358902160235E0021AF0E /* WifiViewController.swift */,
+				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
+				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
+			);
+			path = Pairing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,7 +468,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
 			);
@@ -512,7 +484,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireObjectMapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Down.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NMSSH.framework",
 			);
@@ -533,7 +504,6 @@
 				04E716612180A3490011909C /* ReplaceStoryboardSegue.swift in Sources */,
 				04E71692218B347D0011909C /* WiFiService.swift in Sources */,
 				04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */,
-				04A870EC21690E7D0097A91C /* AppState.swift in Sources */,
 				040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */,
 				04E716772189D0A90011909C /* PairingNavigationController.swift in Sources */,
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
@@ -561,13 +531,11 @@
 				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
 				042358972160339F0021AF0E /* rpc.pb.swift in Sources */,
 				04E716752189C1C00011909C /* DispenserCoordinator.swift in Sources */,
-				04A870EF216A08D60097A91C /* DispenserActions.swift in Sources */,
 				0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */,
 				043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */,
 				04E7167B2189D66D0011909C /* NoConnectionViewController.swift in Sources */,
 				04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */,
 				04E716792189D1440011909C /* DispenserNavigationController.swift in Sources */,
-				04A870F3216A0FF20097A91C /* Reducers.swift in Sources */,
 				04E716712189BE0A0011909C /* Storyboarded.swift in Sources */,
 				04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */,
 				04E71690218B33590011909C /* UpdateRestartNeededViewController.swift in Sources */,

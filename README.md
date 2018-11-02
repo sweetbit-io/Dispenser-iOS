@@ -10,18 +10,15 @@
 
 * 
 
-## Project structure
+## App structure
 
-* `Dispenser`
-* * `AppDelegate`
-* * `Actions/`
-* * `State/`
-* * `Reducers/`
-* * `Service/`
-* * `RPC/`
-* * `Views/`
-* * `ViewControllers/`
-* * `Extensions/`
+```
+AppCoordinator
+|____ PairingCoordinator
+|____ DispenserCoordinator
+| |____ UpdateCoordinator
+| |____ RemoteNodeCoordinator
+```
 
 ## Regenerate gRPC files
 

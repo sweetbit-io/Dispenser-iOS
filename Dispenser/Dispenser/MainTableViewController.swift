@@ -12,7 +12,7 @@ class MainTableViewController: UITableViewController, Storyboarded {
     var showRemoteNodeConnectCell = false
     var showRemoteNodeDisconnectCell = false
     var showControlSection = false
-    var showRemoteNodeSection = false
+    var showRemoteNodeSection = true
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var dispenseOnTouchCell: UITableViewCell!

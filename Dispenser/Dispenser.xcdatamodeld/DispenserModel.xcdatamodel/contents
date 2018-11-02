@@ -4,10 +4,11 @@
         <attribute name="commit" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ip" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastOpened" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serial" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dispenser" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Dispenser" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

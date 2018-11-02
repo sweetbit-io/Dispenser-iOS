@@ -3,17 +3,11 @@ import SwiftGRPC
 import SwiftProtobuf
 import UIKit
 import Drift
-import ReSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var coordinator: AppCoordinator?
-    
-    // TODO: to be removed
-    let store: Store<AppState>
-    // TODO: to be removed
-    var dispenser: Dispenser?
     
     // Allow convenient access the this app delegate
     // ex. AppDelegate.shared
@@ -22,18 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return UIApplication.shared.delegate as! AppDelegate
         }
     }
-    
-    // Initialize an empty store that will hold the entire state of the app
-    override init() {
-        self.store = Store<AppState>(
-            reducer: appReducer,
-            state: nil,
-            middleware: [])
-    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // New window gets a tint color
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+//        let dispenserToOpen = Dispenser(context: self.persistentContainer.viewContext)
+//        dispenserToOpen.serial = "007"
+//        dispenserToOpen.version = "0.3.0"
+//        dispenserToOpen.commit = "deadbeef"
+//        dispenserToOpen.ip = "172.20.10.4"
+//        dispenserToOpen.name = "Candy Dispenser"
+//        dispenserToOpen.lastOpened = Date()
+//        self.saveContext()
         
         // The app coordinator manages the pairing flow and the dispenser screen
         self.coordinator = AppCoordinator(window: self.window)

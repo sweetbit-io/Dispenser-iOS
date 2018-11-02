@@ -6,7 +6,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     let captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    var remoteNodeConnection: RemoteNodeConnection?
 
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true)
@@ -68,18 +67,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
         captureSession.startRunning()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "Transparent")
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        self.navigationController?.navigationBar.shadowImage = nil
-//    }
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if metadataObjects.isEmpty {
@@ -117,20 +104,13 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
             // also freezes the picture on the QR code, which is nice
             captureSession.stopRunning()
             
-            self.remoteNodeConnection = RemoteNodeConnection(
+            let remoteNodeConnection = RemoteNodeConnection(
                 uri: uri,
                 cert: cert,
                 macaroon: macaroon
             )
-
-            self.performSegue(withIdentifier: "confirm", sender: nil)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is RemoteNodeConfirmViewController {
-            let vc = segue.destination as! RemoteNodeConfirmViewController
-            vc.remoteNodeConnection = self.remoteNodeConnection
+            
+            self.coordinator?.captureRemoteNodeConnection(remoteNodeConnection: remoteNodeConnection)
         }
     }
 }

@@ -70,11 +70,9 @@ class WifiConnectedViewController: PairingViewController {
             appDelegate.saveContext()
         }
         
-        appDelegate.dispenser = dispenserToOpen
+        appDelegate.coordinator?.open(dispenser: dispenserToOpen!)
         
         WiFiService.disconnect(ssid: "candy")
-        
-        jumpTo(storyboard: "Main")
     }
     
     @IBAction func needHelp(_ sender: UIButton) {
