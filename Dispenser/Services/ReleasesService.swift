@@ -100,8 +100,6 @@ func GetLatestRelease(completionHandler: @escaping (Release?) -> Void) {
                 }.filter { $0 != nil }.map { $0! }
             )
             
-            print("Got release \(release.name)")
-            
             DispatchQueue.main.async {
                 completionHandler(release)
             }

@@ -1,5 +1,6 @@
 import RxSwift
 import UIKit
+import RMessage
 
 class DispenserCoordinator {
     var coordinator: AppCoordinator
@@ -8,12 +9,14 @@ class DispenserCoordinator {
     var navigationController: DispenserNavigationController
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
+    let rControl = RMController()
     
     var disposeBag = DisposeBag()
     
     var latestRelease = BehaviorSubject<Release?>(value: nil)
     var updateAvailable: Observable<Bool>
     var remoteNodeUrl = BehaviorSubject<String?>(value: nil)
+    
     var name: BehaviorSubject<String>
     var version: BehaviorSubject<String>
     var dispenseOnTouch: BehaviorSubject<Bool>
@@ -25,15 +28,13 @@ class DispenserCoordinator {
         self.coordinator = coordinator
         
         // Subjects to push dispenser info changes into
-        self.name = BehaviorSubject<String>(value: self.dispenser.name!)
-        self.version = BehaviorSubject<String>(value: self.dispenser.version!)
-        self.dispenseOnTouch = BehaviorSubject<Bool>(value: false)
-        self.buzzOnDispense = BehaviorSubject<Bool>(value: false)
+        self.name = BehaviorSubject<String>(value: self.dispenser.name ?? "")
+        self.version = BehaviorSubject<String>(value: self.dispenser.version ?? "0.0.0")
+        self.dispenseOnTouch = BehaviorSubject<Bool>(value: self.dispenser.dispenseOnTouch)
+        self.buzzOnDispense = BehaviorSubject<Bool>(value: self.dispenser.buzzOnDispense)
         
         self.updateAvailable = Observable.combineLatest(
             self.version, self.latestRelease, resultSelector: { version, release in
-                print("Update available? Current: \(version) Available: \(release?.version ?? "-")")
-                
                 guard let release = release else {
                     return false
                 }
@@ -73,20 +74,22 @@ class DispenserCoordinator {
         
         // Notify potential name change
         self.name.onNext(info.name)
-        self.version.onNext(info.version)
+        
+        // Notify potential version change
+        if !info.version.isEmpty {
+            self.version.onNext(info.version)
+        }
         
         // Notify settings
         self.dispenseOnTouch.onNext(info.dispenseOnTouch)
         self.buzzOnDispense.onNext(info.buzzOnDispense)
         
-        print("Got remote node \(info.remoteNode.uri)")
-        
         if info.remoteNode.uri != "" {
             self.remoteNodeUrl.onNext(info.remoteNode.uri)
         }
         
-        // TODO: enable this as soon as it's safe to update
-        // GetLatestRelease { self.latestRelease.onNext($0) }
+        // Fetch latest available release
+        GetLatestRelease { self.latestRelease.onNext($0) }
         
         let vc = MainTableViewController.instantiate()
         vc.coordinator = self
@@ -117,7 +120,30 @@ class DispenserCoordinator {
         self.navigationController.present((self.updateCoordinator?.navigationController)!, animated: true)
     }
     
+    func showNoConnectionAlert() {
+        var customSpec = errorSpec
+        customSpec.durationType = .timed
+        customSpec.timeToDismiss = 10.0
+        
+        let button = UIButton(type: .custom)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.tintColor = UIColor.white
+        button.setTitle("Pair", for: .normal)
+        button.addTarget(self, action: #selector(addDispenser), for: .touchUpInside)
+        
+        self.rControl.showMessage(
+            withSpec: customSpec,
+            atPosition: .navBarOverlay,
+            title: "Candy dispenser unreachable",
+            body: "Are you in the same network as your candy dispenser? Pair again if nothing else helps.",
+            viewController: self.navigationController,
+            rightView: button
+        )
+    }
+    
     func toggleDispenseOnTouch(enable: Bool) {
+        self.showNoConnectionAlert()
+        
         guard let client = self.client else {
             return
         }
@@ -238,7 +264,8 @@ class DispenserCoordinator {
         self.navigationController.present(alert, animated: true, completion: nil)
     }
     
-    func addDispenser() {
+    // exposed with @objc so method can be called from "no connection" alert
+    @objc func addDispenser() {
         self.coordinator.pairNewDispenser()
     }
     

@@ -167,8 +167,6 @@ class MainTableViewController: UITableViewController, Storyboarded {
         
         self.coordinator?.remoteNodeUrl
             .subscribe(onNext: {
-                print("Remote node \($0 ?? "")")
-                
                 if let url = $0 {
                     self.showRemoteNodeConnectCell = false
                     self.showRemoteNodeDisconnectCell = true

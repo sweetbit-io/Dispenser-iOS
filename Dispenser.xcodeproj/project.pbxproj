@@ -79,6 +79,8 @@
 		04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */; };
 		04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E7169A218B74C90011909C /* RemoteNode.storyboard */; };
 		04E7169E218C92700011909C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DetailsViewController.swift */; };
+		04E716A1218DBA960011909C /* RMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7169F218DBA960011909C /* RMessage.framework */; };
+		04E716A2218DBA960011909C /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E716A0218DBA960011909C /* HexColors.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,8 @@
 		04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartFailedViewController.swift; sourceTree = "<group>"; };
 		04E7169A218B74C90011909C /* RemoteNode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemoteNode.storyboard; sourceTree = "<group>"; };
 		04E7169D218C92700011909C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		04E7169F218DBA960011909C /* RMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMessage.framework; path = Carthage/Build/iOS/RMessage.framework; sourceTree = "<group>"; };
+		04E716A0218DBA960011909C /* HexColors.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HexColors.framework; path = Carthage/Build/iOS/HexColors.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E716A1218DBA960011909C /* RMessage.framework in Frameworks */,
+				04E716A2218DBA960011909C /* HexColors.framework in Frameworks */,
 				04E71683218AD41D0011909C /* NMSSH.framework in Frameworks */,
 				04E7167D2189DD0D0011909C /* RxSwift.framework in Frameworks */,
 				04E7166D2188859E0011909C /* SystemConfiguration.framework in Frameworks */,
@@ -255,6 +261,8 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04E716A0218DBA960011909C /* HexColors.framework */,
+				04E7169F218DBA960011909C /* RMessage.framework */,
 				04E71682218AD41D0011909C /* NMSSH.framework */,
 				04E7167C2189DD0D0011909C /* RxSwift.framework */,
 				04E7166C2188859E0011909C /* SystemConfiguration.framework */,
@@ -473,6 +481,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RMessage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HexColors.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
@@ -489,6 +499,8 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Down.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NMSSH.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RMessage.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HexColors.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
