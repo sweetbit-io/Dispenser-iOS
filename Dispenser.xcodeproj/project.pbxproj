@@ -81,6 +81,7 @@
 		04E7169E218C92700011909C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DetailsViewController.swift */; };
 		04E716A1218DBA960011909C /* RMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7169F218DBA960011909C /* RMessage.framework */; };
 		04E716A2218DBA960011909C /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E716A0218DBA960011909C /* HexColors.framework */; };
+		04E716A4218E32B10011909C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04E716A3218E32B10011909C /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,7 @@
 		04E7169D218C92700011909C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		04E7169F218DBA960011909C /* RMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMessage.framework; path = Carthage/Build/iOS/RMessage.framework; sourceTree = "<group>"; };
 		04E716A0218DBA960011909C /* HexColors.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HexColors.framework; path = Carthage/Build/iOS/HexColors.framework; sourceTree = "<group>"; };
+		04E716A3218E32B10011909C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				042A96142149C1DC001F637A /* README.md */,
+				04E716A3218E32B10011909C /* LICENSE */,
 				04E38EF62141BA770017F31E /* Cartfile */,
 				04CDB83D215F131F008809E4 /* Cartfile.resolved */,
 				04DA54342132EB0B00EA2B65 /* Dispenser */,
@@ -450,6 +453,7 @@
 				04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */,
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
+				04E716A4218E32B10011909C /* LICENSE in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
 				04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */,
 				04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */,
