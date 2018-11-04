@@ -15,6 +15,7 @@ class DispenserCoordinator {
     var navigationController: DispenserNavigationController
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
+    var subscribeDispensesCall: Sweetrpc_SweetSubscribeDispensesCall?
     var connected = BehaviorSubject<Bool>(value: false)
     var dispensing = BehaviorSubject<Bool>(value: false)
     var state: Observable<DispenserState>
@@ -104,20 +105,10 @@ class DispenserCoordinator {
                     self.remoteNodeUrl.onNext(info.remoteNode.uri)
                 }
                 
-                // Subscribe to dispense events
-                let req = Sweetrpc_SubscribeDispensesRequest()
-                let call = try? client.subscribeDispenses(req, completion: nil)
-                
-                try? call?.receive(completion: { response in
-                    if case let result?? = response.result  {
-                        self.dispensing.onNext(result.dispense)
-                    } else if let error = response.error {
-                        print("\(error)")
-                    }
-                })
-                
                 // save client
                 self.client = client
+                
+                self.subscribeDispenses()
                 
                 // set connected
                 self.connected.onNext(true)
@@ -137,6 +128,40 @@ class DispenserCoordinator {
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func subscribeDispenses() {
+        guard let client = self.client else {
+            return
+        }
+        
+        // Subscribe to dispense events
+        let req = Sweetrpc_SubscribeDispensesRequest()
+        
+        let subscribeDispensesCall = try! client.subscribeDispenses(req, completion: {
+            print("Completed subscription \($0)")
+        })
+        
+        DispatchQueue.global().async {
+            while true {
+                do {
+                    let response = try subscribeDispensesCall.receive()
+                        
+                    if case let result? = response  {
+                        print("Setting dispense = \(result.dispense)")
+                            
+                        DispatchQueue.main.async {
+                            self.dispensing.onNext(result.dispense)
+                            
+                            print("Set to \(result.dispense)")
+                        }
+                    }
+                } catch (let error) {
+                    print("error: \(error)")
+                    break
+                }
+            }
+        }
     }
     
     func retryConnection() {
