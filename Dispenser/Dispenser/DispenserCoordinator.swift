@@ -9,6 +9,7 @@ class DispenserCoordinator {
     var navigationController: DispenserNavigationController
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
+    var connected = BehaviorSubject<Bool>(value: false)
     let rControl = RMController()
     
     var disposeBag = DisposeBag()
@@ -33,6 +34,7 @@ class DispenserCoordinator {
         self.dispenseOnTouch = BehaviorSubject<Bool>(value: self.dispenser.dispenseOnTouch)
         self.buzzOnDispense = BehaviorSubject<Bool>(value: self.dispenser.buzzOnDispense)
         
+        // Indicator, whether an update is available
         self.updateAvailable = Observable.combineLatest(
             self.version, self.latestRelease, resultSelector: { version, release in
                 guard let release = release else {
@@ -43,49 +45,58 @@ class DispenserCoordinator {
             }
         )
         
-        self.name
-            .subscribe(onNext: { name in
+        // Persist changes on dispenser info changes
+        Observable
+            .combineLatest(self.name, self.version, self.dispenseOnTouch, self.buzzOnDispense)
+            .subscribe(onNext: { name, version, dispenseOnTouch, buzzOnDispense in
+                print("\(name), \(version), \(dispenseOnTouch), \(buzzOnDispense)")
+
                 self.dispenser.name = name
+                self.dispenser.version = version
+                self.dispenser.dispenseOnTouch = dispenseOnTouch
+                self.dispenser.buzzOnDispense = buzzOnDispense
+                
                 AppDelegate.shared.saveContext()
             })
             .disposed(by: self.disposeBag)
     }
     
     func start() {
-        guard let ip = self.dispenser.ip else {
-            self.showNoConnection()
+        if let ip = self.dispenser.ip {
+            let address = String(format: "%@:%d", ip, 9000)
+            let client = Sweetrpc_SweetServiceClient(address: address, secure: false)
+            
+            let req = Sweetrpc_GetInfoRequest()
+            
+            if let info = try? client.getInfo(req) {
+                // Notify potential name change
+                self.name.onNext(info.name)
+                
+                // Notify potential version change
+                if !info.version.isEmpty { // TODO: remove this
+                    self.version.onNext(info.version)
+                }
+                
+                // Notify settings
+                self.dispenseOnTouch.onNext(info.dispenseOnTouch)
+                self.buzzOnDispense.onNext(info.buzzOnDispense)
+                
+                if info.remoteNode.uri != "" {
+                    self.remoteNodeUrl.onNext(info.remoteNode.uri)
+                }
+            } else {
+                self.showNoConnectionAlert()
+            }
+            
+            // save client
+            self.client = client
+            
+            // set connected
+            self.connected.onNext(true)
+        } else {
+            // for some strange reason, dispenser has no IP
+            self.coordinator.unpair(dispenser: self.dispenser)
             return
-        }
-        
-        let address = String(format: "%@:%d", ip, 9000)
-        self.client = Sweetrpc_SweetServiceClient(address: address, secure: false)
-        
-        let req = Sweetrpc_GetInfoRequest()
-        
-        guard let client = self.client else {
-            self.showNoConnection()
-            return
-        }
-        
-        guard let info = try? client.getInfo(req) else {
-            self.showNoConnection()
-            return
-        }
-        
-        // Notify potential name change
-        self.name.onNext(info.name)
-        
-        // Notify potential version change
-        if !info.version.isEmpty {
-            self.version.onNext(info.version)
-        }
-        
-        // Notify settings
-        self.dispenseOnTouch.onNext(info.dispenseOnTouch)
-        self.buzzOnDispense.onNext(info.buzzOnDispense)
-        
-        if info.remoteNode.uri != "" {
-            self.remoteNodeUrl.onNext(info.remoteNode.uri)
         }
         
         // Fetch latest available release

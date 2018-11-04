@@ -306,8 +306,8 @@
 			children = (
 				04E716742189C1C00011909C /* DispenserCoordinator.swift */,
 				04DA54392132EB0B00EA2B65 /* Main.storyboard */,
-				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
 				04E716782189D1440011909C /* DispenserNavigationController.swift */,
+				043BDFD22162D69900D2CBE1 /* MainTableViewController.swift */,
 				04E7167A2189D66D0011909C /* NoConnectionViewController.swift */,
 				04E7169D218C92700011909C /* DetailsViewController.swift */,
 			);
