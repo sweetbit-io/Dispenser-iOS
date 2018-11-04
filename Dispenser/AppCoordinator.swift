@@ -1,7 +1,7 @@
 import CoreData
-import UIKit
-import RxSwift
 import Drift
+import RxSwift
+import UIKit
 
 class AppCoordinator {
     var window: UIWindow?

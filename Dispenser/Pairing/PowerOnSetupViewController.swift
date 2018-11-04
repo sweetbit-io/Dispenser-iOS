@@ -1,5 +1,5 @@
-import UIKit
 import Drift
+import UIKit
 
 class PowerOnSetupViewController: PairingViewController {
     override func didReceiveMemoryWarning() {

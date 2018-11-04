@@ -10,7 +10,7 @@ class UpdateViewController: UIViewController, Storyboarded {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var sizeLabel: UILabel!
-    @IBOutlet weak var updateButton: LoadingButton!
+    @IBOutlet var updateButton: LoadingButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
-import UIKit
 import Drift
+import UIKit
 
 class WifiViewController: PairingViewController, UITableViewDataSource, UITableViewDelegate {
     var service: Sweetrpc_SweetServiceClient?

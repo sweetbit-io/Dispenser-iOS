@@ -1,5 +1,5 @@
-import UIKit
 import Drift
+import UIKit
 
 class ConnectionFailedSetupViewController: PairingViewController {
     @IBAction func needHelp() {

@@ -1,5 +1,5 @@
-import UIKit
 import Drift
+import UIKit
 
 class DispenserConnectedViewController: PairingViewController {
     var service: Sweetrpc_SweetServiceClient?

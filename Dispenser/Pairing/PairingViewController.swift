@@ -9,7 +9,7 @@ class PairingViewController: UIViewController {
         super.viewDidLoad()
         
         // remporary solution, until pairing screens are migrated to coordinators
-        self.lastOpenedDispenser = appDelegate.coordinator?.getLastOpenedDispenser()
+        lastOpenedDispenser = appDelegate.coordinator?.getLastOpenedDispenser()
         
         if lastOpenedDispenser != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(

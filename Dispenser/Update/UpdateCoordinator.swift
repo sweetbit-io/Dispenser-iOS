@@ -1,7 +1,7 @@
-import UIKit
-import RxSwift
-import NMSSH
 import Drift
+import NMSSH
+import RxSwift
+import UIKit
 
 class UpdateCoordinator {
     var coordinator: DispenserCoordinator

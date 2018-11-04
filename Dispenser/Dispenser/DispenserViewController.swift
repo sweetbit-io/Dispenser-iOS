@@ -15,20 +15,20 @@ class DispenserViewController: UITableViewController, Storyboarded {
     var showRemoteNodeSection = true
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var dispenseOnTouchCell: UITableViewCell!
-    @IBOutlet weak var buzzOnDispenseCell: UITableViewCell!
-    @IBOutlet weak var detailsCell: DispenserTableViewCell!
+    @IBOutlet var dispenseOnTouchCell: UITableViewCell!
+    @IBOutlet var buzzOnDispenseCell: UITableViewCell!
+    @IBOutlet var detailsCell: DispenserTableViewCell!
     @IBOutlet var updateCell: UITableViewCell!
-    @IBOutlet weak var restartCell: UITableViewCell!
+    @IBOutlet var restartCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
     @IBOutlet var unlockCell: UITableViewCell!
     @IBOutlet var disconnectCell: UITableViewCell!
     @IBOutlet var dispenseOnTouchSwitch: UISwitch!
     @IBOutlet var buzzOnDispenseSwitch: UISwitch!
-    @IBOutlet weak var dispenseCell: UITableViewCell!
-    @IBOutlet weak var remoteNodeDisconnectCellSubtitle: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet var dispenseCell: UITableViewCell!
+    @IBOutlet var remoteNodeDisconnectCellSubtitle: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
     
     @IBAction func help(_ sender: Any) {
         Drift.showConversations()
@@ -141,90 +141,97 @@ class DispenserViewController: UITableViewController, Storyboarded {
         }
         
         self.coordinator?.name
-            .subscribe(onNext: { name in
-                self.title = name
-                self.nameLabel.text = name
+            .subscribe(
+                onNext: { name in
+                    self.title = name
+                    self.nameLabel.text = name
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.state
-            .subscribe(onNext: { state in
-                switch state {
-                case .dispensing:
-                    self.statusLabel.text = "dispensing"
-                    self.statusLabel.textColor = #colorLiteral(red: 0.3280000091, green: 0.2090000063, blue: 0.7250000238, alpha: 1)
-                case .connected:
-                    self.statusLabel.text = "connected"
-                    self.statusLabel.textColor = #colorLiteral(red: 0.2980392157, green: 0.8509803922, blue: 0.3921568627, alpha: 1)
-                case .unreachable:
-                    self.statusLabel.text = "unreachable"
-                    self.statusLabel.textColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
-                }
+            .subscribe(
+                onNext: { state in
+                    switch state {
+                    case .dispensing:
+                        self.statusLabel.text = "dispensing"
+                        self.statusLabel.textColor = #colorLiteral(red: 0.3280000091, green: 0.2090000063, blue: 0.7250000238, alpha: 1)
+                    case .connected:
+                        self.statusLabel.text = "connected"
+                        self.statusLabel.textColor = #colorLiteral(red: 0.2980392157, green: 0.8509803922, blue: 0.3921568627, alpha: 1)
+                    case .unreachable:
+                        self.statusLabel.text = "unreachable"
+                        self.statusLabel.textColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+                    }
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.dispenseOnTouch
-            .subscribe(onNext: { dispenseOnTouch in
-                self.dispenseOnTouchSwitch.setOn(dispenseOnTouch, animated: true)
+            .subscribe(
+                onNext: { dispenseOnTouch in
+                    self.dispenseOnTouchSwitch.setOn(dispenseOnTouch, animated: true)
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.buzzOnDispense
-            .subscribe(onNext: { buzzOnDispense in
-                self.buzzOnDispenseSwitch.setOn(buzzOnDispense, animated: true)
+            .subscribe(
+                onNext: { buzzOnDispense in
+                    self.buzzOnDispenseSwitch.setOn(buzzOnDispense, animated: true)
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.version
-            .subscribe(onNext: { version in
-                print("Version is \(version)")
-
+            .subscribe(
+                onNext: { version in
+                    print("Version is \(version)")
+                    
 //                if isVersion(version, higherOrEqual: "0.3.0") {
 //                    self.showRemoteNodeSection = true
 //                }
 //                if isVersion(version, higherOrEqual: "0.4.0") {
 //                    self.showControlSection = true
 //                }
-                
-                // This has a nicer animation, but the cell does not reappear
-                // let indexPath = IndexPath(row: 0, section: updateSection)
-                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+                    
+                    // This has a nicer animation, but the cell does not reappear
+                    // let indexPath = IndexPath(row: 0, section: updateSection)
+                    // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.remoteNodeUrl
-            .subscribe(onNext: {
-                if let url = $0 {
-                    self.showRemoteNodeConnectCell = false
-                    self.showRemoteNodeDisconnectCell = true
-                    self.remoteNodeDisconnectCellSubtitle.text = url
-                } else {
-                    self.showRemoteNodeConnectCell = true
-                    self.showRemoteNodeDisconnectCell = false
-                }
-                
-                // This has a nicer animation, but the cell does not reappear
-                // let indexPath = IndexPath(row: 0, section: updateSection)
-                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+            .subscribe(
+                onNext: {
+                    if let url = $0 {
+                        self.showRemoteNodeConnectCell = false
+                        self.showRemoteNodeDisconnectCell = true
+                        self.remoteNodeDisconnectCellSubtitle.text = url
+                    } else {
+                        self.showRemoteNodeConnectCell = true
+                        self.showRemoteNodeDisconnectCell = false
+                    }
+                    
+                    // This has a nicer animation, but the cell does not reappear
+                    // let indexPath = IndexPath(row: 0, section: updateSection)
+                    // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
             })
             .disposed(by: self.disposeBag)
         
         self.coordinator?.updateAvailable
-            .subscribe(onNext: {
-                self.showUpdateCell = $0
-                
-                // This has a nicer animation, but the cell does not reappear
-                // let indexPath = IndexPath(row: 0, section: updateSection)
-                // self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+            .subscribe(
+                onNext: {
+                    self.showUpdateCell = $0
+                    
+                    // This has a nicer animation, but the cell does not reappear
+                    // let indexPath = IndexPath(row: 0, section: updateSection)
+                    // self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
             })
             .disposed(by: self.disposeBag)
     }

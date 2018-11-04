@@ -1,14 +1,14 @@
-import UIKit
 import AVFoundation
+import UIKit
 
 class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, Storyboarded {
     var coordinator: RemoteNodeCoordinator?
     let captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-
+    
     @IBAction func dismiss(_ sender: Any) {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
         // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession.addOutput(captureMetadataOutput)
-
+        
         // Set delegate and use the default dispatch queue to execute the call back
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
@@ -68,7 +68,6 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
             return
@@ -110,7 +109,7 @@ class RemoteNodeConnectViewController: UIViewController, AVCaptureMetadataOutput
                 macaroon: macaroon
             )
             
-            self.coordinator?.captureRemoteNodeConnection(remoteNodeConnection: remoteNodeConnection)
+            coordinator?.captureRemoteNodeConnection(remoteNodeConnection: remoteNodeConnection)
         }
     }
 }

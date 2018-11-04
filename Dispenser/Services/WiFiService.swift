@@ -39,7 +39,7 @@ class WiFiService {
         }
         
         for interfaceName in interfaceNames {
-            guard let info = CNCopyCurrentNetworkInfo(interfaceName as CFString) as? [String:AnyObject] else {
+            guard let info = CNCopyCurrentNetworkInfo(interfaceName as CFString) as? [String: AnyObject] else {
                 continue
             }
             

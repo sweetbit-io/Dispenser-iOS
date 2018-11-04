@@ -1,20 +1,18 @@
 import CoreData
+import Drift
 import SwiftGRPC
 import SwiftProtobuf
 import UIKit
-import Drift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var coordinator: AppCoordinator?
-    
+
     // Allow convenient access the this app delegate
     // ex. AppDelegate.shared
     open class var shared: AppDelegate {
-        get {
-            return UIApplication.shared.delegate as! AppDelegate
-        }
+        return UIApplication.shared.delegate as! AppDelegate
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -28,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set global tint color and make window visible
         self.window?.tintColor = UIColor.primary
         self.window?.makeKeyAndVisible()
-        
+
         // Set up Drift messaging, that is available throughout the app
         Drift.setup("ydd7gkth62cx")
-        Drift.registerUser(UIDevice.init().identifierForVendor?.uuidString ?? "", email: "")
+        Drift.registerUser(UIDevice().identifierForVendor?.uuidString ?? "", email: "")
 
         return true
     }

@@ -1,4 +1,3 @@
 import UIKit
 
-class DispenserNavigationController: UINavigationController, Storyboarded {
-}
+class DispenserNavigationController: UINavigationController, Storyboarded {}

@@ -1,4 +1,3 @@
 import UIKit
 
-class RemoteNodeNavigationController: UINavigationController, Storyboarded {
-}
+class RemoteNodeNavigationController: UINavigationController, Storyboarded {}

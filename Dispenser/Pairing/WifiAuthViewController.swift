@@ -1,5 +1,5 @@
-import UIKit
 import Drift
+import UIKit
 
 let defaultBottomConstraint: CGFloat = 20
 

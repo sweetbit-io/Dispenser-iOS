@@ -1,6 +1,6 @@
+import RMessage
 import RxSwift
 import UIKit
-import RMessage
 
 enum DispenserState {
     case connected
@@ -68,16 +68,18 @@ class DispenserCoordinator {
         // Persist changes on dispenser info changes
         Observable
             .combineLatest(self.name, self.version, self.dispenseOnTouch, self.buzzOnDispense)
-            .subscribe(onNext: { name, version, dispenseOnTouch, buzzOnDispense in
-                print("\(name), \(version), \(dispenseOnTouch), \(buzzOnDispense)")
-
-                self.dispenser.name = name
-                self.dispenser.version = version
-                self.dispenser.dispenseOnTouch = dispenseOnTouch
-                self.dispenser.buzzOnDispense = buzzOnDispense
-                
-                AppDelegate.shared.saveContext()
-            })
+            .subscribe(
+                onNext: { name, version, dispenseOnTouch, buzzOnDispense in
+                    print("\(name), \(version), \(dispenseOnTouch), \(buzzOnDispense)")
+                    
+                    self.dispenser.name = name
+                    self.dispenser.version = version
+                    self.dispenser.dispenseOnTouch = dispenseOnTouch
+                    self.dispenser.buzzOnDispense = buzzOnDispense
+                    
+                    AppDelegate.shared.saveContext()
+                }
+            )
             .disposed(by: self.disposeBag)
     }
     
@@ -138,25 +140,27 @@ class DispenserCoordinator {
         // Subscribe to dispense events
         let req = Sweetrpc_SubscribeDispensesRequest()
         
-        let subscribeDispensesCall = try! client.subscribeDispenses(req, completion: {
-            print("Completed subscription \($0)")
-        })
+        let subscribeDispensesCall = try! client.subscribeDispenses(
+            req, completion: {
+                print("Completed subscription \($0)")
+            }
+        )
         
         DispatchQueue.global().async {
             while true {
                 do {
                     let response = try subscribeDispensesCall.receive()
-                        
-                    if case let result? = response  {
+                    
+                    if case let result? = response {
                         print("Setting dispense = \(result.dispense)")
-                            
+                        
                         DispatchQueue.main.async {
                             self.dispensing.onNext(result.dispense)
                             
                             print("Set to \(result.dispense)")
                         }
                     }
-                } catch (let error) {
+                } catch let error {
                     print("error: \(error)")
                     break
                 }
@@ -189,7 +193,7 @@ class DispenserCoordinator {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.tintColor = UIColor.white
         button.setTitle("Pair", for: .normal)
-        button.addTarget(self, action: #selector(addDispenser), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.addDispenser), for: .touchUpInside)
         
         self.rControl.showMessage(
             withSpec: customSpec,
@@ -249,21 +253,23 @@ class DispenserCoordinator {
             preferredStyle: UIAlertController.Style.alert
         )
         
-        let disconnectAction = UIAlertAction(title: "Disconnect", style: .destructive, handler: { _ in
-            guard let client = self.client else {
-                return
+        let disconnectAction = UIAlertAction(
+            title: "Disconnect", style: .destructive, handler: { _ in
+                guard let client = self.client else {
+                    return
+                }
+                
+                let req = Sweetrpc_DisconnectFromRemoteNodeRequest()
+                
+                let res = try? client.disconnectFromRemoteNode(req)
+                
+                if res == nil {
+                    return
+                }
+                
+                self.remoteNodeUrl.onNext(nil)
             }
-            
-            let req = Sweetrpc_DisconnectFromRemoteNodeRequest()
-            
-            let res = try? client.disconnectFromRemoteNode(req)
-            
-            if res == nil {
-                return
-            }
-            
-            self.remoteNodeUrl.onNext(nil)
-        })
+        )
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(disconnectAction)
@@ -312,7 +318,7 @@ class DispenserCoordinator {
         let unpairAction = UIAlertAction(
             title: "Unpair", style: .destructive, handler: { _ in
                 self.coordinator.unpair(dispenser: self.dispenser)
-        }
+            }
         )
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         

@@ -5,10 +5,10 @@ import UIKit
 class DetailsViewController: UITableViewController, Storyboarded {
     var coordinator: DispenserCoordinator?
     var disposeBag = DisposeBag()
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var serialNoLabel: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var commitLabel: UILabel!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var serialNoLabel: UILabel!
+    @IBOutlet var versionLabel: UILabel!
+    @IBOutlet var commitLabel: UILabel!
     
     @IBAction func valueChanged(_ sender: UITextField) {
         guard let name = sender.text else {

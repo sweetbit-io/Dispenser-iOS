@@ -18,7 +18,7 @@ class ConnectSetupViewController: PairingViewController {
         super.viewDidLoad()
 
         self.continueButton.isEnabled = false
-        
+
         WiFiService.connect(ssid: "candy", password: "reckless") {
             switch $0 {
             case .alreadyConnected:

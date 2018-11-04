@@ -1,9 +1,9 @@
-import UIKit
 import Drift
+import UIKit
 
 class StartSetupViewController: PairingViewController, Storyboarded {
     var coordinator: PairingCoordinator?
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

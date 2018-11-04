@@ -1,5 +1,5 @@
-import UIKit
 import CoreGraphics
+import UIKit
 
 class DispenserTableViewCell: UITableViewCell {
     override func awakeFromNib() {

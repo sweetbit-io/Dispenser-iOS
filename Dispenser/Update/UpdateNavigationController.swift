@@ -1,4 +1,3 @@
 import UIKit
 
-class UpdateNavigationController: UINavigationController, Storyboarded {
-}
+class UpdateNavigationController: UINavigationController, Storyboarded {}
