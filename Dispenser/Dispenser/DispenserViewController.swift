@@ -2,7 +2,7 @@ import Drift
 import RxSwift
 import UIKit
 
-class MainTableViewController: UITableViewController, Storyboarded {
+class DispenserViewController: UITableViewController, Storyboarded {
     static let UpdateSection = 1
     static let ControlsSection = 2
     static let RemoteNodeSection = 3
@@ -25,8 +25,10 @@ class MainTableViewController: UITableViewController, Storyboarded {
     @IBOutlet var disconnectCell: UITableViewCell!
     @IBOutlet var dispenseOnTouchSwitch: UISwitch!
     @IBOutlet var buzzOnDispenseSwitch: UISwitch!
+    @IBOutlet weak var dispenseCell: UITableViewCell!
     @IBOutlet weak var remoteNodeDisconnectCellSubtitle: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     @IBAction func help(_ sender: Any) {
         Drift.showConversations()
@@ -51,6 +53,8 @@ class MainTableViewController: UITableViewController, Storyboarded {
         } else if cell == self.unpairCell {
             self.coordinator?.unpair()
             cell?.isSelected = false
+        } else if cell == self.dispenseCell {
+            cell?.isSelected = false
         }
     }
     
@@ -73,11 +77,11 @@ class MainTableViewController: UITableViewController, Storyboarded {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
+        if section == DispenserViewController.UpdateSection && !self.showUpdateCell {
             return 0.1
-        } else if section == MainTableViewController.ControlsSection && !self.showControlSection {
+        } else if section == DispenserViewController.ControlsSection && !self.showControlSection {
             return 0.1
-        } else if section == MainTableViewController.RemoteNodeSection && !self.showRemoteNodeSection {
+        } else if section == DispenserViewController.RemoteNodeSection && !self.showRemoteNodeSection {
             return 0.1
         } else {
             return super.tableView(tableView, heightForHeaderInSection: section)
@@ -85,14 +89,24 @@ class MainTableViewController: UITableViewController, Storyboarded {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == MainTableViewController.UpdateSection && !self.showUpdateCell {
+        if section == DispenserViewController.UpdateSection && !self.showUpdateCell {
             return 0.1
-        } else if section == MainTableViewController.ControlsSection && !self.showControlSection {
+        } else if section == DispenserViewController.ControlsSection && !self.showControlSection {
             return 0.1
-        } else if section == MainTableViewController.RemoteNodeSection && !self.showRemoteNodeSection {
+        } else if section == DispenserViewController.RemoteNodeSection && !self.showRemoteNodeSection {
             return 0.1
         } else {
             return super.tableView(tableView, heightForFooterInSection: section)
+        }
+    }
+    
+    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            self.dispenseCell.isSelected = true
+            self.coordinator?.toggleDispenser(on: true)
+        } else if sender.state == .ended {
+            self.dispenseCell.isSelected = false
+            self.coordinator?.toggleDispenser(on: false)
         }
     }
     
@@ -118,18 +132,34 @@ class MainTableViewController: UITableViewController, Storyboarded {
                 image: #imageLiteral(resourceName: "Menu"),
                 style: .plain,
                 target: self,
-                action: #selector(MainTableViewController.switchDispenser))
+                action: #selector(DispenserViewController.switchDispenser))
         } else {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(
                 barButtonSystemItem: .add,
                 target: self,
-                action: #selector(MainTableViewController.addDispenser))
+                action: #selector(DispenserViewController.addDispenser))
         }
         
         self.coordinator?.name
             .subscribe(onNext: { name in
                 self.title = name
                 self.nameLabel.text = name
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.coordinator?.state
+            .subscribe(onNext: { state in
+                switch state {
+                case .dispensing:
+                    self.statusLabel.text = "dispensing"
+                    self.statusLabel.textColor = #colorLiteral(red: 0.3280000091, green: 0.2090000063, blue: 0.7250000238, alpha: 1)
+                case .connected:
+                    self.statusLabel.text = "connected"
+                    self.statusLabel.textColor = #colorLiteral(red: 0.2980392157, green: 0.8509803922, blue: 0.3921568627, alpha: 1)
+                case .unreachable:
+                    self.statusLabel.text = "unreachable"
+                    self.statusLabel.textColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+                }
             })
             .disposed(by: self.disposeBag)
         

@@ -91,6 +91,28 @@ fileprivate final class Sweetrpc_SweetRebootCallBase: ClientCallUnaryBase<Sweetr
   override class var method: String { return "/sweetrpc.Sweet/Reboot" }
 }
 
+internal protocol Sweetrpc_SweetToggleDispenserCall: ClientCallUnary {}
+
+fileprivate final class Sweetrpc_SweetToggleDispenserCallBase: ClientCallUnaryBase<Sweetrpc_ToggleDispenserRequest, Sweetrpc_ToggleDispenserResponse>, Sweetrpc_SweetToggleDispenserCall {
+  override class var method: String { return "/sweetrpc.Sweet/ToggleDispenser" }
+}
+
+internal protocol Sweetrpc_SweetSubscribeDispensesCall: ClientCallServerStreaming {
+  /// Do not call this directly, call `receive()` in the protocol extension below instead.
+  func _receive(timeout: DispatchTime) throws -> Sweetrpc_Dispense?
+  /// Call this to wait for a result. Nonblocking.
+  func receive(completion: @escaping (ResultOrRPCError<Sweetrpc_Dispense?>) -> Void) throws
+}
+
+internal extension Sweetrpc_SweetSubscribeDispensesCall {
+  /// Call this to wait for a result. Blocking.
+  func receive(timeout: DispatchTime = .distantFuture) throws -> Sweetrpc_Dispense? { return try self._receive(timeout: timeout) }
+}
+
+fileprivate final class Sweetrpc_SweetSubscribeDispensesCallBase: ClientCallServerStreamingBase<Sweetrpc_SubscribeDispensesRequest, Sweetrpc_Dispense>, Sweetrpc_SweetSubscribeDispensesCall {
+  override class var method: String { return "/sweetrpc.Sweet/SubscribeDispenses" }
+}
+
 
 /// Instantiate Sweetrpc_SweetServiceClient, then call methods of this protocol to make API calls.
 internal protocol Sweetrpc_SweetService: ServiceClient {
@@ -148,6 +170,16 @@ internal protocol Sweetrpc_SweetService: ServiceClient {
   func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse
   /// Asynchronous. Unary.
   func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall
+
+  /// Synchronous. Unary.
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest) throws -> Sweetrpc_ToggleDispenserResponse
+  /// Asynchronous. Unary.
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall
+
+  /// Asynchronous. Server-streaming.
+  /// Send the initial message.
+  /// Use methods on the returned object to get streamed responses.
+  func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall
 
 }
 
@@ -270,6 +302,25 @@ internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_Sw
   /// Asynchronous. Unary.
   internal func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall {
     return try Sweetrpc_SweetRebootCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest) throws -> Sweetrpc_ToggleDispenserResponse {
+    return try Sweetrpc_SweetToggleDispenserCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall {
+    return try Sweetrpc_SweetToggleDispenserCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Asynchronous. Server-streaming.
+  /// Send the initial message.
+  /// Use methods on the returned object to get streamed responses.
+  internal func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall {
+    return try Sweetrpc_SweetSubscribeDispensesCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

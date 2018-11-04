@@ -2,6 +2,12 @@ import RxSwift
 import UIKit
 import RMessage
 
+enum DispenserState {
+    case connected
+    case unreachable
+    case dispensing
+}
+
 class DispenserCoordinator {
     var coordinator: AppCoordinator
     var remoteNodeCoordinator: RemoteNodeCoordinator?
@@ -10,6 +16,8 @@ class DispenserCoordinator {
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
     var connected = BehaviorSubject<Bool>(value: false)
+    var dispensing = BehaviorSubject<Bool>(value: false)
+    var state: Observable<DispenserState>
     let rControl = RMController()
     
     var disposeBag = DisposeBag()
@@ -24,7 +32,7 @@ class DispenserCoordinator {
     var buzzOnDispense: BehaviorSubject<Bool>
     
     init(coordinator: AppCoordinator, dispenser: Dispenser) {
-        self.navigationController = DispenserNavigationController.instantiate()
+        self.navigationController = DispenserNavigationController.instantiate(fromStoryboard: "Dispenser")
         self.dispenser = dispenser
         self.coordinator = coordinator
         
@@ -44,6 +52,17 @@ class DispenserCoordinator {
                 return isVersion(release.version, higherThan: version)
             }
         )
+        
+        self.state = Observable
+            .combineLatest(self.connected, self.dispensing) { connected, dispensing in
+                if dispensing {
+                    return .dispensing
+                } else if connected {
+                    return .connected
+                } else {
+                    return .unreachable
+                }
+            }
         
         // Persist changes on dispenser info changes
         Observable
@@ -84,15 +103,27 @@ class DispenserCoordinator {
                 if info.remoteNode.uri != "" {
                     self.remoteNodeUrl.onNext(info.remoteNode.uri)
                 }
+                
+                // Subscribe to dispense events
+                let req = Sweetrpc_SubscribeDispensesRequest()
+                let call = try? client.subscribeDispenses(req, completion: nil)
+                
+                try? call?.receive(completion: { response in
+                    if case let result?? = response.result  {
+                        self.dispensing.onNext(result.dispense)
+                    } else if let error = response.error {
+                        print("\(error)")
+                    }
+                })
+                
+                // save client
+                self.client = client
+                
+                // set connected
+                self.connected.onNext(true)
             } else {
                 self.showNoConnectionAlert()
             }
-            
-            // save client
-            self.client = client
-            
-            // set connected
-            self.connected.onNext(true)
         } else {
             // for some strange reason, dispenser has no IP
             self.coordinator.unpair(dispenser: self.dispenser)
@@ -102,17 +133,10 @@ class DispenserCoordinator {
         // Fetch latest available release
         GetLatestRelease { self.latestRelease.onNext($0) }
         
-        let vc = MainTableViewController.instantiate()
+        let vc = DispenserViewController.instantiate(fromStoryboard: "Dispenser")
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: false)
-    }
-    
-    func showNoConnection() {
-        let vc = NoConnectionViewController.instantiate()
-        vc.coordinator = self
-        
-        self.navigationController.setViewControllers([vc], animated: true)
     }
     
     func retryConnection() {
@@ -153,8 +177,6 @@ class DispenserCoordinator {
     }
     
     func toggleDispenseOnTouch(enable: Bool) {
-        self.showNoConnectionAlert()
-        
         guard let client = self.client else {
             return
         }
@@ -315,7 +337,7 @@ class DispenserCoordinator {
     }
     
     func showDetails() {
-        let vc = DetailsViewController.instantiate()
+        let vc = DetailsViewController.instantiate(fromStoryboard: "Dispenser")
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: true)
@@ -346,6 +368,21 @@ class DispenserCoordinator {
         self.remoteNodeUrl.onNext(uri)
         
         self.remoteNodeCoordinator?.dismiss()
+    }
+    
+    func toggleDispenser(on: Bool) {
+        guard let client = self.client else {
+            return
+        }
+        
+        var req = Sweetrpc_ToggleDispenserRequest()
+        req.dispense = on
+        
+        let res = try? client.toggleDispenser(req)
+        
+        if res == nil {
+            return
+        }
     }
 }
 
