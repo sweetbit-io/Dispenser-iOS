@@ -32,6 +32,7 @@
 		042A961D2149C2F3001F637A /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96192149C2F3001F637A /* BoringSSL.framework */; };
 		043BDFD32162D69900D2CBE1 /* DispenserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BDFD22162D69900D2CBE1 /* DispenserViewController.swift */; };
 		043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BDFD42163F9A000D2CBE1 /* DispenserTableViewCell.swift */; };
+		044AF83E2190817500893494 /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044AF83D2190817500893494 /* HexColors.framework */; };
 		044F526A21408F9600B0C423 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044F526921408F9600B0C423 /* ExternalAccessory.framework */; };
 		0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450C70121641D2300B40F3B /* ReleasesService.swift */; };
 		0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */; };
@@ -79,7 +80,6 @@
 		04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E7169A218B74C90011909C /* RemoteNode.storyboard */; };
 		04E7169E218C92700011909C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DetailsViewController.swift */; };
 		04E716A1218DBA960011909C /* RMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7169F218DBA960011909C /* RMessage.framework */; };
-		04E716A2218DBA960011909C /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E716A0218DBA960011909C /* HexColors.framework */; };
 		04E716A4218E32B10011909C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04E716A3218E32B10011909C /* LICENSE */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +109,7 @@
 		042A96192149C2F3001F637A /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
 		043BDFD22162D69900D2CBE1 /* DispenserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispenserViewController.swift; sourceTree = "<group>"; };
 		043BDFD42163F9A000D2CBE1 /* DispenserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserTableViewCell.swift; sourceTree = "<group>"; };
+		044AF83D2190817500893494 /* HexColors.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HexColors.framework; path = Carthage/Build/iOS/HexColors.framework; sourceTree = "<group>"; };
 		044F526921408F9600B0C423 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		0450C70121641D2300B40F3B /* ReleasesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleasesService.swift; sourceTree = "<group>"; };
 		0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		04E7169A218B74C90011909C /* RemoteNode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemoteNode.storyboard; sourceTree = "<group>"; };
 		04E7169D218C92700011909C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		04E7169F218DBA960011909C /* RMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMessage.framework; path = Carthage/Build/iOS/RMessage.framework; sourceTree = "<group>"; };
-		04E716A0218DBA960011909C /* HexColors.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HexColors.framework; path = Carthage/Build/iOS/HexColors.framework; sourceTree = "<group>"; };
 		04E716A3218E32B10011909C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,8 +169,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044AF83E2190817500893494 /* HexColors.framework in Frameworks */,
 				04E716A1218DBA960011909C /* RMessage.framework in Frameworks */,
-				04E716A2218DBA960011909C /* HexColors.framework in Frameworks */,
 				04E71683218AD41D0011909C /* NMSSH.framework in Frameworks */,
 				04E7167D2189DD0D0011909C /* RxSwift.framework in Frameworks */,
 				04E7166D2188859E0011909C /* SystemConfiguration.framework in Frameworks */,
@@ -261,7 +261,7 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04E716A0218DBA960011909C /* HexColors.framework */,
+				044AF83D2190817500893494 /* HexColors.framework */,
 				04E7169F218DBA960011909C /* RMessage.framework */,
 				04E71682218AD41D0011909C /* NMSSH.framework */,
 				04E7167C2189DD0D0011909C /* RxSwift.framework */,
