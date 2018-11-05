@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="Phu-vQ-saX">
+                            <tableViewSection id="Phu-vQ-saX" userLabel="Info Section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GuP-um-jo3" detailTextLabel="QSF-7I-AFs" imageView="ld1-ro-ASZ" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="Ipj-vv-GRT" customClass="DispenserTableViewCell" customModule="Dispenser" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="35" width="375" height="90"/>
@@ -51,7 +51,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="gBg-qq-pR2">
+                            <tableViewSection id="gBg-qq-pR2" userLabel="Update Section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Zbf-gE-GEc" imageView="0Vz-MJ-7pb" style="IBUITableViewCellStyleDefault" id="An6-yr-Lch">
                                         <rect key="frame" x="0.0" y="161" width="375" height="44"/>
@@ -76,7 +76,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="B94-hp-lvw">
+                            <tableViewSection id="B94-hp-lvw" userLabel="Control Section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="4Pd-g4-mga">
                                         <rect key="frame" x="0.0" y="241" width="375" height="44"/>
@@ -164,27 +164,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="3NZ-97-QKa">
+                            <tableViewSection id="3NZ-97-QKa" userLabel="LN Connected Section">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="ELR-BD-r2A" style="IBUITableViewCellStyleDefault" id="fir-Ql-TrM">
-                                        <rect key="frame" x="0.0" y="409" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fir-Ql-TrM" id="e9o-LQ-KLO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Connect to Lightning node" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ELR-BD-r2A">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="Primary"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="WvU-GJ-v6x" detailTextLabel="MoO-50-4Dx" style="IBUITableViewCellStyleSubtitle" id="Dta-7N-DXx">
-                                        <rect key="frame" x="0.0" y="453" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="409" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dta-7N-DXx" id="jb7-2y-Pe7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -209,10 +192,31 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="NPb-mg-Q8n">
+                            <tableViewSection id="Or3-vg-cFO" userLabel="LN Disconnected Section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="ZNw-yr-CA9" style="IBUITableViewCellStyleDefault" id="AXc-tJ-ck4" userLabel="Connect Cell">
+                                        <rect key="frame" x="0.0" y="489" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AXc-tJ-ck4" id="1On-pt-ogO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Connect to Lightning node" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZNw-yr-CA9">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="Primary"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="NPb-mg-Q8n" userLabel="Action Section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="rDC-WH-lq8" style="IBUITableViewCellStyleDefault" id="7vE-4P-JSE" userLabel="Restart Cell">
-                                        <rect key="frame" x="0.0" y="533" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="569" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7vE-4P-JSE" id="MSz-XG-dtm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -229,14 +233,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="cyS-tR-saB" style="IBUITableViewCellStyleDefault" id="1eT-f6-zRo">
-                                        <rect key="frame" x="0.0" y="577" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="613" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1eT-f6-zRo" id="his-x3-pxm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Unpair" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cyS-tR-saB">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="Destructive"/>
@@ -263,6 +267,7 @@
                     <connections>
                         <outlet property="buzzOnDispenseCell" destination="nHf-Ew-fZB" id="N1C-FF-OQb"/>
                         <outlet property="buzzOnDispenseSwitch" destination="Hlj-ae-GGt" id="uKA-SL-2QL"/>
+                        <outlet property="connectCell" destination="AXc-tJ-ck4" id="cWY-lg-PGf"/>
                         <outlet property="detailsCell" destination="Ipj-vv-GRT" id="TeB-F5-Iym"/>
                         <outlet property="disconnectCell" destination="Dta-7N-DXx" id="u9j-uv-9HH"/>
                         <outlet property="dispenseCell" destination="3q4-ne-A8l" id="hnR-LO-wag"/>
@@ -272,7 +277,6 @@
                         <outlet property="remoteNodeDisconnectCellSubtitle" destination="MoO-50-4Dx" id="3XX-Uf-fkB"/>
                         <outlet property="restartCell" destination="7vE-4P-JSE" id="lQF-tM-CFq"/>
                         <outlet property="statusLabel" destination="QSF-7I-AFs" id="Z36-ww-NlM"/>
-                        <outlet property="unlockCell" destination="fir-Ql-TrM" id="l2p-Os-ORz"/>
                         <outlet property="unpairCell" destination="1eT-f6-zRo" id="EKf-dH-ado"/>
                         <outlet property="updateCell" destination="An6-yr-Lch" id="qks-YY-FUJ"/>
                     </connections>

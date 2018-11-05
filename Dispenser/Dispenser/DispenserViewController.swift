@@ -5,14 +5,12 @@ import UIKit
 class DispenserViewController: UITableViewController, Storyboarded {
     static let UpdateSection = 1
     static let ControlsSection = 2
-    static let RemoteNodeSection = 3
+    static let RemoteConnectedSection = 3
+    static let RemoteDisconnectedSection = 4
     
     var coordinator: DispenserCoordinator?
-    var showUpdateCell = false
-    var showRemoteNodeConnectCell = false
-    var showRemoteNodeDisconnectCell = false
-    var showControlSection = true
-    var showRemoteNodeSection = true
+    var hasUpdate = false
+    var isRemoteNodeConnected = false
     var disposeBag = DisposeBag()
     
     @IBOutlet var dispenseOnTouchCell: UITableViewCell!
@@ -21,7 +19,7 @@ class DispenserViewController: UITableViewController, Storyboarded {
     @IBOutlet var updateCell: UITableViewCell!
     @IBOutlet var restartCell: UITableViewCell!
     @IBOutlet var unpairCell: UITableViewCell!
-    @IBOutlet var unlockCell: UITableViewCell!
+    @IBOutlet var connectCell: UITableViewCell!
     @IBOutlet var disconnectCell: UITableViewCell!
     @IBOutlet var dispenseOnTouchSwitch: UISwitch!
     @IBOutlet var buzzOnDispenseSwitch: UISwitch!
@@ -41,7 +39,7 @@ class DispenserViewController: UITableViewController, Storyboarded {
             self.coordinator?.showDetails()
         } else if cell == self.updateCell {
             self.coordinator?.showUpdate()
-        } else if cell == self.unlockCell {
+        } else if cell == self.connectCell {
             self.connect()
             cell?.isSelected = false
         } else if cell == self.disconnectCell {
@@ -61,15 +59,11 @@ class DispenserViewController: UITableViewController, Storyboarded {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        if cell == self.updateCell && !self.showUpdateCell {
+        if cell == self.updateCell && !self.hasUpdate {
             return 0
-        } else if cell == self.dispenseOnTouchCell && !self.showControlSection {
+        } else if indexPath.section == DispenserViewController.RemoteConnectedSection && !self.isRemoteNodeConnected {
             return 0
-        } else if cell == self.buzzOnDispenseCell && !self.showControlSection {
-            return 0
-        } else if cell == self.unlockCell && (!self.showRemoteNodeSection || !self.showRemoteNodeConnectCell) {
-            return 0
-        } else if cell == self.disconnectCell && (!self.showRemoteNodeSection || !self.showRemoteNodeDisconnectCell) {
+        } else if indexPath.section == DispenserViewController.RemoteDisconnectedSection && self.isRemoteNodeConnected {
             return 0
         }
         
@@ -77,11 +71,11 @@ class DispenserViewController: UITableViewController, Storyboarded {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == DispenserViewController.UpdateSection && !self.showUpdateCell {
+        if section == DispenserViewController.UpdateSection && !self.hasUpdate {
             return 0.1
-        } else if section == DispenserViewController.ControlsSection && !self.showControlSection {
+        } else if section == DispenserViewController.RemoteConnectedSection && !self.isRemoteNodeConnected {
             return 0.1
-        } else if section == DispenserViewController.RemoteNodeSection && !self.showRemoteNodeSection {
+        } else if section == DispenserViewController.RemoteDisconnectedSection && self.isRemoteNodeConnected {
             return 0.1
         } else {
             return super.tableView(tableView, heightForHeaderInSection: section)
@@ -89,11 +83,11 @@ class DispenserViewController: UITableViewController, Storyboarded {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == DispenserViewController.UpdateSection && !self.showUpdateCell {
+        if section == DispenserViewController.UpdateSection && !self.hasUpdate {
             return 0.1
-        } else if section == DispenserViewController.ControlsSection && !self.showControlSection {
+        } else if section == DispenserViewController.RemoteConnectedSection && !self.isRemoteNodeConnected {
             return 0.1
-        } else if section == DispenserViewController.RemoteNodeSection && !self.showRemoteNodeSection {
+        } else if section == DispenserViewController.RemoteDisconnectedSection && self.isRemoteNodeConnected {
             return 0.1
         } else {
             return super.tableView(tableView, heightForFooterInSection: section)
@@ -184,13 +178,6 @@ class DispenserViewController: UITableViewController, Storyboarded {
                 onNext: { version in
                     print("Version is \(version)")
                     
-//                if isVersion(version, higherOrEqual: "0.3.0") {
-//                    self.showRemoteNodeSection = true
-//                }
-//                if isVersion(version, higherOrEqual: "0.4.0") {
-//                    self.showControlSection = true
-//                }
-                    
                     // This has a nicer animation, but the cell does not reappear
                     // let indexPath = IndexPath(row: 0, section: updateSection)
                     // self.tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -204,12 +191,10 @@ class DispenserViewController: UITableViewController, Storyboarded {
             .subscribe(
                 onNext: {
                     if let url = $0 {
-                        self.showRemoteNodeConnectCell = false
-                        self.showRemoteNodeDisconnectCell = true
+                        self.isRemoteNodeConnected = true
                         self.remoteNodeDisconnectCellSubtitle.text = url
                     } else {
-                        self.showRemoteNodeConnectCell = true
-                        self.showRemoteNodeDisconnectCell = false
+                        self.isRemoteNodeConnected = false
                     }
                     
                     // This has a nicer animation, but the cell does not reappear
@@ -224,7 +209,7 @@ class DispenserViewController: UITableViewController, Storyboarded {
         self.coordinator?.updateAvailable
             .subscribe(
                 onNext: {
-                    self.showUpdateCell = $0
+                    self.hasUpdate = $0
                     
                     // This has a nicer animation, but the cell does not reappear
                     // let indexPath = IndexPath(row: 0, section: updateSection)
