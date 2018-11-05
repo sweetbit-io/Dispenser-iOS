@@ -5,7 +5,7 @@
 
 > 📱 Pair and control your Bitcoin-enabled candy dispenser
 
-<img width="380" alt="Candy Dispenser iOS app" src="https://user-images.githubusercontent.com/198988/46317920-140e7d80-c5d5-11e8-98fa-dd0566e291ab.png">
+<img width="320" alt="Candy Dispenser iOS Pairing" src="https://user-images.githubusercontent.com/198988/48008452-01c6b880-e11a-11e8-8023-484681b0fd8a.png"><img width="320" alt="Candy Dispenser iOS Overview" src="https://user-images.githubusercontent.com/198988/48008450-01c6b880-e11a-11e8-88be-47aa3b3ec64d.png">
 
 ## Intro
 
