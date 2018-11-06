@@ -142,12 +142,15 @@ class DispenserViewController: UITableViewController, Storyboarded {
             })
             .disposed(by: self.disposeBag)
         
-        self.coordinator?.state
+        self.coordinator?.displayState
             .subscribe(
                 onNext: { state in
                     switch state {
                     case .dispensing:
                         self.statusLabel.text = "dispensing"
+                        self.statusLabel.textColor = #colorLiteral(red: 0.3280000091, green: 0.2090000063, blue: 0.7250000238, alpha: 1)
+                    case .connecting:
+                        self.statusLabel.text = "connecting"
                         self.statusLabel.textColor = #colorLiteral(red: 0.3280000091, green: 0.2090000063, blue: 0.7250000238, alpha: 1)
                     case .connected:
                         self.statusLabel.text = "connected"

@@ -2,7 +2,16 @@ import RMessage
 import RxSwift
 import UIKit
 
-enum DispenserState {
+enum ConnectionState {
+    case connecting
+    case connected
+    case unreachable
+}
+
+// The states that are shown in the UI
+// combines connection state with disensing state
+enum DisplayState {
+    case connecting
     case connected
     case unreachable
     case dispensing
@@ -16,9 +25,10 @@ class DispenserCoordinator {
     var dispenser: Dispenser
     var client: Sweetrpc_SweetServiceClient?
     var subscribeDispensesCall: Sweetrpc_SweetSubscribeDispensesCall?
-    var connected = BehaviorSubject<Bool>(value: false)
+    
+    var connectionState = BehaviorSubject<ConnectionState>(value: .connecting)
     var dispensing = BehaviorSubject<Bool>(value: false)
-    var state: Observable<DispenserState>
+    var displayState: Observable<DisplayState>
     let rControl = RMController()
     
     var disposeBag = DisposeBag()
@@ -54,12 +64,14 @@ class DispenserCoordinator {
             }
         )
         
-        self.state = Observable
-            .combineLatest(self.connected, self.dispensing) { connected, dispensing in
-                if dispensing {
+        self.displayState = Observable
+            .combineLatest(self.connectionState, self.dispensing) { connectionState, isDispensing in
+                if isDispensing {
                     return .dispensing
-                } else if connected {
+                } else if connectionState == .connected {
                     return .connected
+                } else if connectionState == .connecting {
+                    return .connecting
                 } else {
                     return .unreachable
                 }
@@ -84,52 +96,70 @@ class DispenserCoordinator {
     }
     
     func start() {
-        if let ip = self.dispenser.ip {
-            let address = String(format: "%@:%d", ip, 9000)
-            let client = Sweetrpc_SweetServiceClient(address: address, secure: false)
-            
-            let req = Sweetrpc_GetInfoRequest()
-            
-            if let info = try? client.getInfo(req) {
-                // Notify potential name change
-                self.name.onNext(info.name)
-                
-                // Notify potential version change
-                if !info.version.isEmpty { // TODO: remove this
-                    self.version.onNext(info.version)
-                }
-                
-                // Notify settings
-                self.dispenseOnTouch.onNext(info.dispenseOnTouch)
-                self.buzzOnDispense.onNext(info.buzzOnDispense)
-                
-                if info.remoteNode.uri != "" {
-                    self.remoteNodeUrl.onNext(info.remoteNode.uri)
-                }
-                
-                // save client
-                self.client = client
-                
-                self.subscribeDispenses()
-                
-                // set connected
-                self.connected.onNext(true)
-            } else {
-                self.showNoConnectionAlert()
-            }
-        } else {
-            // for some strange reason, dispenser has no IP
-            self.coordinator.unpair(dispenser: self.dispenser)
-            return
-        }
+        // Async connect to dispenser
+        self.connect()
         
-        // Fetch latest available release
+        // Async fetch latest available release
         GetLatestRelease { self.latestRelease.onNext($0) }
         
         let vc = DispenserViewController.instantiate(fromStoryboard: "Dispenser")
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func connect() {
+        guard let ip = self.dispenser.ip else {
+            // for some strange reason, dispenser has no IP
+            self.coordinator.unpair(dispenser: self.dispenser)
+            return
+        }
+
+        let address = String(format: "%@:%d", ip, 9000)
+        let client = Sweetrpc_SweetServiceClient(address: address, secure: false)
+        
+        let req = Sweetrpc_GetInfoRequest()
+        
+        self.connectionState.onNext(.connecting)
+        
+        do {
+            try _ = client.getInfo(req) { res, result in
+                DispatchQueue.main.async {
+                    guard let info = res else {
+                        self.connectionState.onNext(.unreachable)
+                        self.showNoConnectionAlert()
+                        return
+                    }
+                    
+                    // Notify potential name change
+                    self.name.onNext(info.name)
+                    
+                    // Notify potential version change
+                    if !info.version.isEmpty { // TODO: remove this
+                        self.version.onNext(info.version)
+                    }
+                    
+                    // Notify settings
+                    self.dispenseOnTouch.onNext(info.dispenseOnTouch)
+                    self.buzzOnDispense.onNext(info.buzzOnDispense)
+                    
+                    if info.remoteNode.uri != "" {
+                        self.remoteNodeUrl.onNext(info.remoteNode.uri)
+                    }
+                    
+                    // save client
+                    self.client = client
+                    
+                    self.subscribeDispenses()
+                    
+                    // set connected
+                    self.connectionState.onNext(.connected)
+                }
+            }
+        } catch {
+            self.connectionState.onNext(.unreachable)
+            self.showNoConnectionAlert()
+        }
     }
     
     func subscribeDispenses() {
