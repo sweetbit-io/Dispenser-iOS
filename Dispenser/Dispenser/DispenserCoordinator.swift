@@ -114,7 +114,7 @@ class DispenserCoordinator {
             self.coordinator.unpair(dispenser: self.dispenser)
             return
         }
-
+        
         let address = String(format: "%@:%d", ip, 9000)
         let client = Sweetrpc_SweetServiceClient(address: address, secure: false)
         
@@ -123,7 +123,7 @@ class DispenserCoordinator {
         self.connectionState.onNext(.connecting)
         
         do {
-            try _ = client.getInfo(req) { res, result in
+            try _ = client.getInfo(req) { res, _ in
                 DispatchQueue.main.async {
                     guard let info = res else {
                         self.connectionState.onNext(.unreachable)
@@ -398,7 +398,7 @@ class DispenserCoordinator {
     }
     
     func showDetails() {
-        let vc = DetailsViewController.instantiate(fromStoryboard: "Dispenser")
+        let vc = DispenserDetailsViewController.instantiate(fromStoryboard: "Dispenser")
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: true)

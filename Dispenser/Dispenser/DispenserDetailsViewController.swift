@@ -2,7 +2,7 @@ import Drift
 import RxSwift
 import UIKit
 
-class DetailsViewController: UITableViewController, Storyboarded {
+class DispenserDetailsViewController: UITableViewController, Storyboarded {
     var coordinator: DispenserCoordinator?
     var disposeBag = DisposeBag()
     @IBOutlet var nameTextField: UITextField!

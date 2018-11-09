@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A698D21408EC300695A4D /* NetworkExtension.framework */; };
-		040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */; };
-		040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* WifiAuthViewController.swift */; };
+		040DFCA621614C3A0014F065 /* PairingFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */; };
+		040DFCA821614C630014F065 /* PairingWifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */; };
 		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
 		040DFCAC216173500014F065 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCAB216173500014F065 /* LoadingButton.swift */; };
 		040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCAD216210EA0014F065 /* Drift.framework */; };
@@ -21,9 +21,9 @@
 		04235865215FB0280021AF0E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235864215FB0280021AF0E /* UIButton.swift */; };
 		04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04235866215FE6190021AF0E /* Dispenser.xcdatamodeld */; };
 		0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588C215FF0DC0021AF0E /* UIViewController.swift */; };
-		0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588E2160107A0021AF0E /* PairingViewController.swift */; };
-		042358912160235E0021AF0E /* WifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358902160235E0021AF0E /* WifiViewController.swift */; };
-		04235893216024BA0021AF0E /* DispenserConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */; };
+		0423588F2160107A0021AF0E /* PairingBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423588E2160107A0021AF0E /* PairingBaseViewController.swift */; };
+		042358912160235E0021AF0E /* PairingWifiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358902160235E0021AF0E /* PairingWifiListViewController.swift */; };
+		04235893216024BA0021AF0E /* PairingSucceededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04235892216024BA0021AF0E /* PairingSucceededViewController.swift */; };
 		042358972160339F0021AF0E /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042358962160339F0021AF0E /* rpc.pb.swift */; };
 		042A96152149C1DC001F637A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 042A96142149C1DC001F637A /* README.md */; };
 		042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042A96162149C2F3001F637A /* SwiftGRPC.framework */; };
@@ -37,6 +37,13 @@
 		0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450C70121641D2300B40F3B /* ReleasesService.swift */; };
 		0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */; };
 		0450C709216499F700B40F3B /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0450C707216499F700B40F3B /* Down.framework */; };
+		04A3C33721944EA900318F99 /* PairingWifiListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A3C33621944EA900318F99 /* PairingWifiListView.xib */; };
+		04A3C33921946F2100318F99 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C33821946F2100318F99 /* RxDataSources.framework */; };
+		04A3C33C2194977500318F99 /* SimulatedWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C33B2194977500318F99 /* SimulatedWifiService.swift */; };
+		04A3C33E219497BA00318F99 /* DeviceWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C33D219497BA00318F99 /* DeviceWifiService.swift */; };
+		04A3C34021949E4700318F99 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C33F21949E4700318F99 /* RxCocoa.framework */; };
+		04A3C34221959F5600318F99 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C34121959F5600318F99 /* UIRefreshControl.swift */; };
+		04A3C3442195E3D800318F99 /* PairingInvalidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */; };
 		04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870E121657AE00097A91C /* UpdateViewController.swift */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
@@ -48,11 +55,10 @@
 		04E38EF72141BA770017F31E /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 04E38EF62141BA770017F31E /* Cartfile */; };
 		04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E38EFB2141BF170017F31E /* Theme.xcassets */; };
 		04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38EFD2141C1A30017F31E /* UIColor.swift */; };
-		04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F032141C3170017F31E /* StartSetupViewController.swift */; };
+		04E38F042141C3170017F31E /* PairingStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F032141C3170017F31E /* PairingStartViewController.swift */; };
 		04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */; };
-		04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */; };
-		04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */; };
-		04E7165F21809FCE0011909C /* ConnectionFailedSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */; };
+		04E38F092141DD070017F31E /* PairingConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E38F082141DD070017F31E /* PairingConnectViewController.swift */; };
+		04E7165F21809FCE0011909C /* PairingUnreachableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7165E21809FCE0011909C /* PairingUnreachableViewController.swift */; };
 		04E716612180A3490011909C /* ReplaceStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */; };
 		04E716632180BC200011909C /* RemoteNodeConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */; };
 		04E71669218191D00011909C /* RemoteNodeConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */; };
@@ -73,20 +79,20 @@
 		04E7168A218AE0990011909C /* UpdateNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71689218AE0990011909C /* UpdateNavigationController.swift */; };
 		04E7168E218B2DC00011909C /* UpdatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7168D218B2DC00011909C /* UpdatingViewController.swift */; };
 		04E71690218B33590011909C /* UpdateRestartNeededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7168F218B33590011909C /* UpdateRestartNeededViewController.swift */; };
-		04E71692218B347D0011909C /* WiFiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71691218B347D0011909C /* WiFiService.swift */; };
+		04E71692218B347D0011909C /* WifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71691218B347D0011909C /* WifiService.swift */; };
 		04E71694218B3D500011909C /* UpdateConnectionFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71693218B3D500011909C /* UpdateConnectionFailedViewController.swift */; };
 		04E71696218B42DA0011909C /* UpdateRestartingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */; };
 		04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */; };
 		04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E7169A218B74C90011909C /* RemoteNode.storyboard */; };
-		04E7169E218C92700011909C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DetailsViewController.swift */; };
+		04E7169E218C92700011909C /* DispenserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DispenserDetailsViewController.swift */; };
 		04E716A1218DBA960011909C /* RMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7169F218DBA960011909C /* RMessage.framework */; };
 		04E716A4218E32B10011909C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04E716A3218E32B10011909C /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		040A698D21408EC300695A4D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
-		040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectedViewController.swift; sourceTree = "<group>"; };
-		040DFCA721614C630014F065 /* WifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiAuthViewController.swift; sourceTree = "<group>"; };
+		040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingFinishedViewController.swift; sourceTree = "<group>"; };
+		040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingWifiAuthViewController.swift; sourceTree = "<group>"; };
 		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		040DFCAB216173500014F065 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		040DFCAD216210EA0014F065 /* Drift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Drift.framework; path = Carthage/Build/iOS/Drift.framework; sourceTree = "<group>"; };
@@ -98,9 +104,9 @@
 		04235864215FB0280021AF0E /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		04235867215FE6190021AF0E /* DispenserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DispenserModel.xcdatamodel; sourceTree = "<group>"; };
 		0423588C215FF0DC0021AF0E /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		0423588E2160107A0021AF0E /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
-		042358902160235E0021AF0E /* WifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiViewController.swift; sourceTree = "<group>"; };
-		04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserConnectedViewController.swift; sourceTree = "<group>"; };
+		0423588E2160107A0021AF0E /* PairingBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingBaseViewController.swift; sourceTree = "<group>"; };
+		042358902160235E0021AF0E /* PairingWifiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingWifiListViewController.swift; sourceTree = "<group>"; };
+		04235892216024BA0021AF0E /* PairingSucceededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSucceededViewController.swift; sourceTree = "<group>"; };
 		042358962160339F0021AF0E /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		042A96142149C1DC001F637A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		042A96162149C2F3001F637A /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
@@ -115,6 +121,13 @@
 		0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		0450C706216499F700B40F3B /* Semver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Semver.framework; path = Carthage/Build/iOS/Semver.framework; sourceTree = "<group>"; };
 		0450C707216499F700B40F3B /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
+		04A3C33621944EA900318F99 /* PairingWifiListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PairingWifiListView.xib; sourceTree = "<group>"; };
+		04A3C33821946F2100318F99 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		04A3C33B2194977500318F99 /* SimulatedWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedWifiService.swift; sourceTree = "<group>"; };
+		04A3C33D219497BA00318F99 /* DeviceWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceWifiService.swift; sourceTree = "<group>"; };
+		04A3C33F21949E4700318F99 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		04A3C34121959F5600318F99 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
+		04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingInvalidViewController.swift; sourceTree = "<group>"; };
 		04A870E121657AE00097A91C /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
@@ -129,11 +142,10 @@
 		04E38EF62141BA770017F31E /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		04E38EFB2141BF170017F31E /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		04E38EFD2141C1A30017F31E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		04E38F032141C3170017F31E /* StartSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSetupViewController.swift; sourceTree = "<group>"; };
+		04E38F032141C3170017F31E /* PairingStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStartViewController.swift; sourceTree = "<group>"; };
 		04E38F062141C7CD0017F31E /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
-		04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerOnSetupViewController.swift; sourceTree = "<group>"; };
-		04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSetupViewController.swift; sourceTree = "<group>"; };
-		04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionFailedSetupViewController.swift; sourceTree = "<group>"; };
+		04E38F082141DD070017F31E /* PairingConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingConnectViewController.swift; sourceTree = "<group>"; };
+		04E7165E21809FCE0011909C /* PairingUnreachableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUnreachableViewController.swift; sourceTree = "<group>"; };
 		04E716602180A3490011909C /* ReplaceStoryboardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceStoryboardSegue.swift; sourceTree = "<group>"; };
 		04E716622180BC200011909C /* RemoteNodeConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNodeConnectViewController.swift; sourceTree = "<group>"; };
 		04E71668218191D00011909C /* RemoteNodeConnectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNodeConnectionModel.swift; sourceTree = "<group>"; };
@@ -154,12 +166,12 @@
 		04E71689218AE0990011909C /* UpdateNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNavigationController.swift; sourceTree = "<group>"; };
 		04E7168D218B2DC00011909C /* UpdatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingViewController.swift; sourceTree = "<group>"; };
 		04E7168F218B33590011909C /* UpdateRestartNeededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartNeededViewController.swift; sourceTree = "<group>"; };
-		04E71691218B347D0011909C /* WiFiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiService.swift; sourceTree = "<group>"; };
+		04E71691218B347D0011909C /* WifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiService.swift; sourceTree = "<group>"; };
 		04E71693218B3D500011909C /* UpdateConnectionFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConnectionFailedViewController.swift; sourceTree = "<group>"; };
 		04E71695218B42DA0011909C /* UpdateRestartingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartingViewController.swift; sourceTree = "<group>"; };
 		04E71697218B44520011909C /* UpdateRestartFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRestartFailedViewController.swift; sourceTree = "<group>"; };
 		04E7169A218B74C90011909C /* RemoteNode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemoteNode.storyboard; sourceTree = "<group>"; };
-		04E7169D218C92700011909C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		04E7169D218C92700011909C /* DispenserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserDetailsViewController.swift; sourceTree = "<group>"; };
 		04E7169F218DBA960011909C /* RMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMessage.framework; path = Carthage/Build/iOS/RMessage.framework; sourceTree = "<group>"; };
 		04E716A3218E32B10011909C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A3C34021949E4700318F99 /* RxCocoa.framework in Frameworks */,
+				04A3C33921946F2100318F99 /* RxDataSources.framework in Frameworks */,
 				044AF83E2190817500893494 /* HexColors.framework in Frameworks */,
 				04E716A1218DBA960011909C /* RMessage.framework in Frameworks */,
 				04E71683218AD41D0011909C /* NMSSH.framework in Frameworks */,
@@ -206,10 +220,20 @@
 		0450C70021641CCD00B40F3B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				04A3C33A21948A1D00318F99 /* WifiService */,
 				0450C70121641D2300B40F3B /* ReleasesService.swift */,
-				04E71691218B347D0011909C /* WiFiService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		04A3C33A21948A1D00318F99 /* WifiService */ = {
+			isa = PBXGroup;
+			children = (
+				04E71691218B347D0011909C /* WifiService.swift */,
+				04A3C33B2194977500318F99 /* SimulatedWifiService.swift */,
+				04A3C33D219497BA00318F99 /* DeviceWifiService.swift */,
+			);
+			path = WifiService;
 			sourceTree = "<group>";
 		};
 		04DA54292132EB0B00EA2B65 = {
@@ -261,6 +285,8 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04A3C33F21949E4700318F99 /* RxCocoa.framework */,
+				04A3C33821946F2100318F99 /* RxDataSources.framework */,
 				044AF83D2190817500893494 /* HexColors.framework */,
 				04E7169F218DBA960011909C /* RMessage.framework */,
 				04E71682218AD41D0011909C /* NMSSH.framework */,
@@ -293,6 +319,7 @@
 				0423588C215FF0DC0021AF0E /* UIViewController.swift */,
 				040DFCA92161605A0014F065 /* UIView.swift */,
 				04E716702189BE0A0011909C /* Storyboarded.swift */,
+				04A3C34121959F5600318F99 /* UIRefreshControl.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -304,7 +331,7 @@
 				04DA54392132EB0B00EA2B65 /* Dispenser.storyboard */,
 				04E716782189D1440011909C /* DispenserNavigationController.swift */,
 				043BDFD22162D69900D2CBE1 /* DispenserViewController.swift */,
-				04E7169D218C92700011909C /* DetailsViewController.swift */,
+				04E7169D218C92700011909C /* DispenserDetailsViewController.swift */,
 			);
 			path = Dispenser;
 			sourceTree = "<group>";
@@ -353,15 +380,16 @@
 				04E716722189BF580011909C /* PairingCoordinator.swift */,
 				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
 				04E716762189D0A90011909C /* PairingNavigationController.swift */,
-				0423588E2160107A0021AF0E /* PairingViewController.swift */,
-				04E38F032141C3170017F31E /* StartSetupViewController.swift */,
-				04E38F082141DD070017F31E /* PowerOnSetupViewController.swift */,
-				04E38F0A2141E7840017F31E /* ConnectSetupViewController.swift */,
-				04E7165E21809FCE0011909C /* ConnectionFailedSetupViewController.swift */,
-				04235892216024BA0021AF0E /* DispenserConnectedViewController.swift */,
-				042358902160235E0021AF0E /* WifiViewController.swift */,
-				040DFCA721614C630014F065 /* WifiAuthViewController.swift */,
-				040DFCA521614C3A0014F065 /* WifiConnectedViewController.swift */,
+				0423588E2160107A0021AF0E /* PairingBaseViewController.swift */,
+				04E38F032141C3170017F31E /* PairingStartViewController.swift */,
+				04E38F082141DD070017F31E /* PairingConnectViewController.swift */,
+				04235892216024BA0021AF0E /* PairingSucceededViewController.swift */,
+				04E7165E21809FCE0011909C /* PairingUnreachableViewController.swift */,
+				04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */,
+				042358902160235E0021AF0E /* PairingWifiListViewController.swift */,
+				040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */,
+				040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */,
+				04A3C33621944EA900318F99 /* PairingWifiListView.xib */,
 			);
 			path = Pairing;
 			sourceTree = "<group>";
@@ -447,6 +475,7 @@
 				04E38EF72141BA770017F31E /* Cartfile in Resources */,
 				04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */,
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
+				04A3C33721944EA900318F99 /* PairingWifiListView.xib in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
 				04E716A4218E32B10011909C /* LICENSE in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
@@ -482,6 +511,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RMessage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HexColors.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
@@ -500,6 +531,8 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NMSSH.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RMessage.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HexColors.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -514,46 +547,49 @@
 			files = (
 				04E7167F218A43890011909C /* RemoteNodeCoordinator.swift in Sources */,
 				04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */,
-				04235893216024BA0021AF0E /* DispenserConnectedViewController.swift in Sources */,
+				04A3C33C2194977500318F99 /* SimulatedWifiService.swift in Sources */,
+				04235893216024BA0021AF0E /* PairingSucceededViewController.swift in Sources */,
 				04E716612180A3490011909C /* ReplaceStoryboardSegue.swift in Sources */,
-				04E71692218B347D0011909C /* WiFiService.swift in Sources */,
+				04E71692218B347D0011909C /* WifiService.swift in Sources */,
 				04E38F072141C7CD0017F31E /* TransparentNavigationBar.swift in Sources */,
-				040DFCA621614C3A0014F065 /* WifiConnectedViewController.swift in Sources */,
+				040DFCA621614C3A0014F065 /* PairingFinishedViewController.swift in Sources */,
 				04E716772189D0A90011909C /* PairingNavigationController.swift in Sources */,
 				04E38EFE2141C1A30017F31E /* UIColor.swift in Sources */,
 				04E71688218ADFDF0011909C /* UpdateCoordinator.swift in Sources */,
 				04DA54362132EB0B00EA2B65 /* AppDelegate.swift in Sources */,
-				042358912160235E0021AF0E /* WifiViewController.swift in Sources */,
+				042358912160235E0021AF0E /* PairingWifiListViewController.swift in Sources */,
 				04E71681218A43F90011909C /* RemoteNodeNavigationController.swift in Sources */,
-				04E7165F21809FCE0011909C /* ConnectionFailedSetupViewController.swift in Sources */,
+				04E7165F21809FCE0011909C /* PairingUnreachableViewController.swift in Sources */,
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
 				04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */,
 				04E7168A218AE0990011909C /* UpdateNavigationController.swift in Sources */,
 				04E7168E218B2DC00011909C /* UpdatingViewController.swift in Sources */,
 				04E716732189BF580011909C /* PairingCoordinator.swift in Sources */,
+				04A3C33E219497BA00318F99 /* DeviceWifiService.swift in Sources */,
 				04E71669218191D00011909C /* RemoteNodeConnectionModel.swift in Sources */,
 				043BDFD32162D69900D2CBE1 /* DispenserViewController.swift in Sources */,
 				04E71694218B3D500011909C /* UpdateConnectionFailedViewController.swift in Sources */,
-				040DFCA821614C630014F065 /* WifiAuthViewController.swift in Sources */,
+				040DFCA821614C630014F065 /* PairingWifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
+				04A3C3442195E3D800318F99 /* PairingInvalidViewController.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
 				040DFCAC216173500014F065 /* LoadingButton.swift in Sources */,
-				04E38F092141DD070017F31E /* PowerOnSetupViewController.swift in Sources */,
+				04E38F092141DD070017F31E /* PairingConnectViewController.swift in Sources */,
 				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
 				04E7166F2189B9AE0011909C /* AppCoordinator.swift in Sources */,
-				04E7169E218C92700011909C /* DetailsViewController.swift in Sources */,
+				04A3C34221959F5600318F99 /* UIRefreshControl.swift in Sources */,
+				04E7169E218C92700011909C /* DispenserDetailsViewController.swift in Sources */,
 				04E716632180BC200011909C /* RemoteNodeConnectViewController.swift in Sources */,
-				04E38F0B2141E7840017F31E /* ConnectSetupViewController.swift in Sources */,
 				042358972160339F0021AF0E /* rpc.pb.swift in Sources */,
 				04E716752189C1C00011909C /* DispenserCoordinator.swift in Sources */,
 				0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */,
 				043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */,
-				04E38F042141C3170017F31E /* StartSetupViewController.swift in Sources */,
+				04E38F042141C3170017F31E /* PairingStartViewController.swift in Sources */,
 				04E716792189D1440011909C /* DispenserNavigationController.swift in Sources */,
 				04E716712189BE0A0011909C /* Storyboarded.swift in Sources */,
 				04235868215FE6190021AF0E /* Dispenser.xcdatamodeld in Sources */,
 				04E71690218B33590011909C /* UpdateRestartNeededViewController.swift in Sources */,
-				0423588F2160107A0021AF0E /* PairingViewController.swift in Sources */,
+				0423588F2160107A0021AF0E /* PairingBaseViewController.swift in Sources */,
 				04E71696218B42DA0011909C /* UpdateRestartingViewController.swift in Sources */,
 				04E7166B21864E8E0011909C /* RemoteNodeConfirmViewController.swift in Sources */,
 			);

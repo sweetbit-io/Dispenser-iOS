@@ -6,5 +6,6 @@ github "iwasrobbed/Down"
 github "Hearst-DD/ObjectMapper" ~> 3.3
 github "tristanhimmelman/AlamofireObjectMapper" ~> 5.0
 github "ReactiveX/RxSwift" ~> 4.0
+github "RxSwiftCommunity/RxDataSources" ~> 3.0
 github "NMSSH/NMSSH"
 github "donileo/RMessage" ~> 3.0

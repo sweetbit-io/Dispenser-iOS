@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Xn-Bo-feU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,24 +19,21 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="xqP-rh-mL1" kind="relationship" relationship="rootViewController" id="ap0-Is-bhb"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oq3-wb-xgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-482" y="72"/>
         </scene>
-        <!--Start Setup View Controller-->
+        <!--Pairing Start View Controller-->
         <scene sceneID="TdI-3l-hXu">
             <objects>
-                <viewController storyboardIdentifier="StartSetupViewController" id="xqP-rh-mL1" customClass="StartSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingStartViewController" id="xqP-rh-mL1" customClass="PairingStartViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mhs-d3-1VI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin Candy Dispenser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKU-MD-FD4" userLabel="Title">
-                                <rect key="frame" x="0.0" y="274" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,22 +42,22 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Get a Bitcoin candy dispenser"/>
                                 <connections>
-                                    <action selector="buyDispenser" destination="xqP-rh-mL1" eventType="touchUpInside" id="e7g-Jq-rnL"/>
+                                    <action selector="help" destination="xqP-rh-mL1" eventType="touchUpInside" id="fcQ-n6-zyj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to set up your Bitcoin candy dispenser, you'll need to plug it into a power source and have access to a Wi-Fi." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFa-0p-ejO" userLabel="Intro">
-                                <rect key="frame" x="20" y="326" width="335" height="61"/>
+                                <rect key="frame" x="20" y="282" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="2Vh-1d-sqi" userLabel="Image">
-                                <rect key="frame" x="0.0" y="84" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="3Di-AU-WkN"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ed-5l-4Fw" userLabel="Setup">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ed-5l-4Fw" userLabel="Setup" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -101,24 +98,21 @@
                         <viewLayoutGuide key="safeArea" id="5Zt-M5-caE"/>
                     </view>
                     <navigationItem key="navigationItem" id="Geg-vH-blZ"/>
-                    <connections>
-                        <segue destination="JAu-N2-ayO" kind="show" identifier="next" id="tp2-Ce-jeb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5og-f2-VDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368.80000000000001" y="72.413793103448285"/>
         </scene>
-        <!--Power On Setup View Controller-->
+        <!--Pairing Connect View Controller-->
         <scene sceneID="X6G-br-VVP">
             <objects>
-                <viewController id="JAu-N2-ayO" customClass="PowerOnSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingConnectViewController" id="JAu-N2-ayO" customClass="PairingConnectViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ax7-DZ-Ry1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn dispenser on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="405-pE-sHW" userLabel="Title">
-                                <rect key="frame" x="0.0" y="274" width="375" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="405-pE-sHW" userLabel="Title">
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -127,23 +121,23 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp" destination="JAu-N2-ayO" eventType="touchUpInside" id="hPN-yP-d8R"/>
+                                    <action selector="help" destination="JAu-N2-ayO" eventType="touchUpInside" id="I0d-1P-wKg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
-                                <rect key="frame" x="20" y="326" width="335" height="81.5"/>
+                                <rect key="frame" x="20" y="282" width="335" height="81.5"/>
                                 <string key="text">Please plug the USB cable into an outlet. When powered, the dispenser will buzz after about one minute. After that, continue the setup.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="yYB-Af-cEs" userLabel="Image">
-                                <rect key="frame" x="0.0" y="84" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="7e1-KB-2IH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSd-iM-nGm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSd-iM-nGm" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -151,14 +145,14 @@
                                     <constraint firstAttribute="height" constant="60" id="ycr-Gl-epp"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Continue setup"/>
+                                <state key="normal" title="Connect"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="connect" destination="JAu-N2-ayO" eventType="touchUpInside" id="Xf3-4H-cV8"/>
+                                    <action selector="connect" destination="JAu-N2-ayO" eventType="touchUpInside" id="F95-zR-mUs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -185,106 +179,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="0sT-7q-1tf"/>
                     <connections>
-                        <segue destination="i74-gB-asf" kind="show" identifier="next" id="YlS-3O-VJi"/>
+                        <outlet property="connectButton" destination="jSd-iM-nGm" id="THT-zv-HnV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5a5-Em-8rZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="72"/>
+            <point key="canvasLocation" x="1138" y="72"/>
         </scene>
-        <!--Connect Setup View Controller-->
-        <scene sceneID="HQj-qs-T8J">
-            <objects>
-                <viewController id="i74-gB-asf" customClass="ConnectSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cnt-wU-Sjk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFX-qG-Fkl" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOh-iO-lwS" userLabel="Help">
-                                <rect key="frame" x="0.0" y="607" width="375" height="30"/>
-                                <state key="normal" title="Need help?"/>
-                                <connections>
-                                    <action selector="needHelp" destination="i74-gB-asf" eventType="touchUpInside" id="2UR-Co-fdW"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="vKl-zA-qEo" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="7xM-iW-HEj"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QhM-N2-WM5" userLabel="Loading">
-                                <rect key="frame" x="177.5" y="343" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZC-T9-dGc">
-                                <rect key="frame" x="47.5" y="527" width="280" height="60"/>
-                                <color key="backgroundColor" name="Primary"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="Tc7-uO-pcZ"/>
-                                    <constraint firstAttribute="height" constant="60" id="aUS-WQ-VHw"/>
-                                </constraints>
-                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Continue"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="2xa-I5-JeQ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempting to connect to the candy dispenser through Wi-Fi. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg3-Fb-fsR" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" name="Primary"/>
-                        <constraints>
-                            <constraint firstItem="J6W-UV-kK6" firstAttribute="bottom" secondItem="KOh-iO-lwS" secondAttribute="bottom" constant="30" id="0Vh-MO-WRb"/>
-                            <constraint firstItem="uZC-T9-dGc" firstAttribute="centerX" secondItem="cnt-wU-Sjk" secondAttribute="centerX" id="3Py-S5-5dD"/>
-                            <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="hFX-qG-Fkl" secondAttribute="trailing" id="53l-MO-zCR"/>
-                            <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="KOh-iO-lwS" secondAttribute="trailing" id="AYT-5W-W02"/>
-                            <constraint firstItem="vKl-zA-qEo" firstAttribute="top" secondItem="J6W-UV-kK6" secondAttribute="top" constant="20" id="G4D-G5-Xfs"/>
-                            <constraint firstItem="hFX-qG-Fkl" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="Jab-cN-Sng"/>
-                            <constraint firstItem="gg3-Fb-fsR" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" constant="20" id="LJY-sG-IxQ"/>
-                            <constraint firstItem="QhM-N2-WM5" firstAttribute="centerX" secondItem="cnt-wU-Sjk" secondAttribute="centerX" id="LgF-dV-QE7"/>
-                            <constraint firstItem="uZC-T9-dGc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QhM-N2-WM5" secondAttribute="bottom" constant="20" id="MAP-iz-5h9"/>
-                            <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="gg3-Fb-fsR" secondAttribute="trailing" constant="20" id="T1z-ht-0dg"/>
-                            <constraint firstItem="J6W-UV-kK6" firstAttribute="trailing" secondItem="vKl-zA-qEo" secondAttribute="trailing" id="cfW-fd-Sq4"/>
-                            <constraint firstItem="QhM-N2-WM5" firstAttribute="top" secondItem="gg3-Fb-fsR" secondAttribute="bottom" constant="20" id="gTG-IF-HkV"/>
-                            <constraint firstItem="gg3-Fb-fsR" firstAttribute="top" secondItem="hFX-qG-Fkl" secondAttribute="bottom" constant="20" id="mEQ-GY-w85"/>
-                            <constraint firstItem="vKl-zA-qEo" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="nb2-wz-uMH"/>
-                            <constraint firstItem="KOh-iO-lwS" firstAttribute="top" secondItem="uZC-T9-dGc" secondAttribute="bottom" constant="20" id="qEV-ar-Uw7"/>
-                            <constraint firstItem="hFX-qG-Fkl" firstAttribute="top" secondItem="vKl-zA-qEo" secondAttribute="bottom" constant="40" id="qWp-fc-faT"/>
-                            <constraint firstItem="KOh-iO-lwS" firstAttribute="leading" secondItem="J6W-UV-kK6" secondAttribute="leading" id="yjG-y2-bl9"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="J6W-UV-kK6"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="C1m-fM-SuN"/>
-                    <connections>
-                        <outlet property="continueButton" destination="uZC-T9-dGc" id="dmL-tA-6tf"/>
-                        <segue destination="Nia-TD-wCr" kind="show" identifier="next" id="8XY-9O-s2A"/>
-                        <segue destination="Frs-U6-6bh" kind="custom" identifier="failed" customClass="ReplaceStoryboardSegue" customModule="Dispenser" customModuleProvider="target" id="v7N-b6-LSt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YgA-4b-2ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2044" y="72"/>
-        </scene>
-        <!--Dispenser Connected View Controller-->
+        <!--Pairing Succeeded View Controller-->
         <scene sceneID="DcA-fn-Id4">
             <objects>
-                <viewController id="Nia-TD-wCr" customClass="DispenserConnectedViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingSucceededViewController" id="Nia-TD-wCr" customClass="PairingSucceededViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b0M-uu-OlF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +204,7 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp:" destination="Nia-TD-wCr" eventType="touchUpInside" id="e6W-Qb-FVJ"/>
+                                    <action selector="help" destination="Nia-TD-wCr" eventType="touchUpInside" id="Cht-O2-z89"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="fBg-gp-IXu" userLabel="Image">
@@ -329,8 +234,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="connect" destination="i74-gB-asf" eventType="touchUpInside" id="etr-NK-dHn"/>
-                                    <action selector="setup:" destination="Nia-TD-wCr" eventType="touchUpInside" id="37F-jz-3mW"/>
+                                    <action selector="setup:" destination="Nia-TD-wCr" eventType="touchUpInside" id="1j5-j4-xq3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -356,19 +260,15 @@
                         <viewLayoutGuide key="safeArea" id="RhE-1z-YN0"/>
                     </view>
                     <navigationItem key="navigationItem" id="qBQ-mS-ljo"/>
-                    <connections>
-                        <outlet property="setupButton" destination="zL3-BR-STt" id="m2V-M3-zfC"/>
-                        <segue destination="pr3-dT-P2X" kind="show" identifier="setup" id="B1U-k9-GT9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StV-E0-f2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2897" y="72"/>
+            <point key="canvasLocation" x="2799" y="72"/>
         </scene>
-        <!--Wifi View Controller-->
+        <!--Pairing Wifi List View Controller-->
         <scene sceneID="w1R-mr-cDD">
             <objects>
-                <viewController id="pr3-dT-P2X" customClass="WifiViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingWifiListViewController" id="pr3-dT-P2X" customClass="PairingWifiListViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J9G-9s-VP7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,11 +279,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdx-rq-TDf" userLabel="Buy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdx-rq-TDf" userLabel="Help">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp:" destination="pr3-dT-P2X" eventType="touchUpInside" id="czj-lo-v1I"/>
+                                    <action selector="help" destination="pr3-dT-P2X" eventType="touchUpInside" id="mSX-Ko-hxl"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="Zpo-ji-VUW" userLabel="Image">
@@ -419,10 +319,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pr3-dT-P2X" id="KDs-ex-rRs"/>
-                                    <outlet property="delegate" destination="pr3-dT-P2X" id="jRC-dJ-EVN"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -446,18 +342,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="zax-Tb-7Ir"/>
                     <connections>
-                        <segue destination="Gct-8W-ngT" kind="show" identifier="next" id="00g-1k-WYb"/>
-                        <segue destination="hg1-5g-9Mr" kind="show" identifier="connected" id="noQ-hV-8GY"/>
+                        <outlet property="tableView" destination="K9W-BX-9NA" id="mPn-SI-Rkn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKm-WA-Gq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3704.8000000000002" y="71.514242878560722"/>
         </scene>
-        <!--Wifi Auth View Controller-->
+        <!--Pairing Wifi Auth View Controller-->
         <scene sceneID="8RN-eu-3zP">
             <objects>
-                <viewController id="Gct-8W-ngT" customClass="WifiAuthViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingWifiAuthViewController" id="Gct-8W-ngT" customClass="PairingWifiAuthViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i7d-F5-47C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -468,11 +363,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVz-Rk-VLa" userLabel="Buy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVz-Rk-VLa" userLabel="Help">
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp:" destination="Gct-8W-ngT" eventType="touchUpInside" id="31t-cE-Cev"/>
+                                    <action selector="help" destination="Gct-8W-ngT" eventType="touchUpInside" id="nwT-yd-S0g"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="HUI-T1-0bO" userLabel="Image">
@@ -553,17 +448,16 @@
                         <outlet property="formView" destination="c2j-nb-dHU" id="olL-46-fXQ"/>
                         <outlet property="password" destination="UKQ-sW-c9H" id="hss-nQ-RTD"/>
                         <outlet property="titleLabel" destination="G4a-la-BD3" id="feo-vv-C0a"/>
-                        <segue destination="hg1-5g-9Mr" kind="show" identifier="connected" id="HcQ-pW-jAu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiB-qF-Trv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4533.6000000000004" y="71.514242878560722"/>
         </scene>
-        <!--Wifi Connected View Controller-->
+        <!--Pairing Finished View Controller-->
         <scene sceneID="pvT-7B-sHA">
             <objects>
-                <viewController id="hg1-5g-9Mr" customClass="WifiConnectedViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingFinishedViewController" id="hg1-5g-9Mr" customClass="PairingFinishedViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kqy-w6-Ghw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -578,7 +472,7 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp:" destination="hg1-5g-9Mr" eventType="touchUpInside" id="8kR-He-DrO"/>
+                                    <action selector="help" destination="hg1-5g-9Mr" eventType="touchUpInside" id="JXG-Gt-mIh"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="LFN-ct-DNS" userLabel="Image">
@@ -593,7 +487,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z5-Pc-GEl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z5-Pc-GEl" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -636,12 +530,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dE2-V7-JPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4116" y="867"/>
+            <point key="canvasLocation" x="5484" y="72"/>
         </scene>
-        <!--Connection Failed Setup View Controller-->
+        <!--Pairing Unreachable View Controller-->
         <scene sceneID="Sz5-YU-Tkm">
             <objects>
-                <viewController id="Frs-U6-6bh" customClass="ConnectionFailedSetupViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingUnreachableViewController" id="Frs-U6-6bh" customClass="PairingUnreachableViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ys-25-qvm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -656,7 +550,7 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="30"/>
                                 <state key="normal" title="Need help?"/>
                                 <connections>
-                                    <action selector="needHelp" destination="Frs-U6-6bh" eventType="touchUpInside" id="rh9-Kc-jzW"/>
+                                    <action selector="help" destination="Frs-U6-6bh" eventType="touchUpInside" id="J7g-Vb-l8S"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-t1-HB7" userLabel="Image">
@@ -665,7 +559,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="eNj-UW-i9y"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-d1-Ajw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-d1-Ajw" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="527" width="280" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
@@ -680,7 +574,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="i74-gB-asf" kind="custom" identifier="retry" customClass="ReplaceStoryboardSegue" customModule="Dispenser" customModuleProvider="target" id="w59-oD-9EO"/>
+                                    <action selector="retry:" destination="Frs-U6-6bh" eventType="touchUpInside" id="hGx-AR-3a5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
@@ -712,10 +606,90 @@
                         <viewLayoutGuide key="safeArea" id="F0x-3h-q8a"/>
                     </view>
                     <navigationItem key="navigationItem" id="Uea-Tb-kc2"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkT-w7-g1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044" y="867"/>
+            <point key="canvasLocation" x="1950" y="72"/>
+        </scene>
+        <!--Pairing Invalid View Controller-->
+        <scene sceneID="fy9-Ba-CYi">
+            <objects>
+                <viewController storyboardIdentifier="PairingInvalidViewController" id="o4a-Fb-Zhh" customClass="PairingInvalidViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qez-Xj-TD3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fp-fs-kvW" userLabel="Title">
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ous-Xd-Bbz" userLabel="Help">
+                                <rect key="frame" x="0.0" y="607" width="375" height="30"/>
+                                <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="help" destination="o4a-Fb-Zhh" eventType="touchUpInside" id="Z1M-Nh-oq8"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="jh8-bd-JjF" userLabel="Image">
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="ZVj-I2-PCZ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0k3-jF-l8u" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="527" width="280" height="60"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7v3-hT-pXZ"/>
+                                    <constraint firstAttribute="width" constant="280" id="EsR-zT-AQI"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Retry"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="retry:" destination="o4a-Fb-Zhh" eventType="touchUpInside" id="4vQ-Do-D3v"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The candy dispenser returned an invalid state. Please restart the dispenser and try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLV-oc-TBN" userLabel="Intro">
+                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="Primary"/>
+                        <constraints>
+                            <constraint firstItem="i6p-gC-P4c" firstAttribute="trailing" secondItem="VLV-oc-TBN" secondAttribute="trailing" constant="20" id="19P-gs-PMZ"/>
+                            <constraint firstItem="ous-Xd-Bbz" firstAttribute="leading" secondItem="i6p-gC-P4c" secondAttribute="leading" id="5ZW-yL-EUd"/>
+                            <constraint firstItem="jh8-bd-JjF" firstAttribute="leading" secondItem="i6p-gC-P4c" secondAttribute="leading" id="8BV-bp-btV"/>
+                            <constraint firstItem="7Fp-fs-kvW" firstAttribute="leading" secondItem="i6p-gC-P4c" secondAttribute="leading" id="GeI-d8-gde"/>
+                            <constraint firstItem="i6p-gC-P4c" firstAttribute="trailing" secondItem="7Fp-fs-kvW" secondAttribute="trailing" id="LiR-fW-OyX"/>
+                            <constraint firstItem="i6p-gC-P4c" firstAttribute="bottom" secondItem="ous-Xd-Bbz" secondAttribute="bottom" constant="30" id="Qq1-9m-1yY"/>
+                            <constraint firstItem="VLV-oc-TBN" firstAttribute="top" secondItem="7Fp-fs-kvW" secondAttribute="bottom" constant="20" id="TJG-iW-uj8"/>
+                            <constraint firstItem="i6p-gC-P4c" firstAttribute="trailing" secondItem="jh8-bd-JjF" secondAttribute="trailing" id="XPK-rt-9mJ"/>
+                            <constraint firstItem="VLV-oc-TBN" firstAttribute="leading" secondItem="i6p-gC-P4c" secondAttribute="leading" constant="20" id="a0c-w8-esX"/>
+                            <constraint firstItem="ous-Xd-Bbz" firstAttribute="top" secondItem="0k3-jF-l8u" secondAttribute="bottom" constant="20" id="cqE-mq-IAX"/>
+                            <constraint firstItem="7Fp-fs-kvW" firstAttribute="top" secondItem="jh8-bd-JjF" secondAttribute="bottom" constant="40" id="hB8-NX-0DS"/>
+                            <constraint firstItem="0k3-jF-l8u" firstAttribute="centerX" secondItem="Qez-Xj-TD3" secondAttribute="centerX" id="lGe-jH-SXQ"/>
+                            <constraint firstItem="jh8-bd-JjF" firstAttribute="top" secondItem="i6p-gC-P4c" secondAttribute="top" constant="20" id="mXG-dP-bO2"/>
+                            <constraint firstItem="i6p-gC-P4c" firstAttribute="trailing" secondItem="ous-Xd-Bbz" secondAttribute="trailing" id="xcN-lu-QbM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i6p-gC-P4c"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="A1z-n4-eIH"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7nA-XP-WlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1950" y="782"/>
         </scene>
     </scenes>
     <resources>
@@ -724,8 +698,4 @@
             <color red="0.32800000905990601" green="0.20900000631809235" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="HcQ-pW-jAu"/>
-        <segue reference="w59-oD-9EO"/>
-    </inferredMetricsTieBreakers>
 </document>

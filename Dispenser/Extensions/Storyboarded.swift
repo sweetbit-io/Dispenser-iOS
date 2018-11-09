@@ -5,7 +5,7 @@ protocol Storyboarded {
 }
 
 extension Storyboarded where Self: UIViewController {
-    static func instantiate(fromStoryboard: String = "Main") -> Self {
+    static func instantiate(fromStoryboard: String) -> Self {
         // this pulls out "MyApp.MyViewController"
         let fullName = NSStringFromClass(self)
         

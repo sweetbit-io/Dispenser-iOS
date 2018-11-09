@@ -1,9 +1,8 @@
-import Drift
 import UIKit
 
 let defaultBottomConstraint: CGFloat = 20
 
-class WifiAuthViewController: PairingViewController {
+class PairingWifiAuthViewController: PairingBaseViewController {
     var service: Sweetrpc_SweetServiceClient?
     var ssid: String?
     
@@ -19,7 +18,7 @@ class WifiAuthViewController: PairingViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WifiAuthViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PairingWifiAuthViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         self.connectButton.isEnabled = self.password.text?.count ?? 0 >= 8
@@ -57,40 +56,20 @@ class WifiAuthViewController: PairingViewController {
     }
     
     @IBAction func connect(_ sender: LoadingButton) {
+        guard let ssid = self.ssid else {
+            self.password.shake()
+            return
+        }
+        
         sender.showLoading()
         
-        let ssid = self.ssid ?? ""
-        let psk = self.password.text ?? ""
-        
-        DispatchQueue.global(qos: .background).async {
-            var req = Sweetrpc_ConnectWpaNetworkRequest()
-            req.ssid = ssid
-            req.psk = psk
-            
-            let res = try? self.service?.connectWpaNetwork(req) ?? nil
-            
-            DispatchQueue.main.async {
-                if res == nil {
-                    sender.hideLoading()
-                } else if res!!.status == .connected {
-                    sender.hideLoading()
-                    self.performSegue(withIdentifier: "connected", sender: nil)
-                } else if res!!.status == .failed {
-                    sender.hideLoading()
-                    self.password.shake()
-                }
+        self.coordinator?.connectToWifi(ssid: ssid, password: self.password.text) { status in
+            if status == .connected {
+                
+            } else {
+                sender.hideLoading()
+                self.password.shake()
             }
-        }
-    }
-    
-    @IBAction func needHelp(_ sender: UIButton) {
-        Drift.showConversations()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is WifiConnectedViewController {
-            let vc = segue.destination as! WifiConnectedViewController
-            vc.service = self.service
         }
     }
 }

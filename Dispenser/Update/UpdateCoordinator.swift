@@ -1,4 +1,3 @@
-import Drift
 import NMSSH
 import RxSwift
 import UIKit
@@ -47,7 +46,7 @@ class UpdateCoordinator {
     }
     
     func restart() {
-        WiFiService.connect(ssid: "candy", password: "reckless") {
+        RealWifiService.shared.connect(ssid: "candy", password: "reckless") {
             switch $0 {
             case .alreadyConnected:
                 fallthrough

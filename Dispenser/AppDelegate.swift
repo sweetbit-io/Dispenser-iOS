@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "Dispenser")
-        container.loadPersistentStores(completionHandler: { _, error in
+
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -61,12 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        })
+        }
+
         return container
     }()
 
     func saveContext() {
         let context = persistentContainer.viewContext
+
         if context.hasChanges {
             do {
                 try context.save()

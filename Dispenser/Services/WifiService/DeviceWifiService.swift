@@ -1,15 +1,13 @@
 import NetworkExtension
 import SystemConfiguration.CaptiveNetwork
 
-enum WiFiState {
-    case alreadyConnected
-    case connected
-    case failed
-}
-
-class WiFiService {
-    static func connect(ssid: String, password: String, completionHandler: ((WiFiState) -> Void)? = nil) {
-        let configuration = NEHotspotConfiguration(ssid: "candy", passphrase: "reckless", isWEP: false)
+class RealWifiService: WifiService {
+    static let shared = RealWifiService()
+    
+    private init() {}
+    
+    func connect(ssid: String, password: String, completionHandler: ((WifiState) -> Void)? = nil) {
+        let configuration = NEHotspotConfiguration(ssid: ssid, passphrase: password, isWEP: false)
         configuration.joinOnce = true
         
         NEHotspotConfigurationManager.shared.apply(configuration) { error in
@@ -20,7 +18,7 @@ class WiFiService {
                     completionHandler?(.failed)
                 }
             } else {
-                if WiFiService.isConnectedToSsid(ssid: "candy") {
+                if self.isConnectedToSsid(ssid: ssid) {
                     completionHandler?(.connected)
                 } else {
                     completionHandler?(.failed)
@@ -29,11 +27,11 @@ class WiFiService {
         }
     }
     
-    static func disconnect(ssid: String) {
+    func disconnect(ssid: String) {
         NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: ssid)
     }
     
-    static func isConnectedToSsid(ssid: String) -> Bool {
+    func isConnectedToSsid(ssid: String) -> Bool {
         guard let interfaceNames = CNCopySupportedInterfaces() as? [String] else {
             return false
         }
