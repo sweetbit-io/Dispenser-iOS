@@ -1,6 +1,6 @@
+import CoreData
 import RxSwift
 import UIKit
-import CoreData
 
 let internalGrpcAddress = "192.168.27.1:9000"
 
@@ -53,7 +53,7 @@ class PairingCoordinator {
         
         Observable<[Network]>
             .combineLatest(self.fetchedWifiNetworks, self.fetchedWifiInfo) { fetchedWifiNetworks, fetchedWifiInfo in
-                return fetchedWifiNetworks.map {
+                fetchedWifiNetworks.map {
                     return Network(ssid: $0.ssid, connected: fetchedWifiInfo?.ssid == $0.ssid)
                 }
             }
@@ -239,8 +239,7 @@ class PairingCoordinator {
                     }
                 }
             }
-        } catch {
-        }
+        } catch {}
         #endif
     }
     
