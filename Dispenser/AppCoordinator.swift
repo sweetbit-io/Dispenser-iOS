@@ -91,6 +91,7 @@ class AppCoordinator {
     func unpair(dispenser: Dispenser) {
         let context = AppDelegate.shared.persistentContainer.viewContext
         context.delete(dispenser)
+        AppDelegate.shared.saveContext()
         
         var viewControllerToPresent: UIViewController?
         

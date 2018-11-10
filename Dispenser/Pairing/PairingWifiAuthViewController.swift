@@ -22,7 +22,12 @@ class PairingWifiAuthViewController: PairingBaseViewController {
         view.addGestureRecognizer(tap)
         
         self.connectButton.isEnabled = self.password.text?.count ?? 0 >= 8
-        self.titleLabel.text = "Connect to " + (self.ssid ?? "Wi-Fi network")
+        
+        if let ssid = self.ssid {
+            self.titleLabel.text = "Connect to «\(ssid)»"
+        } else {
+            self.titleLabel.text = "Connect to Wi-Fi network"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +70,8 @@ class PairingWifiAuthViewController: PairingBaseViewController {
         
         self.coordinator?.connectToWifi(ssid: ssid, password: self.password.text) { status in
             if status == .connected {
-                
+                sender.hideLoading()
+                self.coordinator?.showFinished()
             } else {
                 sender.hideLoading()
                 self.password.shake()

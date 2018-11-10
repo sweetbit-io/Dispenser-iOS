@@ -40,13 +40,17 @@ class RemoteNodeCoordinator {
             return
         }
         
-        let res = try? client.connectToRemoteNode(req)
-        
-        if res == nil {
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            let res = try? client.connectToRemoteNode(req)
+            
+            if res == nil {
+                return
+            }
+         
+            DispatchQueue.main.async {
+                self.coordinator.completeRemoteNodeConnection(uri: nodeConnection.uri)
+            }
         }
-        
-        self.coordinator.completeRemoteNodeConnection(uri: nodeConnection.uri)
     }
     
     func dismiss() {

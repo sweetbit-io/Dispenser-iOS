@@ -226,20 +226,28 @@ class PairingCoordinator {
             completionHandler?()
         }
         #else
-        do {
-            DispatchQueue.global(qos: .background).async {
-                let req = Sweetrpc_GetWpaNetworksRequest()
-                
-                _ = try self.service?.getWpaNetworks(req) { response, result in
-                    if result.success {
-                        self.networks.onNext(response?.networks ?? [])
-                        DispatchQueue.main.async {
-                            completionHandler?()
-                        }
+        DispatchQueue.global(qos: .background).async {
+            let req = Sweetrpc_GetWpaNetworksRequest()
+            
+            _ = try? self.service?.getWpaNetworks(req) { response, result in
+                if result.success {
+                    let wifiInfo = (try? self.fetchedWifiInfo.value()) ?? nil
+                    
+                    let networks = response?.networks.map { n in
+                        return Network(
+                            ssid: n.ssid,
+                            connected: wifiInfo?.ssid == n.ssid
+                        )
+                    } ?? []
+                    
+                    self.networks.onNext(networks)
+                    
+                    DispatchQueue.main.async {
+                        completionHandler?()
                     }
                 }
             }
-        } catch {}
+        }
         #endif
     }
     
@@ -249,6 +257,7 @@ class PairingCoordinator {
         if !network.connected {
             let vc = PairingWifiAuthViewController.instantiate(fromStoryboard: "Pairing")
             vc.coordinator = self
+            vc.ssid = network.ssid
             
             self.navigationController.pushViewController(vc, animated: true)
         } else {
@@ -298,6 +307,13 @@ class PairingCoordinator {
             completionHandler?(.failed)
             return
         }
+    }
+    
+    func showFinished() {
+        let vc = PairingFinishedViewController.instantiate(fromStoryboard: "Pairing")
+        vc.coordinator = self
+        
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func finishPairing() {

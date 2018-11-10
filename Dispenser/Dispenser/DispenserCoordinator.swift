@@ -39,6 +39,7 @@ class DispenserCoordinator {
     
     var name: BehaviorSubject<String>
     var version: BehaviorSubject<String>
+    var commit: BehaviorSubject<String>
     var dispenseOnTouch: BehaviorSubject<Bool>
     var buzzOnDispense: BehaviorSubject<Bool>
     
@@ -50,6 +51,7 @@ class DispenserCoordinator {
         // Subjects to push dispenser info changes into
         self.name = BehaviorSubject<String>(value: self.dispenser.name ?? "")
         self.version = BehaviorSubject<String>(value: self.dispenser.version ?? "0.0.0")
+        self.commit = BehaviorSubject<String>(value: self.dispenser.version ?? "deadbeef")
         self.dispenseOnTouch = BehaviorSubject<Bool>(value: self.dispenser.dispenseOnTouch)
         self.buzzOnDispense = BehaviorSubject<Bool>(value: self.dispenser.buzzOnDispense)
         
@@ -79,13 +81,14 @@ class DispenserCoordinator {
         
         // Persist changes on dispenser info changes
         Observable
-            .combineLatest(self.name, self.version, self.dispenseOnTouch, self.buzzOnDispense)
+            .combineLatest(self.name, self.version, self.commit, self.dispenseOnTouch, self.buzzOnDispense)
             .subscribe(
-                onNext: { name, version, dispenseOnTouch, buzzOnDispense in
-                    print("\(name), \(version), \(dispenseOnTouch), \(buzzOnDispense)")
+                onNext: { name, version, commit, dispenseOnTouch, buzzOnDispense in
+                    print("\(name), \(version), \(commit), \(dispenseOnTouch), \(buzzOnDispense)")
                     
                     self.dispenser.name = name
                     self.dispenser.version = version
+                    self.dispenser.commit = commit
                     self.dispenser.dispenseOnTouch = dispenseOnTouch
                     self.dispenser.buzzOnDispense = buzzOnDispense
                     
@@ -122,43 +125,52 @@ class DispenserCoordinator {
         
         self.connectionState.onNext(.connecting)
         
-        do {
-            try _ = client.getInfo(req) { res, _ in
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                try _ = client.getInfo(req) { res, _ in
+                    DispatchQueue.main.async {
+                        guard let info = res else {
+                            self.connectionState.onNext(.unreachable)
+                            self.showNoConnectionAlert()
+                            return
+                        }
+                        
+                        // Notify potential name change
+                        self.name.onNext(info.name)
+                        
+                        // Notify potential version change
+                        if !info.version.isEmpty { // TODO: remove this
+                            self.version.onNext(info.version)
+                        }
+                        
+                        // Notify potential commit change
+                        if !info.commit.isEmpty { // TODO: remove this
+                            self.commit.onNext(info.commit)
+                        }
+                        
+                        // Notify settings
+                        self.dispenseOnTouch.onNext(info.dispenseOnTouch)
+                        self.buzzOnDispense.onNext(info.buzzOnDispense)
+                        
+                        if info.remoteNode.uri != "" {
+                            self.remoteNodeUrl.onNext(info.remoteNode.uri)
+                        }
+                        
+                        // save client
+                        self.client = client
+                        
+                        self.subscribeDispenses()
+                        
+                        // set connected
+                        self.connectionState.onNext(.connected)
+                    }
+                }
+            } catch {
                 DispatchQueue.main.async {
-                    guard let info = res else {
-                        self.connectionState.onNext(.unreachable)
-                        self.showNoConnectionAlert()
-                        return
-                    }
-                    
-                    // Notify potential name change
-                    self.name.onNext(info.name)
-                    
-                    // Notify potential version change
-                    if !info.version.isEmpty { // TODO: remove this
-                        self.version.onNext(info.version)
-                    }
-                    
-                    // Notify settings
-                    self.dispenseOnTouch.onNext(info.dispenseOnTouch)
-                    self.buzzOnDispense.onNext(info.buzzOnDispense)
-                    
-                    if info.remoteNode.uri != "" {
-                        self.remoteNodeUrl.onNext(info.remoteNode.uri)
-                    }
-                    
-                    // save client
-                    self.client = client
-                    
-                    self.subscribeDispenses()
-                    
-                    // set connected
-                    self.connectionState.onNext(.connected)
+                    self.connectionState.onNext(.unreachable)
+                    self.showNoConnectionAlert()
                 }
             }
-        } catch {
-            self.connectionState.onNext(.unreachable)
-            self.showNoConnectionAlert()
         }
     }
     
@@ -176,7 +188,7 @@ class DispenserCoordinator {
             }
         )
         
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .background).async {
             while true {
                 do {
                     let response = try subscribeDispensesCall.receive()
@@ -243,13 +255,17 @@ class DispenserCoordinator {
         var req = Sweetrpc_SetDispenseOnTouchRequest()
         req.dispenseOnTouch = enable
         
-        let res = try? client.setDispenseOnTouch(req)
-        
-        if res == nil {
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            let res = try? client.setDispenseOnTouch(req)
+            
+            if res == nil {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.dispenseOnTouch.onNext(enable)
+            }
         }
-        
-        self.dispenseOnTouch.onNext(enable)
     }
     
     func toggleBuzzOnDispense(enable: Bool) {
@@ -260,13 +276,17 @@ class DispenserCoordinator {
         var req = Sweetrpc_SetBuzzOnDispenseRequest()
         req.buzzOnDispense = enable
         
-        let res = try? client.setBuzzOnDispense(req)
-        
-        if res == nil {
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            let res = try? client.setBuzzOnDispense(req)
+            
+            if res == nil {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.buzzOnDispense.onNext(enable)
+            }
         }
-        
-        self.buzzOnDispense.onNext(enable)
     }
     
     func connectRemoteNode() {
@@ -289,15 +309,19 @@ class DispenserCoordinator {
                     return
                 }
                 
-                let req = Sweetrpc_DisconnectFromRemoteNodeRequest()
+                DispatchQueue.global(qos: .userInteractive).async {
+                    let req = Sweetrpc_DisconnectFromRemoteNodeRequest()
                 
-                let res = try? client.disconnectFromRemoteNode(req)
+                    let res = try? client.disconnectFromRemoteNode(req)
                 
-                if res == nil {
-                    return
+                    if res == nil {
+                        return
+                    }
+                
+                    DispatchQueue.main.async {
+                        self.remoteNodeUrl.onNext(nil)
+                    }
                 }
-                
-                self.remoteNodeUrl.onNext(nil)
             }
         )
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -321,12 +345,12 @@ class DispenserCoordinator {
                     return
                 }
                 
-                let req = Sweetrpc_RebootRequest()
+                DispatchQueue.global(qos: .userInteractive).async {
+                    let req = Sweetrpc_RebootRequest()
                 
-                let res = try? client.reboot(req)
-                
-                if res == nil {
-                    return
+                    // Make this call async
+                    _ = try? client.reboot(req) { _, _ in
+                    }
                 }
             }
         )
@@ -416,13 +440,16 @@ class DispenserCoordinator {
         var req = Sweetrpc_SetNameRequest()
         req.name = name
         
-        let res = try? client.setName(req)
-        
-        if res == nil {
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            let res = try? client.setName(req)
+            
+            if res == nil {
+                return
+            }
+            DispatchQueue.main.async {
+                self.name.onNext(name)
+            }
         }
-        
-        self.name.onNext(name)
     }
     
     func completeRemoteNodeConnection(uri: String) {
@@ -439,10 +466,8 @@ class DispenserCoordinator {
         var req = Sweetrpc_ToggleDispenserRequest()
         req.dispense = on
         
-        let res = try? client.toggleDispenser(req)
-        
-        if res == nil {
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            _ = try? client.toggleDispenser(req)
         }
     }
 }
