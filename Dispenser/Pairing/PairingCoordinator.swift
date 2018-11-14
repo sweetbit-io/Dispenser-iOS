@@ -11,6 +11,16 @@ struct Network {
     var connected: Bool
 }
 
+extension Network: Hashable {
+    static func == (lhs: Network, rhs: Network) -> Bool {
+        return lhs.ssid == rhs.ssid
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.ssid)
+    }
+}
+
 enum ConnectionStatus {
     // successfully connected to WiFi and retrieved information
     case connected
@@ -55,7 +65,7 @@ class PairingCoordinator {
             .combineLatest(self.fetchedWifiNetworks, self.fetchedWifiInfo) { fetchedWifiNetworks, fetchedWifiInfo in
                 fetchedWifiNetworks.map {
                     return Network(ssid: $0.ssid, connected: fetchedWifiInfo?.ssid == $0.ssid)
-                }
+                }.orderedSet
             }
             .bind(to: self.networks)
             .disposed(by: self.disposeBag)
@@ -226,25 +236,16 @@ class PairingCoordinator {
             completionHandler?()
         }
         #else
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let req = Sweetrpc_GetWpaNetworksRequest()
             
             _ = try? self.service?.getWpaNetworks(req) { response, result in
-                if result.success {
-                    let wifiInfo = (try? self.fetchedWifiInfo.value()) ?? nil
-                    
-                    let networks = response?.networks.map { n in
-                        return Network(
-                            ssid: n.ssid,
-                            connected: wifiInfo?.ssid == n.ssid
-                        )
-                    } ?? []
-                    
-                    self.networks.onNext(networks)
-                    
-                    DispatchQueue.main.async {
-                        completionHandler?()
+                DispatchQueue.main.async {
+                    if let res = response, result.success {
+                        self.fetchedWifiNetworks.onNext(res.networks)
                     }
+                    
+                    completionHandler?()
                 }
             }
         }

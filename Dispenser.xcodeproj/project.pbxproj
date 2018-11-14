@@ -45,6 +45,7 @@
 		04A3C3442195E3D800318F99 /* PairingInvalidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */; };
 		04A3C345219700AA00318F99 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C33821946F2100318F99 /* RxDataSources.framework */; };
 		04A3C347219700EF00318F99 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C346219700EF00318F99 /* Differentiator.framework */; };
+		04A3C34921983CF800318F99 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C34821983CF800318F99 /* Collection.swift */; };
 		04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870E121657AE00097A91C /* UpdateViewController.swift */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
 		04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBFEE72152870F0065291E /* rpc.grpc.swift */; };
@@ -130,6 +131,7 @@
 		04A3C34121959F5600318F99 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingInvalidViewController.swift; sourceTree = "<group>"; };
 		04A3C346219700EF00318F99 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
+		04A3C34821983CF800318F99 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		04A870E121657AE00097A91C /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
 		04CBFEE72152870F0065291E /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				040DFCA92161605A0014F065 /* UIView.swift */,
 				04E716702189BE0A0011909C /* Storyboarded.swift */,
 				04A3C34121959F5600318F99 /* UIRefreshControl.swift */,
+				04A3C34821983CF800318F99 /* Collection.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				04E716752189C1C00011909C /* DispenserCoordinator.swift in Sources */,
 				0450C70221641D2300B40F3B /* ReleasesService.swift in Sources */,
 				043BDFD52163F9A000D2CBE1 /* DispenserTableViewCell.swift in Sources */,
+				04A3C34921983CF800318F99 /* Collection.swift in Sources */,
 				04E38F042141C3170017F31E /* PairingStartViewController.swift in Sources */,
 				04E716792189D1440011909C /* DispenserNavigationController.swift in Sources */,
 				04E716712189BE0A0011909C /* Storyboarded.swift in Sources */,

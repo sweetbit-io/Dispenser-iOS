@@ -263,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StV-E0-f2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2799" y="72"/>
+            <point key="canvasLocation" x="1934" y="72"/>
         </scene>
         <!--Pairing Wifi List View Controller-->
         <scene sceneID="w1R-mr-cDD">
@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKm-WA-Gq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3704.8000000000002" y="71.514242878560722"/>
+            <point key="canvasLocation" x="2802" y="-331"/>
         </scene>
         <!--Pairing Wifi Auth View Controller-->
         <scene sceneID="8RN-eu-3zP">
@@ -452,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiB-qF-Trv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4533.6000000000004" y="71.514242878560722"/>
+            <point key="canvasLocation" x="3630" y="-331"/>
         </scene>
         <!--Pairing Finished View Controller-->
         <scene sceneID="pvT-7B-sHA">
@@ -530,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dE2-V7-JPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5484" y="72"/>
+            <point key="canvasLocation" x="4582" y="-331"/>
         </scene>
         <!--Pairing Unreachable View Controller-->
         <scene sceneID="Sz5-YU-Tkm">
@@ -610,7 +610,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkT-w7-g1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1950" y="72"/>
+            <point key="canvasLocation" x="1935" y="815"/>
         </scene>
         <!--Pairing Invalid View Controller-->
         <scene sceneID="fy9-Ba-CYi">
@@ -689,7 +689,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nA-XP-WlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1950" y="782"/>
+            <point key="canvasLocation" x="1935" y="1525"/>
         </scene>
     </scenes>
     <resources>
