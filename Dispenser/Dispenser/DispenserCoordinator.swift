@@ -62,7 +62,9 @@ class DispenserCoordinator {
                     return false
                 }
                 
-                return isVersion(release.version, higherThan: version)
+                // return isVersion(release.version, higherThan: version)
+                
+                return false // disable update feature for now
             }
         )
         
