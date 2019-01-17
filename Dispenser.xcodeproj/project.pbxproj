@@ -89,6 +89,11 @@
 		04E7169E218C92700011909C /* DispenserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7169D218C92700011909C /* DispenserDetailsViewController.swift */; };
 		04E716A1218DBA960011909C /* RMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7169F218DBA960011909C /* RMessage.framework */; };
 		04E716A4218E32B10011909C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04E716A3218E32B10011909C /* LICENSE */; };
+		04FFA89821F0A81B008DB395 /* PairingUpdateAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */; };
+		04FFA8A521F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */; };
+		04FFA8A921F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */; };
+		04FFA8AA21F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */; };
+		04FFA8AB21F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +182,11 @@
 		04E7169D218C92700011909C /* DispenserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispenserDetailsViewController.swift; sourceTree = "<group>"; };
 		04E7169F218DBA960011909C /* RMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMessage.framework; path = Carthage/Build/iOS/RMessage.framework; sourceTree = "<group>"; };
 		04E716A3218E32B10011909C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateAvailableViewController.swift; sourceTree = "<group>"; };
+		04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateSucceededViewController.swift; sourceTree = "<group>"; };
+		04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweetd_0.4.4_checksums.txt; sourceTree = "<group>"; };
+		04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = sweetd_0.4.4_linux_armv6.tar.gz; sourceTree = "<group>"; };
+		04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */ = {isa = PBXFileReference; lastKnownFileType = file; path = sweetd_0.4.4_checksums.txt.sig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +257,9 @@
 				04E716A3218E32B10011909C /* LICENSE */,
 				04E38EF62141BA770017F31E /* Cartfile */,
 				04CDB83D215F131F008809E4 /* Cartfile.resolved */,
+				04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */,
+				04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */,
+				04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */,
 				04DA54342132EB0B00EA2B65 /* Dispenser */,
 				04DA54332132EB0B00EA2B65 /* Products */,
 				04DA54472132F44A00EA2B65 /* Frameworks */,
@@ -391,6 +404,8 @@
 				04235892216024BA0021AF0E /* PairingSucceededViewController.swift */,
 				04E7165E21809FCE0011909C /* PairingUnreachableViewController.swift */,
 				04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */,
+				04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */,
+				04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */,
 				042358902160235E0021AF0E /* PairingWifiListViewController.swift */,
 				040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */,
 				040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */,
@@ -482,12 +497,15 @@
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
 				04A3C33721944EA900318F99 /* PairingWifiListView.xib in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
+				04FFA8AA21F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz in Resources */,
+				04FFA8AB21F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig in Resources */,
 				04E716A4218E32B10011909C /* LICENSE in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
 				04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */,
 				04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */,
 				04DA543B2132EB0B00EA2B65 /* Dispenser.storyboard in Resources */,
 				04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */,
+				04FFA8A921F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +596,9 @@
 				04E71694218B3D500011909C /* UpdateConnectionFailedViewController.swift in Sources */,
 				040DFCA821614C630014F065 /* PairingWifiAuthViewController.swift in Sources */,
 				04235865215FB0280021AF0E /* UIButton.swift in Sources */,
+				04FFA8A521F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift in Sources */,
 				04A3C3442195E3D800318F99 /* PairingInvalidViewController.swift in Sources */,
+				04FFA89821F0A81B008DB395 /* PairingUpdateAvailableViewController.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
 				040DFCAC216173500014F065 /* LoadingButton.swift in Sources */,
 				04E38F092141DD070017F31E /* PairingConnectViewController.swift in Sources */,

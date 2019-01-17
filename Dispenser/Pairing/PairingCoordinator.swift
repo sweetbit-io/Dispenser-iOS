@@ -1,6 +1,7 @@
 import CoreData
 import RxSwift
 import UIKit
+import NMSSH
 
 let internalGrpcAddress = "192.168.27.1:9000"
 
@@ -35,6 +36,28 @@ enum WifiStatus {
     case connected
     // failed connecting to WiFi
     case failed
+}
+
+enum UpdateStatus {
+    // successfully updated
+    case updated
+    // could not connect
+    case unreachable
+    // could not authenticate
+    case forbidden
+    // checksums do not match
+    case corrupted
+    // failed
+    case failed
+}
+
+enum RebootStatus {
+    // successfully rebooted
+    case rebooted
+    // could not connect
+    case unreachable
+    // could not authenticate
+    case forbidden
 }
 
 class PairingCoordinator {
@@ -130,46 +153,49 @@ class PairingCoordinator {
                 return
                 #endif
                 
-                // Create gRPC service to internal address
-                self.service = Sweetrpc_SweetServiceClient(address: internalGrpcAddress, secure: false)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    // Create gRPC service to internal address
+                    self.service = Sweetrpc_SweetServiceClient(address: internalGrpcAddress, secure: false)
                 
-                do {
-                    let req = Sweetrpc_GetInfoRequest()
-                    
-                    _ = try self.service?.getInfo(req) { res, result in
-                        if result.success && res != nil {
-                            self.fetchedInfo.onNext(res)
-                            
-                            let wifiReq = Sweetrpc_GetWpaConnectionInfoRequest()
-                            
-                            do {
-                                _ = try self.service?.getWpaConnectionInfo(wifiReq) { res, result in
-                                    if result.success && res != nil {
-                                        self.fetchedWifiInfo.onNext(res)
-                                        
-                                        DispatchQueue.main.async {
-                                            completionHandler?(.connected)
-                                        }
-                                    } else {
-                                        DispatchQueue.main.async {
-                                            completionHandler?(.invalid)
+                    do {
+                        let req = Sweetrpc_GetInfoRequest()
+                        
+                        _ = try self.service?.getInfo(req) { res, result in
+                            if result.success && res != nil {
+                                DispatchQueue.main.async {
+                                    self.fetchedInfo.onNext(res)
+                                }
+                                
+                                let wifiReq = Sweetrpc_GetWpaConnectionInfoRequest()
+                                
+                                do {
+                                    _ = try self.service?.getWpaConnectionInfo(wifiReq) { res, result in
+                                        if result.success && res != nil {
+                                            DispatchQueue.main.async {
+                                                self.fetchedWifiInfo.onNext(res)
+                                                completionHandler?(.connected)
+                                            }
+                                        } else {
+                                            DispatchQueue.main.async {
+                                                completionHandler?(.invalid)
+                                            }
                                         }
                                     }
+                                } catch {
+                                    DispatchQueue.main.async {
+                                        completionHandler?(.invalid)
+                                    }
                                 }
-                            } catch {
+                            } else {
                                 DispatchQueue.main.async {
                                     completionHandler?(.invalid)
                                 }
                             }
-                        } else {
-                            DispatchQueue.main.async {
-                                completionHandler?(.invalid)
-                            }
                         }
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        completionHandler?(.invalid)
+                    } catch {
+                        DispatchQueue.main.async {
+                            completionHandler?(.invalid)
+                        }
                     }
                 }
             default:
@@ -189,6 +215,142 @@ class PairingCoordinator {
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func configure() {
+        guard let info = try? self.fetchedInfo.value() else {
+            return
+        }
+        
+        guard let version = info?.version else {
+            return
+        }
+
+        if version <= "0.4.4" {
+            let vc = PairingUpdateAvailableViewController.instantiate(fromStoryboard: "Pairing")
+            vc.coordinator = self
+            
+            self.navigationController.pushViewController(vc, animated: true)
+            
+            return
+        }
+        
+        let vc = PairingWifiListViewController.instantiate(fromStoryboard: "Pairing")
+        vc.coordinator = self
+        
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func updateFirmware(completionHandler: ((UpdateStatus) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let session = NMSSHSession.connect(toHost: "192.168.27.1", withUsername: "pi")
+            
+            guard session.isConnected else {
+                DispatchQueue.main.async {
+                    completionHandler?(.unreachable)
+                }
+                return
+            }
+            
+            session.authenticate(byPassword: "raspberry")
+        
+            guard session.isAuthorized else {
+                DispatchQueue.main.async {
+                    completionHandler?(.forbidden)
+                }
+                return
+            }
+            
+            let archiveURL = Bundle.main.url(forResource: "sweetd_0.4.4_linux_armv6", withExtension: ".tar.gz")!
+            let checksumsURL = Bundle.main.url(forResource: "sweetd_0.4.4_checksums", withExtension: ".txt")!
+            let checksumsSignatureURL = Bundle.main.url(forResource: "sweetd_0.4.4_checksums", withExtension: ".txt.sig")!
+            
+            guard session.channel.uploadFile(archiveURL.path, to: "/home/pi/") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
+            }
+            
+            guard session.channel.uploadFile(checksumsURL.path, to: "/home/pi/") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
+            }
+            
+            guard session.channel.uploadFile(checksumsSignatureURL.path, to: "/home/pi/") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
+            }
+            
+            var err: NSError?
+            var res: String
+            
+            res = session.channel.execute("shasum -a 256 -s --check sweetd_0.4.4_checksums.txt && echo OK", error: &err)
+            
+            guard res.contains("OK") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.corrupted)
+                }
+                return
+            }
+            
+            res = session.channel.execute("sudo tar xfz sweetd_0.4.4_linux_armv6.tar.gz --strip-components=1 -C /usr/local/bin/ && echo OK", error: &err)
+            
+            guard res.contains("OK") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
+            }
+            
+            res = session.channel.execute("sudo chown root:staff /usr/local/bin/sweetd && echo OK", error: &err)
+            
+            guard res.contains("OK") else {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
+            }
+
+            session.disconnect()
+            
+            completionHandler?(.updated)
+        }
+    }
+    
+    func reboot(completionHandler: ((RebootStatus) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let session = NMSSHSession.connect(toHost: "192.168.27.1", withUsername: "pi")
+            
+            guard session.isConnected else {
+                DispatchQueue.main.async {
+                    completionHandler?(.unreachable)
+                }
+                return
+            }
+            
+            session.authenticate(byPassword: "raspberry")
+            
+            guard session.isAuthorized else {
+                DispatchQueue.main.async {
+                    completionHandler?(.forbidden)
+                }
+                return
+            }
+            
+            var err: NSError?
+            var res: String
+            
+            res = session.channel.execute("sudo shutdown -r now", error: &err)
+            
+            session.disconnect()
+            
+            completionHandler?(.rebooted)
+        }
     }
     
     func showConnectionUnreachable() {
@@ -218,11 +380,54 @@ class PairingCoordinator {
         }
     }
     
-    func showWifiNetworks() {
-        let vc = PairingWifiListViewController.instantiate(fromStoryboard: "Pairing")
-        vc.coordinator = self
-        
-        self.navigationController.pushViewController(vc, animated: true)
+    func doUpdate(completionHandler: (() -> Void)?) {
+        self.updateFirmware() { status in
+            completionHandler?()
+            
+            switch status {
+            case .corrupted:
+                fallthrough
+            case .failed:
+                fallthrough
+            case .forbidden:
+                fallthrough
+            case .unreachable:
+                let alertController = UIAlertController(title: "Update failed", message: "Updated failed: \(status)", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default) { action in
+                    self.configure()
+                })
+                
+                self.navigationController.present(alertController, animated: true, completion: nil)
+            case .updated:
+                let vc = PairingUpdateSucceededViewController.instantiate(fromStoryboard: "Pairing")
+                vc.coordinator = self
+                
+                self.navigationController.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    func doReboot(completionHandler: (() -> Void)?) {
+        self.reboot() { status in
+            completionHandler?()
+            
+            switch status {
+            case .forbidden:
+                fallthrough
+            case .unreachable:
+                let alertController = UIAlertController(title: "Reboot failed", message: "Reboot failed: \(status)", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default) { action in
+                    self.configure()
+                })
+                
+                self.navigationController.present(alertController, animated: true, completion: nil)
+            case .rebooted:
+                let vc = PairingConnectViewController.instantiate(fromStoryboard: "Pairing")
+                vc.coordinator = self
+                
+                self.navigationController.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     func refreshWifiNetworks(completionHandler: (() -> Void)?) {
@@ -274,9 +479,9 @@ class PairingCoordinator {
         req.ssid = ssid
         req.psk = password ?? ""
         
-        do {
-            _ = try self.service?.connectWpaNetwork(req) { res, result in
-                DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                _ = try self.service?.connectWpaNetwork(req) { res, result in
                     if res?.status == .connected {
                         let wifiReq = Sweetrpc_GetWpaConnectionInfoRequest()
                         
@@ -300,13 +505,17 @@ class PairingCoordinator {
                             }
                         }
                     } else {
-                        completionHandler?(.failed)
+                        DispatchQueue.main.async {
+                            completionHandler?(.failed)
+                        }
                     }
                 }
+            } catch {
+                DispatchQueue.main.async {
+                    completionHandler?(.failed)
+                }
+                return
             }
-        } catch {
-            completionHandler?(.failed)
-            return
         }
     }
     
