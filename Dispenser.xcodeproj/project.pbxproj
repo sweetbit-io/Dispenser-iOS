@@ -121,7 +121,6 @@
 		044F526921408F9600B0C423 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		0450C70121641D2300B40F3B /* ReleasesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleasesService.swift; sourceTree = "<group>"; };
 		0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		0450C706216499F700B40F3B /* Semver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Semver.framework; path = Carthage/Build/iOS/Semver.framework; sourceTree = "<group>"; };
 		0450C707216499F700B40F3B /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
 		04A3C33621944EA900318F99 /* PairingWifiListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PairingWifiListView.xib; sourceTree = "<group>"; };
 		04A3C33821946F2100318F99 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
@@ -299,7 +298,6 @@
 				04E7167C2189DD0D0011909C /* RxSwift.framework */,
 				04E7166C2188859E0011909C /* SystemConfiguration.framework */,
 				0450C707216499F700B40F3B /* Down.framework */,
-				0450C706216499F700B40F3B /* Semver.framework */,
 				0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */,
 				040DFCB3216211AA0014F065 /* Alamofire.framework */,
 				040DFCAF216211AA0014F065 /* AlamofireImage.framework */,
