@@ -40,7 +40,7 @@ class RemoteNodeCoordinator {
             return
         }
         
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let res = try? client.connectToRemoteNode(req)
             
             if res == nil {
