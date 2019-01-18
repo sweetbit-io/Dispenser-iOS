@@ -94,6 +94,7 @@
 		04FFA8A921F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */; };
 		04FFA8AA21F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */; };
 		04FFA8AB21F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */; };
+		04FFA8AD21F15021008DB395 /* PairingUpdateReconnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +188,7 @@
 		04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweetd_0.4.4_checksums.txt; sourceTree = "<group>"; };
 		04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = sweetd_0.4.4_linux_armv6.tar.gz; sourceTree = "<group>"; };
 		04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */ = {isa = PBXFileReference; lastKnownFileType = file; path = sweetd_0.4.4_checksums.txt.sig; sourceTree = "<group>"; };
+		04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateReconnectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +408,7 @@
 				04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */,
 				04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */,
 				04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */,
+				04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */,
 				042358902160235E0021AF0E /* PairingWifiListViewController.swift */,
 				040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */,
 				040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */,
@@ -591,6 +594,7 @@
 				04E7168E218B2DC00011909C /* UpdatingViewController.swift in Sources */,
 				04E716732189BF580011909C /* PairingCoordinator.swift in Sources */,
 				04A3C33E219497BA00318F99 /* DeviceWifiService.swift in Sources */,
+				04FFA8AD21F15021008DB395 /* PairingUpdateReconnectViewController.swift in Sources */,
 				04E71669218191D00011909C /* RemoteNodeConnectionModel.swift in Sources */,
 				043BDFD32162D69900D2CBE1 /* DispenserViewController.swift in Sources */,
 				04E71694218B3D500011909C /* UpdateConnectionFailedViewController.swift in Sources */,

@@ -844,13 +844,89 @@
                         <viewLayoutGuide key="safeArea" id="d9h-oP-2Pu"/>
                     </view>
                     <navigationItem key="navigationItem" id="qqN-1z-4x3"/>
-                    <connections>
-                        <outlet property="connectButton" destination="d7E-qY-thx" id="6a0-UH-LuJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBj-eg-Gau" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2470" y="432"/>
+        </scene>
+        <!--Pairing Update Reconnect View Controller-->
+        <scene sceneID="ElG-qe-roS">
+            <objects>
+                <viewController storyboardIdentifier="PairingUpdateReconnectViewController" id="vlT-eC-Bkb" customClass="PairingUpdateReconnectViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G1s-ya-wht">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reconnect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqx-Hs-lMd" userLabel="Title">
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsw-zj-RGs" userLabel="Help">
+                                <rect key="frame" x="0.0" y="607" width="375" height="30"/>
+                                <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="help" destination="vlT-eC-Bkb" eventType="touchUpInside" id="khg-tS-9Kd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wait for the dispenser to buzz. After that it can be reconnected to in order to continue with the set up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR6-6n-MGe" userLabel="Intro">
+                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="c0m-hV-Mg9" userLabel="Image">
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="kue-Bf-him"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukq-On-yrL" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="527" width="280" height="60"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="QfI-3i-AMe"/>
+                                    <constraint firstAttribute="height" constant="60" id="rn9-TY-KAw"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Reconnect"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reconnect:" destination="vlT-eC-Bkb" eventType="touchUpInside" id="PYk-yl-2ph"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="Primary"/>
+                        <constraints>
+                            <constraint firstItem="fyQ-qa-SQn" firstAttribute="trailing" secondItem="cR6-6n-MGe" secondAttribute="trailing" constant="20" id="4Y7-Wj-MUF"/>
+                            <constraint firstItem="fyQ-qa-SQn" firstAttribute="trailing" secondItem="Xsw-zj-RGs" secondAttribute="trailing" id="B50-k4-YaS"/>
+                            <constraint firstItem="Zqx-Hs-lMd" firstAttribute="top" secondItem="c0m-hV-Mg9" secondAttribute="bottom" constant="40" id="JJx-9D-o6d"/>
+                            <constraint firstItem="c0m-hV-Mg9" firstAttribute="top" secondItem="fyQ-qa-SQn" secondAttribute="top" constant="20" id="Mjd-7N-fid"/>
+                            <constraint firstItem="cR6-6n-MGe" firstAttribute="top" secondItem="Zqx-Hs-lMd" secondAttribute="bottom" constant="20" id="Q9R-dL-lHK"/>
+                            <constraint firstItem="ukq-On-yrL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cR6-6n-MGe" secondAttribute="bottom" constant="20" id="RZx-CE-rHe"/>
+                            <constraint firstItem="fyQ-qa-SQn" firstAttribute="trailing" secondItem="Zqx-Hs-lMd" secondAttribute="trailing" id="Rna-MJ-YYs"/>
+                            <constraint firstItem="cR6-6n-MGe" firstAttribute="leading" secondItem="fyQ-qa-SQn" secondAttribute="leading" constant="20" id="Uuw-En-NCn"/>
+                            <constraint firstItem="ukq-On-yrL" firstAttribute="centerX" secondItem="G1s-ya-wht" secondAttribute="centerX" id="XQk-GZ-nwe"/>
+                            <constraint firstItem="fyQ-qa-SQn" firstAttribute="trailing" secondItem="c0m-hV-Mg9" secondAttribute="trailing" id="azY-BY-DDF"/>
+                            <constraint firstItem="fyQ-qa-SQn" firstAttribute="bottom" secondItem="Xsw-zj-RGs" secondAttribute="bottom" constant="30" id="f20-OD-4Js"/>
+                            <constraint firstItem="Xsw-zj-RGs" firstAttribute="leading" secondItem="fyQ-qa-SQn" secondAttribute="leading" id="f2o-Rx-Gsw"/>
+                            <constraint firstItem="c0m-hV-Mg9" firstAttribute="leading" secondItem="fyQ-qa-SQn" secondAttribute="leading" id="faQ-Uo-RSV"/>
+                            <constraint firstItem="Xsw-zj-RGs" firstAttribute="top" secondItem="ukq-On-yrL" secondAttribute="bottom" constant="20" id="lxy-ui-1Tx"/>
+                            <constraint firstItem="Zqx-Hs-lMd" firstAttribute="leading" secondItem="fyQ-qa-SQn" secondAttribute="leading" id="zTA-AM-0Ni"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fyQ-qa-SQn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YuT-1t-HJy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oyN-P0-vGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3290" y="584"/>
         </scene>
     </scenes>
     <resources>

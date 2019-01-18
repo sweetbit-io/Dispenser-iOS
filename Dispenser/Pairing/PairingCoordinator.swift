@@ -318,7 +318,9 @@ class PairingCoordinator {
 
             session.disconnect()
             
-            completionHandler?(.updated)
+            DispatchQueue.main.async {
+                completionHandler?(.updated)
+            }
         }
     }
     
@@ -349,7 +351,9 @@ class PairingCoordinator {
             
             session.disconnect()
             
-            completionHandler?(.rebooted)
+            DispatchQueue.main.async {
+                completionHandler?(.rebooted)
+            }
         }
     }
     
@@ -422,7 +426,7 @@ class PairingCoordinator {
                 
                 self.navigationController.present(alertController, animated: true, completion: nil)
             case .rebooted:
-                let vc = PairingConnectViewController.instantiate(fromStoryboard: "Pairing")
+                let vc = PairingUpdateReconnectViewController.instantiate(fromStoryboard: "Pairing")
                 vc.coordinator = self
                 
                 self.navigationController.pushViewController(vc, animated: true)
