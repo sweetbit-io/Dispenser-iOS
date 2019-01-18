@@ -226,7 +226,7 @@ class PairingCoordinator {
             return
         }
 
-        if version <= "0.4.4" {
+        if version < "0.4.4" {
             let vc = PairingUpdateAvailableViewController.instantiate(fromStoryboard: "Pairing")
             vc.coordinator = self
             
