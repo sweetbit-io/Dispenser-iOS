@@ -1,4 +1,3 @@
-import Drift
 import RxSwift
 import UIKit
 
@@ -29,7 +28,7 @@ class DispenserViewController: UITableViewController, Storyboarded {
     @IBOutlet var statusLabel: UILabel!
     
     @IBAction func help(_ sender: Any) {
-        Drift.showConversations()
+        // TODO: show help
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

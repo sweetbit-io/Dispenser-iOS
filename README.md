@@ -11,6 +11,16 @@
 
 ...
 
+## Run
+
+```
+gem install xcodeproj
+```
+
+```
+carthage bootstrap --platform ios
+```
+
 ## Features
 
 ...

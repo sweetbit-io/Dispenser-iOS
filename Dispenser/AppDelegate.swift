@@ -1,5 +1,4 @@
 import CoreData
-import Drift
 import SwiftGRPC
 import SwiftProtobuf
 import UIKit
@@ -26,10 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set global tint color and make window visible
         self.window?.tintColor = UIColor.primary
         self.window?.makeKeyAndVisible()
-
-        // Set up Drift messaging, that is available throughout the app
-        Drift.setup("ydd7gkth62cx")
-        Drift.registerUser(UIDevice().identifierForVendor?.uuidString ?? "", email: "")
 
         return true
     }

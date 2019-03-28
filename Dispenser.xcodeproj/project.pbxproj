@@ -12,8 +12,6 @@
 		040DFCA821614C630014F065 /* PairingWifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */; };
 		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
 		040DFCAC216173500014F065 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCAB216173500014F065 /* LoadingButton.swift */; };
-		040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCAD216210EA0014F065 /* Drift.framework */; };
-		040DFCB4216211AA0014F065 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCAF216211AA0014F065 /* AlamofireImage.framework */; };
 		040DFCB5216211AA0014F065 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB0216211AA0014F065 /* Starscream.framework */; };
 		040DFCB6216211AA0014F065 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB1216211AA0014F065 /* SVProgressHUD.framework */; };
 		040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040DFCB2216211AA0014F065 /* ObjectMapper.framework */; };
@@ -44,7 +42,6 @@
 		04A3C34221959F5600318F99 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C34121959F5600318F99 /* UIRefreshControl.swift */; };
 		04A3C3442195E3D800318F99 /* PairingInvalidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */; };
 		04A3C345219700AA00318F99 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C33821946F2100318F99 /* RxDataSources.framework */; };
-		04A3C347219700EF00318F99 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3C346219700EF00318F99 /* Differentiator.framework */; };
 		04A3C34921983CF800318F99 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3C34821983CF800318F99 /* Collection.swift */; };
 		04A870E221657AE00097A91C /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A870E121657AE00097A91C /* UpdateViewController.swift */; };
 		04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A8F07E213BD6A50043F490 /* Pairing.storyboard */; };
@@ -91,10 +88,10 @@
 		04E716A4218E32B10011909C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04E716A3218E32B10011909C /* LICENSE */; };
 		04FFA89821F0A81B008DB395 /* PairingUpdateAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */; };
 		04FFA8A521F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */; };
-		04FFA8A921F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */; };
-		04FFA8AA21F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */; };
-		04FFA8AB21F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */; };
 		04FFA8AD21F15021008DB395 /* PairingUpdateReconnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */; };
+		04FFA8B121F1701C008DB395 /* sweetd_0.4.5_checksums.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */; };
+		04FFA8B221F1701C008DB395 /* sweetd_0.4.5_checksums.txt.sig in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */; };
+		04FFA8B321F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,8 +100,6 @@
 		040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingWifiAuthViewController.swift; sourceTree = "<group>"; };
 		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		040DFCAB216173500014F065 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
-		040DFCAD216210EA0014F065 /* Drift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Drift.framework; path = Carthage/Build/iOS/Drift.framework; sourceTree = "<group>"; };
-		040DFCAF216211AA0014F065 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		040DFCB0216211AA0014F065 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		040DFCB1216211AA0014F065 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		040DFCB2216211AA0014F065 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
@@ -135,7 +130,6 @@
 		04A3C33F21949E4700318F99 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		04A3C34121959F5600318F99 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingInvalidViewController.swift; sourceTree = "<group>"; };
-		04A3C346219700EF00318F99 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		04A3C34821983CF800318F99 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		04A870E121657AE00097A91C /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		04A8F07F213BD6A50043F490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pairing.storyboard; sourceTree = "<group>"; };
@@ -185,10 +179,10 @@
 		04E716A3218E32B10011909C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateAvailableViewController.swift; sourceTree = "<group>"; };
 		04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateSucceededViewController.swift; sourceTree = "<group>"; };
-		04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweetd_0.4.4_checksums.txt; sourceTree = "<group>"; };
-		04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = sweetd_0.4.4_linux_armv6.tar.gz; sourceTree = "<group>"; };
-		04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */ = {isa = PBXFileReference; lastKnownFileType = file; path = sweetd_0.4.4_checksums.txt.sig; sourceTree = "<group>"; };
 		04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateReconnectViewController.swift; sourceTree = "<group>"; };
+		04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweetd_0.4.5_checksums.txt; sourceTree = "<group>"; };
+		04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */ = {isa = PBXFileReference; lastKnownFileType = file; path = sweetd_0.4.5_checksums.txt.sig; sourceTree = "<group>"; };
+		04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = sweetd_0.4.5_linux_armv6.tar.gz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +190,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A3C347219700EF00318F99 /* Differentiator.framework in Frameworks */,
 				04A3C345219700AA00318F99 /* RxDataSources.framework in Frameworks */,
 				04A3C34021949E4700318F99 /* RxCocoa.framework in Frameworks */,
 				044AF83E2190817500893494 /* HexColors.framework in Frameworks */,
@@ -207,11 +200,9 @@
 				0450C709216499F700B40F3B /* Down.framework in Frameworks */,
 				0450C7042164994200B40F3B /* AlamofireObjectMapper.framework in Frameworks */,
 				040DFCB7216211AA0014F065 /* ObjectMapper.framework in Frameworks */,
-				040DFCB4216211AA0014F065 /* AlamofireImage.framework in Frameworks */,
 				040DFCB5216211AA0014F065 /* Starscream.framework in Frameworks */,
 				040DFCB6216211AA0014F065 /* SVProgressHUD.framework in Frameworks */,
 				040DFCB8216211AA0014F065 /* Alamofire.framework in Frameworks */,
-				040DFCAE216210EA0014F065 /* Drift.framework in Frameworks */,
 				042A961A2149C2F3001F637A /* SwiftGRPC.framework in Frameworks */,
 				042A961B2149C2F3001F637A /* SwiftProtobuf.framework in Frameworks */,
 				042A961C2149C2F3001F637A /* CgRPC.framework in Frameworks */,
@@ -259,9 +250,9 @@
 				04E716A3218E32B10011909C /* LICENSE */,
 				04E38EF62141BA770017F31E /* Cartfile */,
 				04CDB83D215F131F008809E4 /* Cartfile.resolved */,
-				04FFA8A621F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt */,
-				04FFA8A821F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig */,
-				04FFA8A721F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz */,
+				04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */,
+				04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */,
+				04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */,
 				04DA54342132EB0B00EA2B65 /* Dispenser */,
 				04DA54332132EB0B00EA2B65 /* Products */,
 				04DA54472132F44A00EA2B65 /* Frameworks */,
@@ -304,7 +295,6 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04A3C346219700EF00318F99 /* Differentiator.framework */,
 				04A3C33F21949E4700318F99 /* RxCocoa.framework */,
 				04A3C33821946F2100318F99 /* RxDataSources.framework */,
 				044AF83D2190817500893494 /* HexColors.framework */,
@@ -315,11 +305,9 @@
 				0450C707216499F700B40F3B /* Down.framework */,
 				0450C7032164994200B40F3B /* AlamofireObjectMapper.framework */,
 				040DFCB3216211AA0014F065 /* Alamofire.framework */,
-				040DFCAF216211AA0014F065 /* AlamofireImage.framework */,
 				040DFCB2216211AA0014F065 /* ObjectMapper.framework */,
 				040DFCB0216211AA0014F065 /* Starscream.framework */,
 				040DFCB1216211AA0014F065 /* SVProgressHUD.framework */,
-				040DFCAD216210EA0014F065 /* Drift.framework */,
 				042A96192149C2F3001F637A /* BoringSSL.framework */,
 				042A96182149C2F3001F637A /* CgRPC.framework */,
 				042A96162149C2F3001F637A /* SwiftGRPC.framework */,
@@ -496,19 +484,19 @@
 			files = (
 				04E71685218ADF550011909C /* Update.storyboard in Resources */,
 				04E38EF72141BA770017F31E /* Cartfile in Resources */,
+				04FFA8B221F1701C008DB395 /* sweetd_0.4.5_checksums.txt.sig in Resources */,
 				04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */,
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
 				04A3C33721944EA900318F99 /* PairingWifiListView.xib in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
-				04FFA8AA21F0DB6D008DB395 /* sweetd_0.4.4_linux_armv6.tar.gz in Resources */,
-				04FFA8AB21F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt.sig in Resources */,
 				04E716A4218E32B10011909C /* LICENSE in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
+				04FFA8B121F1701C008DB395 /* sweetd_0.4.5_checksums.txt in Resources */,
 				04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */,
 				04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */,
 				04DA543B2132EB0B00EA2B65 /* Dispenser.storyboard in Resources */,
+				04FFA8B321F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz in Resources */,
 				04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */,
-				04FFA8A921F0DB6D008DB395 /* sweetd_0.4.4_checksums.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,9 +513,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftProtobuf.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BoringSSL.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CgRPC.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Drift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
@@ -539,16 +525,14 @@
 				"$(SRCROOT)/Carthage/Build/iOS/HexColors.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BlueCapKit.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftProtobuf.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BoringSSL.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CgRPC.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Drift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ObjectMapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SVProgressHUD.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
@@ -560,7 +544,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HexColors.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BlueCapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -792,7 +776,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -818,7 +802,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -2,8 +2,22 @@ import CoreData
 import RxSwift
 import UIKit
 import NMSSH
+import BlueCapKit
+import CoreBluetooth
 
 let internalGrpcAddress = "192.168.27.1:9000"
+
+public enum AppError : Error {
+    case dataCharactertisticNotFound
+    case enabledCharactertisticNotFound
+    case updateCharactertisticNotFound
+    case serviceNotFound
+    case invalidState
+    case resetting
+    case poweredOff
+    case unknown
+    case unlikley
+}
 
 struct Network {
     // name of the WiFi
@@ -118,6 +132,42 @@ class PairingCoordinator {
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: true)
+        
+        let manager = CentralManager(options: [CBCentralManagerOptionRestoreIdentifierKey : "us.gnos.BlueCap.central-manager-documentation" as NSString])
+        var firstPeripherial: Peripheral? = nil
+        
+        let serviceUUID = CBUUID(string: "b7735170-4cf4-11e9-b475-0800200c9a66")
+        let dataUUID = CBUUID(string: TiSensorTag.AccelerometerService.Data.uuid)
+        let enabledUUID = CBUUID(string: TiSensorTag.AccelerometerService.Enabled.uuid)
+        let updatePeriodUUID = CBUUID(string: TiSensorTag.AccelerometerService.UpdatePeriod.uuid)
+        
+        let dataUpdateFuture = manager.whenStateChanges().flatMap { [unowned self] state -> FutureStream<Peripheral> in
+            switch state {
+            case .poweredOn:
+                return manager.startScanning(forServiceUUIDs: [serviceUUID], capacity: 10)
+            case .poweredOff:
+                throw AppError.poweredOff
+            case .unauthorized, .unsupported:
+                throw AppError.invalidState
+            case .resetting:
+                throw AppError.resetting
+            case .unknown:
+                throw AppError.unknown
+            }
+            }.flatMap { [unowned self] peripheral -> FutureStream<Void> in
+                manager.stopScanning()
+                firstPeripherial = peripheral
+                return peripheral.connect(connectionTimeout: 10.0)
+            }.flatMap { [unowned self] () -> Future<Void> in
+                return firstPeripherial!.discoverServices([serviceUUID])
+            }.flatMap { [unowned self] () -> Future<Void> in
+                guard let service = firstPeripherial!.services(withUUID: serviceUUID)?.first else {
+                    throw AppError.serviceNotFound
+                }
+                return service.discoverCharacteristics([dataUUID, enabledUUID, updatePeriodUUID])
+            }.andThen {
+                print("done")
+        }
     }
     
     func connect(completionHandler: ((ConnectionStatus) -> Void)?) {
@@ -222,11 +272,7 @@ class PairingCoordinator {
             return
         }
         
-        guard let version = info?.version else {
-            return
-        }
-
-        if version < "0.4.4" {
+        if false {
             let vc = PairingUpdateAvailableViewController.instantiate(fromStoryboard: "Pairing")
             vc.coordinator = self
             
@@ -261,9 +307,9 @@ class PairingCoordinator {
                 return
             }
             
-            let archiveURL = Bundle.main.url(forResource: "sweetd_0.4.4_linux_armv6", withExtension: ".tar.gz")!
-            let checksumsURL = Bundle.main.url(forResource: "sweetd_0.4.4_checksums", withExtension: ".txt")!
-            let checksumsSignatureURL = Bundle.main.url(forResource: "sweetd_0.4.4_checksums", withExtension: ".txt.sig")!
+            let archiveURL = Bundle.main.url(forResource: "sweetd_0.4.5_linux_armv6", withExtension: ".tar.gz")!
+            let checksumsURL = Bundle.main.url(forResource: "sweetd_0.4.5_checksums", withExtension: ".txt")!
+            let checksumsSignatureURL = Bundle.main.url(forResource: "sweetd_0.4.5_checksums", withExtension: ".txt.sig")!
             
             guard session.channel.uploadFile(archiveURL.path, to: "/home/pi/") else {
                 DispatchQueue.main.async {
@@ -289,7 +335,7 @@ class PairingCoordinator {
             var err: NSError?
             var res: String
             
-            res = session.channel.execute("shasum -a 256 -s --check sweetd_0.4.4_checksums.txt && echo OK", error: &err)
+            res = session.channel.execute("shasum -a 256 -s --check sweetd_0.4.5_checksums.txt && echo OK", error: &err)
             
             guard res.contains("OK") else {
                 DispatchQueue.main.async {
@@ -298,7 +344,7 @@ class PairingCoordinator {
                 return
             }
             
-            res = session.channel.execute("sudo tar xfz sweetd_0.4.4_linux_armv6.tar.gz --strip-components=1 -C /usr/local/bin/ && echo OK", error: &err)
+            res = session.channel.execute("sudo tar xfz sweetd_0.4.5_linux_armv6.tar.gz --strip-components=1 -C /usr/local/bin/ && echo OK", error: &err)
             
             guard res.contains("OK") else {
                 DispatchQueue.main.async {
@@ -567,6 +613,8 @@ class PairingCoordinator {
             dispenserToOpen?.ip = wifiInfo.ip
             dispenserToOpen?.lastOpened = Date()
         }
+        
+        print(dispenserToOpen)
         
         AppDelegate.shared.saveContext()
         

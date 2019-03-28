@@ -1,11 +1,11 @@
-github "apple/swift-protobuf"  ~> 1.0
-github "grpc/grpc-swift"
-github "D-Mx/drift-sdk-ios" "feature/Carthage-support"
-github "Alamofire/Alamofire" ~> 4.7
+github "grpc/grpc-swift" ~> 0.8
+github "apple/swift-protobuf" ~> 1.4
+github "Alamofire/Alamofire" ~> 5.0
 github "iwasrobbed/Down"
-github "Hearst-DD/ObjectMapper" ~> 3.3
-github "tristanhimmelman/AlamofireObjectMapper" ~> 5.0
+github "Hearst-DD/ObjectMapper" ~> 3.0
+github "tristanhimmelman/AlamofireObjectMapper" ~> 6.0
 github "ReactiveX/RxSwift" ~> 4.0
 github "RxSwiftCommunity/RxDataSources" ~> 3.0
 github "NMSSH/NMSSH"
 github "donileo/RMessage" ~> 3.0
+github "troystribling/BlueCap" ~> 0.7

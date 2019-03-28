@@ -1,5 +1,4 @@
 import CoreData
-import Drift
 import RxSwift
 import UIKit
 
@@ -14,6 +13,8 @@ class AppCoordinator {
     
     func start() {
         let lastOpenedDispenser = self.getLastOpenedDispenser()
+        
+        print(lastOpenedDispenser)
         
         var viewControllerToSet: UIViewController?
         
@@ -117,6 +118,6 @@ class AppCoordinator {
     }
     
     func help() {
-        Drift.showConversations()
+        // TODO: do something here
     }
 }

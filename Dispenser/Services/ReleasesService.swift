@@ -63,7 +63,7 @@ let assetNameEnding = ".tar.gz"
 
 func GetLatestRelease(completionHandler: @escaping (Release?) -> Void) {
     // Draft and prereleases are not returned by this endpoint
-    Alamofire.request("https://api.github.com/repos/the-lightning-land/sweetd/releases/latest")
+    AF.request("https://api.github.com/repos/the-lightning-land/sweetd/releases/latest")
         .responseObject(queue: DispatchQueue.global(qos: .userInitiated)) { (response: DataResponse<ReleaseResponse>) in
             guard let releaseResponse = response.result.value else {
                 // throw an error?
