@@ -89,9 +89,6 @@
 		04FFA89821F0A81B008DB395 /* PairingUpdateAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */; };
 		04FFA8A521F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */; };
 		04FFA8AD21F15021008DB395 /* PairingUpdateReconnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */; };
-		04FFA8B121F1701C008DB395 /* sweetd_0.4.5_checksums.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */; };
-		04FFA8B221F1701C008DB395 /* sweetd_0.4.5_checksums.txt.sig in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */; };
-		04FFA8B321F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,9 +177,6 @@
 		04FFA89721F0A81B008DB395 /* PairingUpdateAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateAvailableViewController.swift; sourceTree = "<group>"; };
 		04FFA8A421F0D5EB008DB395 /* PairingUpdateSucceededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateSucceededViewController.swift; sourceTree = "<group>"; };
 		04FFA8AC21F15021008DB395 /* PairingUpdateReconnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUpdateReconnectViewController.swift; sourceTree = "<group>"; };
-		04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sweetd_0.4.5_checksums.txt; sourceTree = "<group>"; };
-		04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */ = {isa = PBXFileReference; lastKnownFileType = file; path = sweetd_0.4.5_checksums.txt.sig; sourceTree = "<group>"; };
-		04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = sweetd_0.4.5_linux_armv6.tar.gz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,9 +244,6 @@
 				04E716A3218E32B10011909C /* LICENSE */,
 				04E38EF62141BA770017F31E /* Cartfile */,
 				04CDB83D215F131F008809E4 /* Cartfile.resolved */,
-				04FFA8AE21F1701B008DB395 /* sweetd_0.4.5_checksums.txt */,
-				04FFA8AF21F1701B008DB395 /* sweetd_0.4.5_checksums.txt.sig */,
-				04FFA8B021F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz */,
 				04DA54342132EB0B00EA2B65 /* Dispenser */,
 				04DA54332132EB0B00EA2B65 /* Products */,
 				04DA54472132F44A00EA2B65 /* Frameworks */,
@@ -484,18 +475,15 @@
 			files = (
 				04E71685218ADF550011909C /* Update.storyboard in Resources */,
 				04E38EF72141BA770017F31E /* Cartfile in Resources */,
-				04FFA8B221F1701C008DB395 /* sweetd_0.4.5_checksums.txt.sig in Resources */,
 				04E7169B218B74C90011909C /* RemoteNode.storyboard in Resources */,
 				04DA54402132EB0D00EA2B65 /* LaunchScreen.storyboard in Resources */,
 				04A3C33721944EA900318F99 /* PairingWifiListView.xib in Resources */,
 				04DA543D2132EB0D00EA2B65 /* Assets.xcassets in Resources */,
 				04E716A4218E32B10011909C /* LICENSE in Resources */,
 				042A96152149C1DC001F637A /* README.md in Resources */,
-				04FFA8B121F1701C008DB395 /* sweetd_0.4.5_checksums.txt in Resources */,
 				04E38EFC2141BF170017F31E /* Theme.xcassets in Resources */,
 				04CDB83E215F1320008809E4 /* Cartfile.resolved in Resources */,
 				04DA543B2132EB0B00EA2B65 /* Dispenser.storyboard in Resources */,
-				04FFA8B321F1701C008DB395 /* sweetd_0.4.5_linux_armv6.tar.gz in Resources */,
 				04A8F080213BD6A50043F490 /* Pairing.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
