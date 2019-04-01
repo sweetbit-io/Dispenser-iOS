@@ -136,7 +136,7 @@ class PairingCoordinator {
         let manager = CentralManager(options: [CBCentralManagerOptionRestoreIdentifierKey : "us.gnos.BlueCap.central-manager-documentation" as NSString])
         var firstPeripherial: Peripheral? = nil
         
-        let serviceUUID = CBUUID(string: "b7735170-4cf4-11e9-b475-0800200c9a66")
+        let serviceUUID = CBUUID(string: "ca000000-75dd-4a0e-b688-66b7df342cc6")
         let dataUUID = CBUUID(string: TiSensorTag.AccelerometerService.Data.uuid)
         let enabledUUID = CBUUID(string: TiSensorTag.AccelerometerService.Enabled.uuid)
         let updatePeriodUUID = CBUUID(string: TiSensorTag.AccelerometerService.UpdatePeriod.uuid)
