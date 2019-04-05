@@ -67,6 +67,7 @@ class PairingWifiAuthViewController: PairingBaseViewController {
         }
         
         sender.showLoading()
+        self.view.endEditing(true)
         
         self.coordinator?.connectToWifi(ssid: ssid, password: self.password.text) { status in
             if status == .connected {

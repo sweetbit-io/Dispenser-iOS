@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		040A698E21408EC300695A4D /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040A698D21408EC300695A4D /* NetworkExtension.framework */; };
+		040CFBDD2253C4510085D8FD /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040CFBDC2253C4510085D8FD /* Differentiator.framework */; };
+		040CFBDF2253E04F0085D8FD /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CFBDE2253E04F0085D8FD /* PairingService.swift */; };
+		040CFBE12253FFB90085D8FD /* PairingBluetoothRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CFBE02253FFB90085D8FD /* PairingBluetoothRequiredViewController.swift */; };
 		040DFCA621614C3A0014F065 /* PairingFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */; };
 		040DFCA821614C630014F065 /* PairingWifiAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */; };
 		040DFCAA2161605A0014F065 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DFCA92161605A0014F065 /* UIView.swift */; };
@@ -93,6 +96,9 @@
 
 /* Begin PBXFileReference section */
 		040A698D21408EC300695A4D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		040CFBDC2253C4510085D8FD /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
+		040CFBDE2253E04F0085D8FD /* PairingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingService.swift; sourceTree = "<group>"; };
+		040CFBE02253FFB90085D8FD /* PairingBluetoothRequiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingBluetoothRequiredViewController.swift; sourceTree = "<group>"; };
 		040DFCA521614C3A0014F065 /* PairingFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingFinishedViewController.swift; sourceTree = "<group>"; };
 		040DFCA721614C630014F065 /* PairingWifiAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingWifiAuthViewController.swift; sourceTree = "<group>"; };
 		040DFCA92161605A0014F065 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040CFBDD2253C4510085D8FD /* Differentiator.framework in Frameworks */,
 				04A3C345219700AA00318F99 /* RxDataSources.framework in Frameworks */,
 				04A3C34021949E4700318F99 /* RxCocoa.framework in Frameworks */,
 				044AF83E2190817500893494 /* HexColors.framework in Frameworks */,
@@ -286,6 +293,7 @@
 		04DA54472132F44A00EA2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				040CFBDC2253C4510085D8FD /* Differentiator.framework */,
 				04A3C33F21949E4700318F99 /* RxCocoa.framework */,
 				04A3C33821946F2100318F99 /* RxDataSources.framework */,
 				044AF83D2190817500893494 /* HexColors.framework */,
@@ -376,12 +384,14 @@
 		04E7169C218C851B0011909C /* Pairing */ = {
 			isa = PBXGroup;
 			children = (
+				040CFBDE2253E04F0085D8FD /* PairingService.swift */,
 				04E716722189BF580011909C /* PairingCoordinator.swift */,
 				04A8F07E213BD6A50043F490 /* Pairing.storyboard */,
 				04E716762189D0A90011909C /* PairingNavigationController.swift */,
 				0423588E2160107A0021AF0E /* PairingBaseViewController.swift */,
 				04E38F032141C3170017F31E /* PairingStartViewController.swift */,
 				04E38F082141DD070017F31E /* PairingConnectViewController.swift */,
+				040CFBE02253FFB90085D8FD /* PairingBluetoothRequiredViewController.swift */,
 				04235892216024BA0021AF0E /* PairingSucceededViewController.swift */,
 				04E7165E21809FCE0011909C /* PairingUnreachableViewController.swift */,
 				04A3C3432195E3D800318F99 /* PairingInvalidViewController.swift */,
@@ -514,6 +524,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BlueCapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework",
@@ -533,6 +544,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BlueCapKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -563,6 +575,7 @@
 				04CBFEE92152870F0065291E /* rpc.grpc.swift in Sources */,
 				04E71698218B44520011909C /* UpdateRestartFailedViewController.swift in Sources */,
 				04E7168A218AE0990011909C /* UpdateNavigationController.swift in Sources */,
+				040CFBDF2253E04F0085D8FD /* PairingService.swift in Sources */,
 				04E7168E218B2DC00011909C /* UpdatingViewController.swift in Sources */,
 				04E716732189BF580011909C /* PairingCoordinator.swift in Sources */,
 				04A3C33E219497BA00318F99 /* DeviceWifiService.swift in Sources */,
@@ -577,6 +590,7 @@
 				04FFA89821F0A81B008DB395 /* PairingUpdateAvailableViewController.swift in Sources */,
 				0423588D215FF0DC0021AF0E /* UIViewController.swift in Sources */,
 				040DFCAC216173500014F065 /* LoadingButton.swift in Sources */,
+				040CFBE12253FFB90085D8FD /* PairingBluetoothRequiredViewController.swift in Sources */,
 				04E38F092141DD070017F31E /* PairingConnectViewController.swift in Sources */,
 				040DFCAA2161605A0014F065 /* UIView.swift in Sources */,
 				04E7166F2189B9AE0011909C /* AppCoordinator.swift in Sources */,

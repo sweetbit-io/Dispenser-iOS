@@ -36,6 +36,10 @@ class AppCoordinator {
         self.window?.rootViewController = viewControllerToSet
     }
     
+    func cleanup() {
+        self.pairingCoordinator?.cleanup()
+    }
+    
     func getLastOpenedDispenser() -> Dispenser? {
         let context = AppDelegate.shared.persistentContainer.viewContext
         let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
@@ -70,6 +74,7 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = self.dispenserCoordinator?.navigationController
         }, completion: { _ in
+            self.pairingCoordinator?.cleanup()
             self.pairingCoordinator = nil
         })
     }
@@ -85,6 +90,7 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = self.pairingCoordinator?.navigationController
         }, completion: { _ in
+            self.dispenserCoordinator?.cleanup()
             self.dispenserCoordinator = nil
         })
     }
@@ -113,6 +119,7 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = viewControllerToPresent
         }, completion: { _ in
+            self.dispenserCoordinator?.cleanup()
             self.dispenserCoordinator = nil
         })
     }

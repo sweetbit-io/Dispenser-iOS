@@ -4,8 +4,20 @@ import UIKit
 import NMSSH
 import BlueCapKit
 import CoreBluetooth
+import ObjectMapper
 
-let internalGrpcAddress = "192.168.27.1:9000"
+let candyServiceUUID = CBUUID(string: "ca000000-75dd-4a0e-b688-66b7df342cc6")
+let networkAvailabilityStatusUUID = CBUUID(string: "ca000001-75dd-4a0e-b688-66b7df342cc6")
+let ipAddressUUID = CBUUID(string: "ca000002-75dd-4a0e-b688-66b7df342cc6")
+let wifiScanSignalUUID = CBUUID(string: "ca000003-75dd-4a0e-b688-66b7df342cc6")
+let wifiScanListUUID = CBUUID(string: "ca000004-75dd-4a0e-b688-66b7df342cc6")
+let wifiSsidStringUUID = CBUUID(string: "ca000005-75dd-4a0e-b688-66b7df342cc6")
+let wifiPskStringUUID = CBUUID(string: "ca000006-75dd-4a0e-b688-66b7df342cc6")
+let wifiConnectSignalUUID = CBUUID(string: "ca000007-75dd-4a0e-b688-66b7df342cc6")
+let deviceNameUUID = CBUUID(string: "2A00")
+let manufacturerNameUUID = CBUUID(string: "2A29")
+let serialNumberUUID = CBUUID(string: "2A25")
+let modelNumberUUID = CBUUID(string: "2A24")
 
 public enum AppError : Error {
     case dataCharactertisticNotFound
@@ -17,6 +29,10 @@ public enum AppError : Error {
     case poweredOff
     case unknown
     case unlikley
+}
+
+public enum GetStringValueError : Error {
+    case failed
 }
 
 struct Network {
@@ -77,31 +93,31 @@ enum RebootStatus {
 class PairingCoordinator {
     var coordinator: AppCoordinator
     var navigationController: PairingNavigationController
-    var service: Sweetrpc_SweetServiceClient?
     var isConnectionInterrupted = false
-    var fetchedInfo = BehaviorSubject<Sweetrpc_GetInfoResponse?>(value: nil)
-    var fetchedWifiNetworks = BehaviorSubject<[Sweetrpc_WpaNetwork]>(value: [])
-    var fetchedWifiInfo = BehaviorSubject<Sweetrpc_GetWpaConnectionInfoResponse?>(value: nil)
-    var wifiService: WifiService
+    
+    var fetchedSsid = BehaviorSubject<String>(value: "")
+    var fetchedWifiNetworks = BehaviorSubject<[Wifi]>(value: [])
+    var fetchedIpAddress = BehaviorSubject<String?>(value: "")
+    var fetchedSerialNumber = BehaviorSubject<String?>(value: "")
+    
     var selectedWifiNetwork: Network?
     var networks = BehaviorSubject<[Network]>(value: [])
     var disposeBag = DisposeBag()
+    var centralManager: CentralManager!
+    var centralState: ManagerState = .poweredOff
+    var peripherial: Peripheral?
+    var peripherialService: Service?
+    var peripherialName = BehaviorSubject<String>(value: "")
     
     init(coordinator: AppCoordinator) {
         self.navigationController = PairingNavigationController.instantiate(fromStoryboard: "Pairing")
         self.coordinator = coordinator
-        
-        #if targetEnvironment(simulator)
-        // Use a mock wifi service here, so the app can be tested in simulator
-        self.wifiService = SimulatedWifiService(viewController: self.navigationController)
-        #else
-        self.wifiService = RealWifiService.shared
-        #endif
+        self.centralManager = CentralManager(options: [CBCentralManagerOptionRestoreIdentifierKey : "land.lightning.BLE" as NSString])
         
         Observable<[Network]>
-            .combineLatest(self.fetchedWifiNetworks, self.fetchedWifiInfo) { fetchedWifiNetworks, fetchedWifiInfo in
+            .combineLatest(self.fetchedWifiNetworks, self.fetchedSsid) { fetchedWifiNetworks, fetchedSsid in
                 fetchedWifiNetworks.map {
-                    return Network(ssid: $0.ssid, connected: fetchedWifiInfo?.ssid == $0.ssid)
+                    return Network(ssid: $0.ssid!, connected: fetchedSsid == $0.ssid)
                 }.orderedSet
             }
             .bind(to: self.networks)
@@ -113,6 +129,10 @@ class PairingCoordinator {
         vc.coordinator = self
         
         self.navigationController.setViewControllers([vc], animated: false)
+    }
+    
+    func cleanup() {
+        self.peripherial?.disconnect()
     }
     
     func cancel() {
@@ -132,19 +152,16 @@ class PairingCoordinator {
         vc.coordinator = self
         
         self.navigationController.pushViewController(vc, animated: true)
-        
-        let manager = CentralManager(options: [CBCentralManagerOptionRestoreIdentifierKey : "us.gnos.BlueCap.central-manager-documentation" as NSString])
-        var firstPeripherial: Peripheral? = nil
-        
-        let serviceUUID = CBUUID(string: "ca000000-75dd-4a0e-b688-66b7df342cc6")
-        let dataUUID = CBUUID(string: TiSensorTag.AccelerometerService.Data.uuid)
-        let enabledUUID = CBUUID(string: TiSensorTag.AccelerometerService.Enabled.uuid)
-        let updatePeriodUUID = CBUUID(string: TiSensorTag.AccelerometerService.UpdatePeriod.uuid)
-        
-        let dataUpdateFuture = manager.whenStateChanges().flatMap { [unowned self] state -> FutureStream<Peripheral> in
+    }
+    
+    func connect(completionHandler: ((ConnectionStatus) -> Void)?) {
+        self.isConnectionInterrupted = false
+
+        let future = self.centralManager.whenStateChanges()
+        .flatMap { state -> FutureStream<Peripheral> in
             switch state {
             case .poweredOn:
-                return manager.startScanning(forServiceUUIDs: [serviceUUID], capacity: 10)
+                return self.centralManager.startScanning(forServiceUUIDs: [candyServiceUUID], capacity: 10, timeout: 10.0)
             case .poweredOff:
                 throw AppError.poweredOff
             case .unauthorized, .unsupported:
@@ -154,107 +171,36 @@ class PairingCoordinator {
             case .unknown:
                 throw AppError.unknown
             }
-            }.flatMap { [unowned self] peripheral -> FutureStream<Void> in
-                manager.stopScanning()
-                firstPeripherial = peripheral
-                return peripheral.connect(connectionTimeout: 10.0)
-            }.flatMap { [unowned self] () -> Future<Void> in
-                return firstPeripherial!.discoverServices([serviceUUID])
-            }.flatMap { [unowned self] () -> Future<Void> in
-                guard let service = firstPeripherial!.services(withUUID: serviceUUID)?.first else {
-                    throw AppError.serviceNotFound
-                }
-                return service.discoverCharacteristics([dataUUID, enabledUUID, updatePeriodUUID])
-            }.andThen {
-                print("done")
+        }.flatMap { peripheral -> FutureStream<Void> in
+            self.centralManager.stopScanning()
+            self.peripherial = peripheral
+            self.peripherialName.onNext(self.peripherial!.name)
+            return peripheral.connect(connectionTimeout: 10.0)
+        }.flatMap { () -> Future<Void> in
+            return self.peripherial!.discoverServices([candyServiceUUID])
+        }.flatMap { () -> Future<Void> in
+            guard let service = self.peripherial!.services(withUUID: candyServiceUUID)?.first else {
+                throw AppError.serviceNotFound
+            }
+            self.peripherialService = service
+            return service.discoverAllCharacteristics(timeout: 10.0)
         }
-    }
-    
-    func connect(completionHandler: ((ConnectionStatus) -> Void)?) {
-        self.isConnectionInterrupted = false
         
-        self.wifiService.connect(ssid: "candy", password: "reckless") { wifiState in
-            switch wifiState {
-            case .alreadyConnected:
-                fallthrough
-            case .connected:
-                if self.isConnectionInterrupted {
-                    return
-                }
-                
-                #if targetEnvironment(simulator)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                    var info = Sweetrpc_GetInfoResponse()
-                    info.name = "Test"
-                    info.serial = "007"
-                    info.buzzOnDispense = false
-                    info.dispenseOnTouch = true
-                    info.commit = "deadbeef"
-                    info.version = "0.3.0"
-                    self.fetchedInfo.onNext(info)
-                    
-                    var wifiInfo = Sweetrpc_GetWpaConnectionInfoResponse()
-                    wifiInfo.ip = "localhost"
-                    wifiInfo.ssid = "Lappert"
-                    self.fetchedWifiInfo.onNext(wifiInfo)
-                    
+        future.onComplete {
+            if $0.isSuccess() {
+                DispatchQueue.main.async {
                     completionHandler?(.connected)
                 }
-                return
-                #endif
-                
-                DispatchQueue.global(qos: .userInitiated).async {
-                    // Create gRPC service to internal address
-                    self.service = Sweetrpc_SweetServiceClient(address: internalGrpcAddress, secure: false)
-                
-                    do {
-                        let req = Sweetrpc_GetInfoRequest()
-                        
-                        _ = try self.service?.getInfo(req) { res, result in
-                            if result.success && res != nil {
-                                DispatchQueue.main.async {
-                                    self.fetchedInfo.onNext(res)
-                                }
-                                
-                                let wifiReq = Sweetrpc_GetWpaConnectionInfoRequest()
-                                
-                                do {
-                                    _ = try self.service?.getWpaConnectionInfo(wifiReq) { res, result in
-                                        if result.success && res != nil {
-                                            DispatchQueue.main.async {
-                                                self.fetchedWifiInfo.onNext(res)
-                                                completionHandler?(.connected)
-                                            }
-                                        } else {
-                                            DispatchQueue.main.async {
-                                                completionHandler?(.invalid)
-                                            }
-                                        }
-                                    }
-                                } catch {
-                                    DispatchQueue.main.async {
-                                        completionHandler?(.invalid)
-                                    }
-                                }
-                            } else {
-                                DispatchQueue.main.async {
-                                    completionHandler?(.invalid)
-                                }
-                            }
-                        }
-                    } catch {
-                        DispatchQueue.main.async {
-                            completionHandler?(.invalid)
-                        }
+            } else {
+                switch $0.error! {
+                case AppError.poweredOff:
+                    DispatchQueue.main.async {
+                        completionHandler?(.invalid)
                     }
-                }
-            default:
-                if self.isConnectionInterrupted {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    completionHandler?(.unreachable)
+                default:
+                    DispatchQueue.main.async {
+                        completionHandler?(.invalid)
+                    }
                 }
             }
         }
@@ -268,139 +214,12 @@ class PairingCoordinator {
     }
     
     func configure() {
-        guard let info = try? self.fetchedInfo.value() else {
-            return
-        }
-        
-        if false {
-            let vc = PairingUpdateAvailableViewController.instantiate(fromStoryboard: "Pairing")
-            vc.coordinator = self
-            
-            self.navigationController.pushViewController(vc, animated: true)
-            
-            return
-        }
-        
         let vc = PairingWifiListViewController.instantiate(fromStoryboard: "Pairing")
         vc.coordinator = self
         
-        self.navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func updateFirmware(completionHandler: ((UpdateStatus) -> Void)?) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let session = NMSSHSession.connect(toHost: "192.168.27.1", withUsername: "pi")
-            
-            guard session.isConnected else {
-                DispatchQueue.main.async {
-                    completionHandler?(.unreachable)
-                }
-                return
-            }
-            
-            session.authenticate(byPassword: "raspberry")
+        self.getInfo()
         
-            guard session.isAuthorized else {
-                DispatchQueue.main.async {
-                    completionHandler?(.forbidden)
-                }
-                return
-            }
-            
-            let archiveURL = Bundle.main.url(forResource: "sweetd_0.4.5_linux_armv6", withExtension: ".tar.gz")!
-            let checksumsURL = Bundle.main.url(forResource: "sweetd_0.4.5_checksums", withExtension: ".txt")!
-            let checksumsSignatureURL = Bundle.main.url(forResource: "sweetd_0.4.5_checksums", withExtension: ".txt.sig")!
-            
-            guard session.channel.uploadFile(archiveURL.path, to: "/home/pi/") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
-                }
-                return
-            }
-            
-            guard session.channel.uploadFile(checksumsURL.path, to: "/home/pi/") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
-                }
-                return
-            }
-            
-            guard session.channel.uploadFile(checksumsSignatureURL.path, to: "/home/pi/") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
-                }
-                return
-            }
-            
-            var err: NSError?
-            var res: String
-            
-            res = session.channel.execute("shasum -a 256 -s --check sweetd_0.4.5_checksums.txt && echo OK", error: &err)
-            
-            guard res.contains("OK") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.corrupted)
-                }
-                return
-            }
-            
-            res = session.channel.execute("sudo tar xfz sweetd_0.4.5_linux_armv6.tar.gz --strip-components=1 -C /usr/local/bin/ && echo OK", error: &err)
-            
-            guard res.contains("OK") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
-                }
-                return
-            }
-            
-            res = session.channel.execute("sudo chown root:staff /usr/local/bin/sweetd && echo OK", error: &err)
-            
-            guard res.contains("OK") else {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
-                }
-                return
-            }
-
-            session.disconnect()
-            
-            DispatchQueue.main.async {
-                completionHandler?(.updated)
-            }
-        }
-    }
-    
-    func reboot(completionHandler: ((RebootStatus) -> Void)?) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let session = NMSSHSession.connect(toHost: "192.168.27.1", withUsername: "pi")
-            
-            guard session.isConnected else {
-                DispatchQueue.main.async {
-                    completionHandler?(.unreachable)
-                }
-                return
-            }
-            
-            session.authenticate(byPassword: "raspberry")
-            
-            guard session.isAuthorized else {
-                DispatchQueue.main.async {
-                    completionHandler?(.forbidden)
-                }
-                return
-            }
-            
-            var err: NSError?
-            var res: String
-            
-            res = session.channel.execute("sudo shutdown -r now", error: &err)
-            
-            session.disconnect()
-            
-            DispatchQueue.main.async {
-                completionHandler?(.rebooted)
-            }
-        }
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func showConnectionUnreachable() {
@@ -430,81 +249,87 @@ class PairingCoordinator {
         }
     }
     
-    func doUpdate(completionHandler: (() -> Void)?) {
-        self.updateFirmware() { status in
-            completionHandler?()
-            
-            switch status {
-            case .corrupted:
-                fallthrough
-            case .failed:
-                fallthrough
-            case .forbidden:
-                fallthrough
-            case .unreachable:
-                let alertController = UIAlertController(title: "Update failed", message: "Updated failed: \(status)", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default) { action in
-                    self.configure()
-                })
-                
-                self.navigationController.present(alertController, animated: true, completion: nil)
-            case .updated:
-                let vc = PairingUpdateSucceededViewController.instantiate(fromStoryboard: "Pairing")
-                vc.coordinator = self
-                
-                self.navigationController.pushViewController(vc, animated: true)
-            }
-        }
-    }
-    
-    func doReboot(completionHandler: (() -> Void)?) {
-        self.reboot() { status in
-            completionHandler?()
-            
-            switch status {
-            case .forbidden:
-                fallthrough
-            case .unreachable:
-                let alertController = UIAlertController(title: "Reboot failed", message: "Reboot failed: \(status)", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default) { action in
-                    self.configure()
-                })
-                
-                self.navigationController.present(alertController, animated: true, completion: nil)
-            case .rebooted:
-                let vc = PairingUpdateReconnectViewController.instantiate(fromStoryboard: "Pairing")
-                vc.coordinator = self
-                
-                self.navigationController.pushViewController(vc, animated: true)
-            }
-        }
-    }
-    
     func refreshWifiNetworks(completionHandler: (() -> Void)?) {
-        #if targetEnvironment(simulator)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.networks.onNext([
-                Network(ssid: "One Green Family", connected: false),
-                Network(ssid: "Zeko & Cody", connected: true),
-                Network(ssid: "Lappert", connected: false),
-            ])
-            completionHandler?()
-        }
-        #else
         DispatchQueue.global(qos: .userInitiated).async {
-            let req = Sweetrpc_GetWpaNetworksRequest()
+            guard let signalChar = self.peripherialService?.characteristics(withUUID: wifiScanSignalUUID)?.first else {
+                return
+            }
             
-            _ = try? self.service?.getWpaNetworks(req) { response, result in
-                DispatchQueue.main.async {
-                    if let res = response, result.success {
-                        self.fetchedWifiNetworks.onNext(res.networks)
+            guard let characteristic = self.peripherialService?.characteristics(withUUID: wifiScanListUUID)?.first else {
+                return
+            }
+            
+            var signal = UInt8(1)
+            let signalData = Data(bytes: &signal, count: MemoryLayout.size(ofValue: signal))
+            signalChar.write(data: signalData, timeout: 3.0)
+                .flatMap { () -> Future<Void> in characteristic.read(timeout: 3.0) }
+                .onComplete {
+                    if $0.isFailure() {
+                        return
+                    }
+
+                    guard let data = characteristic.dataValue else {
+                        return
                     }
                     
-                    completionHandler?()
+                    guard let payload = String(data:data, encoding: .utf8) else {
+                        return
+                    }
+
+                    let networks = payload.components(separatedBy: "\t").map { String.init($0) }.map { Wifi(ssid: $0) }
+                    
+                    self.fetchedWifiNetworks.onNext(networks)
+                    
+                    DispatchQueue.main.async {
+                        completionHandler?()
+                    }
                 }
+        }
+    }
+    
+    func getStringValue(uuid: CBUUID, completionHandler: ((Try<String>) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let characteristic = self.peripherialService?.characteristics(withUUID: uuid)?.first else {
+                return
+            }
+            
+            let future = characteristic.read(timeout: 5.0)
+            future.onComplete {
+                if $0.isFailure() {
+                    completionHandler?(Try<String>(GetStringValueError.failed))
+                    return
+                }
+                
+                guard let data = characteristic.dataValue else {
+                    completionHandler?(Try<String>(GetStringValueError.failed))
+                    return
+                }
+                
+                guard let value = String(data:data, encoding: .utf8) else {
+                    completionHandler?(Try<String>(GetStringValueError.failed))
+                    return
+                }
+                
+                completionHandler?(Try<String>(value))
             }
         }
-        #endif
+    }
+    
+    func getInfo() {
+        self.getStringValue(uuid: wifiSsidStringUUID) {
+            guard let value = $0.value else { return }
+            self.fetchedSsid.onNext(value)
+        }
+        
+        self.getStringValue(uuid: ipAddressUUID) {
+            guard let value = $0.value else { return }
+            self.fetchedIpAddress.onNext(value)
+        }
+        
+        self.getStringValue(uuid: serialNumberUUID) {
+            guard let value = $0.value else { return }
+            self.fetchedSerialNumber.onNext(value)
+        }
     }
     
     func selectWifi(network: Network) {
@@ -525,46 +350,67 @@ class PairingCoordinator {
     }
     
     func connectToWifi(ssid: String, password: String?, completionHandler: ((WifiStatus) -> Void)?) {
-        var req = Sweetrpc_ConnectWpaNetworkRequest()
-        req.ssid = ssid
-        req.psk = password ?? ""
-        
         DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                _ = try self.service?.connectWpaNetwork(req) { res, result in
-                    if res?.status == .connected {
-                        let wifiReq = Sweetrpc_GetWpaConnectionInfoRequest()
-                        
-                        do {
-                            _ = try self.service?.getWpaConnectionInfo(wifiReq) { res, result in
-                                if result.success && res != nil {
-                                    self.fetchedWifiInfo.onNext(res)
-                                    
-                                    DispatchQueue.main.async {
-                                        completionHandler?(.connected)
-                                    }
-                                } else {
-                                    DispatchQueue.main.async {
-                                        completionHandler?(.failed)
-                                    }
-                                }
-                            }
-                        } catch {
-                            DispatchQueue.main.async {
-                                completionHandler?(.failed)
-                            }
-                        }
+            guard let ssidString = self.peripherialService?.characteristics(withUUID: wifiSsidStringUUID)?.first else {
+                return
+            }
+            
+            guard let pskString = self.peripherialService?.characteristics(withUUID: wifiPskStringUUID)?.first else {
+                return
+            }
+            
+            guard let connectSignal = self.peripherialService?.characteristics(withUUID: wifiConnectSignalUUID)?.first else {
+                return
+            }
+            
+            guard let ipAddress = self.peripherialService?.characteristics(withUUID: ipAddressUUID)?.first else {
+                return
+            }
+            
+            let ssidData = ssid.data(using: .utf8)!
+            let pskData = password?.data(using: .utf8)
+            
+            var signal = UInt8(1)
+            let signalData = Data(bytes: &signal, count: MemoryLayout.size(ofValue: signal))
+            
+            var first = true
+            
+            ssidString.write(data: ssidData, timeout: 3.0)
+                .flatMap { () -> Future<Void> in
+                    if let data = pskData {
+                        return pskString.write(data: data, timeout: 3.0)
                     } else {
-                        DispatchQueue.main.async {
-                            completionHandler?(.failed)
-                        }
+                        return Future<Void>()
                     }
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler?(.failed)
+                .flatMap { () -> Future<Void> in
+                    return connectSignal.write(data: signalData, timeout: 3.0)
                 }
-                return
+                .flatMap { () -> Future<Void> in
+                    return ipAddress.startNotifying()
+                }.flatMap { () -> FutureStream<Data?> in
+                    return ipAddress .receiveNotificationUpdates(capacity: 2)
+                }.onComplete {
+                    // Ignore the immediate notification of the current IP
+                    if (first) {
+                        first = false
+                        return
+                    }
+                    
+                    if $0.isFailure() {
+                        completionHandler?(.failed)
+                    }
+                    
+                    guard let data = $0.value else {
+                        completionHandler?(.failed)
+                        return
+                    }
+                    
+                    self.fetchedIpAddress.onNext(String(data: data!, encoding: .utf8))
+                    
+                    DispatchQueue.main.async {
+                        completionHandler?(.connected)
+                    }
             }
         }
     }
@@ -581,45 +427,62 @@ class PairingCoordinator {
         
         let context = AppDelegate.shared.persistentContainer.viewContext
         
-        guard let info = (try? self.fetchedInfo.value()) ?? nil else {
+        guard let ip = try? self.fetchedIpAddress.value() else {
             return
         }
         
-        guard let wifiInfo = (try? self.fetchedWifiInfo.value()) ?? nil else {
-            return
+        // Create gRPC service to internal address
+        let address = String(format: "%@:%d", ip, 9000)
+        let client = Sweetrpc_SweetServiceClient(address: address, secure: false)
+        let req = Sweetrpc_GetInfoRequest()
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                try _ = client.getInfo(req) { res, _ in
+                    DispatchQueue.main.async {
+                        guard let info = res else {
+                            return
+                        }
+                    
+                        // Do this to keep the client instance until the call is finished
+                        // otherwise the call will finish with a nil response
+                        _ = client
+                        
+                        let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
+                        fetch.predicate = NSPredicate(format: "serial == %@", info.serial)
+                        let dispensers = try? context.fetch(fetch) as [Dispenser]
+                        
+                        if let dispenser = dispensers?.first {
+                            print("Dispenser already exists. Opening it...")
+                            dispenserToOpen = dispenser
+                            dispenserToOpen?.serial = info.serial
+                            dispenserToOpen?.version = info.version
+                            dispenserToOpen?.commit = info.commit
+                            dispenserToOpen?.ip = ip
+                            dispenserToOpen?.lastOpened = Date()
+                        } else {
+                            print("Dispenser is new. Creating and opening it...")
+                            dispenserToOpen = Dispenser(context: context)
+                            dispenserToOpen?.name = "Candy Dispenser"
+                            dispenserToOpen?.serial = info.serial
+                            dispenserToOpen?.version = info.version
+                            dispenserToOpen?.commit = info.commit
+                            dispenserToOpen?.ip = ip
+                            dispenserToOpen?.lastOpened = Date()
+                        }
+                        
+                        AppDelegate.shared.saveContext()
+                        
+                        // Disconnect from peripherial
+                        self.peripherial?.disconnect()
+                        
+                        self.coordinator.open(dispenser: dispenserToOpen!)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                }
+            }
         }
-        
-        let fetch: NSFetchRequest<Dispenser> = Dispenser.fetchRequest()
-        
-        fetch.predicate = NSPredicate(format: "serial == %@", info.serial)
-        
-        let dispensers = try? context.fetch(fetch) as [Dispenser]
-        
-        if let dispenser = dispensers?.first {
-            print("Dispenser already exists. Opening it...")
-            dispenserToOpen = dispenser
-            dispenserToOpen?.serial = info.serial
-            dispenserToOpen?.version = info.version
-            dispenserToOpen?.commit = info.commit
-            dispenserToOpen?.ip = wifiInfo.ip
-            dispenserToOpen?.lastOpened = Date()
-        } else {
-            print("Dispenser is new. Creating and opening it...")
-            dispenserToOpen = Dispenser(context: context)
-            dispenserToOpen?.name = "Candy Dispenser"
-            dispenserToOpen?.serial = info.serial
-            dispenserToOpen?.version = info.version
-            dispenserToOpen?.commit = info.commit
-            dispenserToOpen?.ip = wifiInfo.ip
-            dispenserToOpen?.lastOpened = Date()
-        }
-        
-        print(dispenserToOpen)
-        
-        AppDelegate.shared.saveContext()
-        
-        self.coordinator.open(dispenser: dispenserToOpen!)
-        
-        self.wifiService.disconnect(ssid: "candy")
     }
 }

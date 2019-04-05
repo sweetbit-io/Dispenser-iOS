@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin Candy Dispenser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKU-MD-FD4" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,13 +46,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to set up your Bitcoin candy dispenser, you'll need to plug it into a power source and have access to a Wi-Fi." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFa-0p-ejO" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <rect key="frame" x="20" y="148" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="2Vh-1d-sqi" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="3Di-AU-WkN"/>
                                 </constraints>
@@ -112,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="405-pE-sHW" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -125,14 +125,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCq-lO-e6z" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="81.5"/>
+                                <rect key="frame" x="20" y="148" width="335" height="81.5"/>
                                 <string key="text">Please plug the USB cable into an outlet. When powered, the dispenser will buzz after about one minute. After that, continue the setup.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="yYB-Af-cEs" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="7e1-KB-2IH"/>
                                 </constraints>
@@ -231,9 +231,15 @@
                                     <action selector="setup:" destination="Nia-TD-wCr" eventType="touchUpInside" id="1j5-j4-xq3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're now ready to configure your candy dispenser." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8V-5K-H0g" userLabel="Intro">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're now ready to configure your candy dispenser:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8V-5K-H0g" userLabel="Intro">
                                 <rect key="frame" x="20" y="282" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Candy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwD-w2-oq2">
+                                <rect key="frame" x="20" y="343" width="335" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -243,6 +249,7 @@
                         <constraints>
                             <constraint firstItem="zL3-BR-STt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="k8V-5K-H0g" secondAttribute="bottom" constant="20" id="1AB-F3-Ol9"/>
                             <constraint firstItem="BOq-xm-GBe" firstAttribute="leading" secondItem="RhE-1z-YN0" secondAttribute="leading" id="6Ui-qt-eVQ"/>
+                            <constraint firstItem="vwD-w2-oq2" firstAttribute="top" secondItem="k8V-5K-H0g" secondAttribute="bottom" constant="20" id="Emw-ZP-IFY"/>
                             <constraint firstItem="RhE-1z-YN0" firstAttribute="trailing" secondItem="fBg-gp-IXu" secondAttribute="trailing" id="KYy-9B-S28"/>
                             <constraint firstItem="d7P-69-67v" firstAttribute="top" secondItem="fBg-gp-IXu" secondAttribute="bottom" constant="40" id="RF8-jM-5wg"/>
                             <constraint firstItem="RhE-1z-YN0" firstAttribute="trailing" secondItem="d7P-69-67v" secondAttribute="trailing" id="SM2-qg-coc"/>
@@ -250,6 +257,8 @@
                             <constraint firstItem="k8V-5K-H0g" firstAttribute="leading" secondItem="RhE-1z-YN0" secondAttribute="leading" constant="20" id="fMz-l1-uRq"/>
                             <constraint firstItem="fBg-gp-IXu" firstAttribute="top" secondItem="RhE-1z-YN0" secondAttribute="top" constant="20" id="kZS-WQ-UsN"/>
                             <constraint firstItem="d7P-69-67v" firstAttribute="leading" secondItem="RhE-1z-YN0" secondAttribute="leading" id="ki6-or-Rd2"/>
+                            <constraint firstItem="RhE-1z-YN0" firstAttribute="trailing" secondItem="vwD-w2-oq2" secondAttribute="trailing" constant="20" id="lDC-14-Pql"/>
+                            <constraint firstItem="vwD-w2-oq2" firstAttribute="leading" secondItem="RhE-1z-YN0" secondAttribute="leading" constant="20" id="mVx-ls-fRA"/>
                             <constraint firstItem="BOq-xm-GBe" firstAttribute="top" secondItem="zL3-BR-STt" secondAttribute="bottom" constant="20" id="qbP-mh-d2D"/>
                             <constraint firstItem="RhE-1z-YN0" firstAttribute="trailing" secondItem="BOq-xm-GBe" secondAttribute="trailing" id="rlo-jD-w5a"/>
                             <constraint firstItem="k8V-5K-H0g" firstAttribute="top" secondItem="d7P-69-67v" secondAttribute="bottom" constant="20" id="rqW-hs-93Z"/>
@@ -260,6 +269,9 @@
                         <viewLayoutGuide key="safeArea" id="RhE-1z-YN0"/>
                     </view>
                     <navigationItem key="navigationItem" id="qBQ-mS-ljo"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="vwD-w2-oq2" id="Vbj-9y-3zo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StV-E0-f2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -358,7 +370,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Wi-Fi network" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4a-la-BD3" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -371,7 +383,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="HUI-T1-0bO" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Npa-zJ-uz9"/>
                                 </constraints>
@@ -397,7 +409,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2j-nb-dHU" userLabel="Form">
-                                <rect key="frame" x="0.0" y="282" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="148" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Wi-Fi password..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKQ-sW-c9H">
                                         <rect key="frame" x="20" y="0.0" width="335" height="50"/>
@@ -541,7 +553,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZt-hX-yyv" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -554,7 +566,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-t1-HB7" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="eNj-UW-i9y"/>
                                 </constraints>
@@ -578,7 +590,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFd-Kd-uI1" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="101.5"/>
+                                <rect key="frame" x="20" y="148" width="335" height="101.5"/>
                                 <string key="text">Please make sure that the dispenser is plugged in correctly and buzzes after a minute. If you're running a personal hotspot, you'll need to disable it during pairing.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -621,7 +633,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fp-fs-kvW" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -634,7 +646,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="jh8-bd-JjF" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="ZVj-I2-PCZ"/>
                                 </constraints>
@@ -658,7 +670,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The candy dispenser returned an invalid state. Please restart the dispenser and try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLV-oc-TBN" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <rect key="frame" x="20" y="148" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -768,7 +780,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gba-k6-yBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="72"/>
+            <point key="canvasLocation" x="1750" y="766"/>
         </scene>
         <!--Pairing Update Succeeded View Controller-->
         <scene sceneID="hYS-Qy-zpf">
@@ -779,7 +791,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update successful" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-bj-U7V" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -792,13 +804,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's finish by restarting the dispenser. It will take a minute or two to start up again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-Rp-GGU" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="41"/>
+                                <rect key="frame" x="20" y="148" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="eoh-rd-W9T" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="lvP-o2-iOW"/>
                                 </constraints>
@@ -858,7 +870,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reconnect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqx-Hs-lMd" userLabel="Title">
-                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -871,13 +883,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wait for the dispenser to buzz. After that it can be reconnected to in order to continue with the set up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR6-6n-MGe" userLabel="Intro">
-                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <rect key="frame" x="20" y="148" width="335" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="c0m-hV-Mg9" userLabel="Image">
-                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="kue-Bf-him"/>
                                 </constraints>
@@ -928,9 +940,167 @@
             </objects>
             <point key="canvasLocation" x="3290" y="584"/>
         </scene>
+        <!--Pairing Bluetooth Required View Controller-->
+        <scene sceneID="LsU-xW-MTB">
+            <objects>
+                <viewController storyboardIdentifier="PairingBluetoothRequiredViewController" id="cAD-iF-mjV" customClass="PairingBluetoothRequiredViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jXl-eg-ASK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth required" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMK-8B-Loq" userLabel="Title">
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6j-dg-XFv" userLabel="Buy">
+                                <rect key="frame" x="0.0" y="607" width="375" height="30"/>
+                                <state key="normal" title="Need help?"/>
+                                <connections>
+                                    <action selector="help" destination="cAD-iF-mjV" eventType="touchUpInside" id="POe-nq-DM5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please power on Bluetooth so that we can connect to your Candy Dispenser." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGI-cz-Cj4" userLabel="Intro">
+                                <rect key="frame" x="20" y="282" width="335" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="YzK-gZ-QqW" userLabel="Image">
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="h8R-J4-GZN"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pm-yN-vys" userLabel="Setup" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="527" width="280" height="60"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6Ih-NO-oYj"/>
+                                    <constraint firstAttribute="width" constant="280" id="Z8h-Fx-kom"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Retry"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startSetup" destination="cAD-iF-mjV" eventType="touchUpInside" id="6fY-QV-IWp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="Primary"/>
+                        <constraints>
+                            <constraint firstItem="w6j-dg-XFv" firstAttribute="leading" secondItem="TmZ-j0-rnP" secondAttribute="leading" id="5xb-ju-Ear"/>
+                            <constraint firstItem="6Pm-yN-vys" firstAttribute="centerX" secondItem="jXl-eg-ASK" secondAttribute="centerX" id="AK7-qb-cnE"/>
+                            <constraint firstItem="TmZ-j0-rnP" firstAttribute="bottom" secondItem="w6j-dg-XFv" secondAttribute="bottom" constant="30" id="Clz-fY-00i"/>
+                            <constraint firstItem="YzK-gZ-QqW" firstAttribute="top" secondItem="TmZ-j0-rnP" secondAttribute="top" constant="20" id="FUh-Pj-zCB"/>
+                            <constraint firstItem="WMK-8B-Loq" firstAttribute="top" secondItem="YzK-gZ-QqW" secondAttribute="bottom" constant="40" id="Hh1-z9-0ze"/>
+                            <constraint firstItem="TmZ-j0-rnP" firstAttribute="trailing" secondItem="YzK-gZ-QqW" secondAttribute="trailing" id="ICE-Sy-GUT"/>
+                            <constraint firstItem="TmZ-j0-rnP" firstAttribute="trailing" secondItem="w6j-dg-XFv" secondAttribute="trailing" id="J8B-Zk-stV"/>
+                            <constraint firstItem="TmZ-j0-rnP" firstAttribute="trailing" secondItem="cGI-cz-Cj4" secondAttribute="trailing" constant="20" id="PNM-7C-1vO"/>
+                            <constraint firstItem="w6j-dg-XFv" firstAttribute="top" secondItem="6Pm-yN-vys" secondAttribute="bottom" constant="20" id="Pv4-pS-wCh"/>
+                            <constraint firstItem="cGI-cz-Cj4" firstAttribute="top" secondItem="WMK-8B-Loq" secondAttribute="bottom" constant="20" id="X6X-iS-rN1"/>
+                            <constraint firstItem="YzK-gZ-QqW" firstAttribute="leading" secondItem="TmZ-j0-rnP" secondAttribute="leading" id="Xu2-6f-RUy"/>
+                            <constraint firstItem="cGI-cz-Cj4" firstAttribute="leading" secondItem="TmZ-j0-rnP" secondAttribute="leading" constant="20" id="XuR-we-mUm"/>
+                            <constraint firstItem="WMK-8B-Loq" firstAttribute="leading" secondItem="TmZ-j0-rnP" secondAttribute="leading" id="oHo-tB-MeD"/>
+                            <constraint firstItem="6Pm-yN-vys" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cGI-cz-Cj4" secondAttribute="bottom" constant="20" id="xYN-QH-7ik"/>
+                            <constraint firstItem="TmZ-j0-rnP" firstAttribute="trailing" secondItem="WMK-8B-Loq" secondAttribute="trailing" id="xde-A6-Xx2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TmZ-j0-rnP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xh0-he-kqL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b4b-YB-4ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="710" y="-608"/>
+        </scene>
+        <!--Pairing Base View Controller-->
+        <scene sceneID="Zke-mm-EsG">
+            <objects>
+                <viewController storyboardIdentifier="PairingBaseViewController" id="xq3-kN-XVR" customClass="PairingBaseViewController" customModule="Dispenser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sws-Hc-gzr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin Candy Dispenser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQM-jF-QZy" userLabel="Title">
+                                <rect key="frame" x="0.0" y="230" width="375" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7z-UB-dPB" userLabel="Buy">
+                                <rect key="frame" x="0.0" y="607" width="375" height="30"/>
+                                <state key="normal" title="Get a Bitcoin candy dispenser"/>
+                                <connections>
+                                    <action selector="help" destination="xq3-kN-XVR" eventType="touchUpInside" id="sCm-fi-qcg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to set up your Bitcoin candy dispenser, you'll need to plug it into a power source and have access to a Wi-Fi." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dz8-rV-vFf" userLabel="Intro">
+                                <rect key="frame" x="20" y="282" width="335" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dispenser" translatesAutoresizingMaskIntoConstraints="NO" id="BMa-Ip-o00" userLabel="Image">
+                                <rect key="frame" x="0.0" y="40" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Fsu-w1-7DX"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSv-qs-Ri6" userLabel="Setup" customClass="LoadingButton" customModule="Dispenser" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="527" width="280" height="60"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="KsG-YG-aJ2"/>
+                                    <constraint firstAttribute="width" constant="280" id="X0U-dH-rFt"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start setup"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startSetup" destination="xq3-kN-XVR" eventType="touchUpInside" id="rKO-U3-FCl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="Primary"/>
+                        <constraints>
+                            <constraint firstItem="ZcE-53-1B0" firstAttribute="trailing" secondItem="pQM-jF-QZy" secondAttribute="trailing" id="77E-xI-7yz"/>
+                            <constraint firstItem="ZcE-53-1B0" firstAttribute="trailing" secondItem="BMa-Ip-o00" secondAttribute="trailing" id="CB5-qp-ued"/>
+                            <constraint firstItem="Dz8-rV-vFf" firstAttribute="top" secondItem="pQM-jF-QZy" secondAttribute="bottom" constant="20" id="FN7-tO-xHv"/>
+                            <constraint firstItem="ZcE-53-1B0" firstAttribute="trailing" secondItem="q7z-UB-dPB" secondAttribute="trailing" id="Ref-sz-MNt"/>
+                            <constraint firstItem="q7z-UB-dPB" firstAttribute="leading" secondItem="ZcE-53-1B0" secondAttribute="leading" id="UhZ-Cs-MMp"/>
+                            <constraint firstItem="BMa-Ip-o00" firstAttribute="top" secondItem="ZcE-53-1B0" secondAttribute="top" constant="20" id="d9L-8Z-ak1"/>
+                            <constraint firstItem="LSv-qs-Ri6" firstAttribute="centerX" secondItem="Sws-Hc-gzr" secondAttribute="centerX" id="eep-qa-hJL"/>
+                            <constraint firstItem="q7z-UB-dPB" firstAttribute="top" secondItem="LSv-qs-Ri6" secondAttribute="bottom" constant="20" id="fGv-yW-zIN"/>
+                            <constraint firstItem="pQM-jF-QZy" firstAttribute="leading" secondItem="ZcE-53-1B0" secondAttribute="leading" id="hTq-RO-Hlb"/>
+                            <constraint firstItem="BMa-Ip-o00" firstAttribute="leading" secondItem="ZcE-53-1B0" secondAttribute="leading" id="m5T-a9-wna"/>
+                            <constraint firstItem="ZcE-53-1B0" firstAttribute="trailing" secondItem="Dz8-rV-vFf" secondAttribute="trailing" constant="20" id="shR-0N-1Y4"/>
+                            <constraint firstItem="ZcE-53-1B0" firstAttribute="bottom" secondItem="q7z-UB-dPB" secondAttribute="bottom" constant="30" id="wqe-iY-ve8"/>
+                            <constraint firstItem="LSv-qs-Ri6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Dz8-rV-vFf" secondAttribute="bottom" constant="20" id="yPm-3f-hSt"/>
+                            <constraint firstItem="Dz8-rV-vFf" firstAttribute="leading" secondItem="ZcE-53-1B0" secondAttribute="leading" constant="20" id="ygb-BA-K8I"/>
+                            <constraint firstItem="pQM-jF-QZy" firstAttribute="top" secondItem="BMa-Ip-o00" secondAttribute="bottom" constant="40" id="zoM-1N-oci"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZcE-53-1B0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7YL-e7-vx5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gki-PP-ykD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1446" y="-718"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="Dispenser" width="371" height="584"/>
+        <image name="Dispenser" width="316" height="400"/>
         <namedColor name="Primary">
             <color red="0.32800000905990601" green="0.20900000631809235" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
