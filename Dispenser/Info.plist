@@ -17,11 +17,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>6</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth is required for pairing and initial set up of the Candy Dispenser</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera access is required for scanning QR codes.</string>
+	<string>Camera access is required for scanning Lightning QR codes.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
