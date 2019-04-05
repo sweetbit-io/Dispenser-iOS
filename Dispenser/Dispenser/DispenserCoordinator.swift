@@ -113,6 +113,9 @@ class DispenserCoordinator {
         self.navigationController.pushViewController(vc, animated: false)
     }
     
+    func cleanup() {
+    }
+    
     func connect() {
         guard let ip = self.dispenser.ip else {
             // for some strange reason, dispenser has no IP

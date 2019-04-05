@@ -1,5 +1,4 @@
 import CoreData
-import Drift
 import RxSwift
 import UIKit
 
@@ -14,6 +13,8 @@ class AppCoordinator {
     
     func start() {
         let lastOpenedDispenser = self.getLastOpenedDispenser()
+        
+        print(lastOpenedDispenser)
         
         var viewControllerToSet: UIViewController?
         
@@ -33,6 +34,10 @@ class AppCoordinator {
         }
         
         self.window?.rootViewController = viewControllerToSet
+    }
+    
+    func cleanup() {
+        self.pairingCoordinator?.cleanup()
     }
     
     func getLastOpenedDispenser() -> Dispenser? {
@@ -69,6 +74,7 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = self.dispenserCoordinator?.navigationController
         }, completion: { _ in
+            self.pairingCoordinator?.cleanup()
             self.pairingCoordinator = nil
         })
     }
@@ -84,6 +90,7 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = self.pairingCoordinator?.navigationController
         }, completion: { _ in
+            self.dispenserCoordinator?.cleanup()
             self.dispenserCoordinator = nil
         })
     }
@@ -112,11 +119,12 @@ class AppCoordinator {
         UIView.transition(with: self.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.window?.rootViewController = viewControllerToPresent
         }, completion: { _ in
+            self.dispenserCoordinator?.cleanup()
             self.dispenserCoordinator = nil
         })
     }
     
     func help() {
-        Drift.showConversations()
+        // TODO: do something here
     }
 }

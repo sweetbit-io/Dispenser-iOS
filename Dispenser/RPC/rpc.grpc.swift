@@ -20,8 +20,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
 
@@ -117,211 +117,363 @@ fileprivate final class Sweetrpc_SweetSubscribeDispensesCallBase: ClientCallServ
 /// Instantiate Sweetrpc_SweetServiceClient, then call methods of this protocol to make API calls.
 internal protocol Sweetrpc_SweetService: ServiceClient {
   /// Synchronous. Unary.
-  func getInfo(_ request: Sweetrpc_GetInfoRequest) throws -> Sweetrpc_GetInfoResponse
+  func getInfo(_ request: Sweetrpc_GetInfoRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetInfoResponse
   /// Asynchronous. Unary.
-  func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall
+  @discardableResult
+  func getInfo(_ request: Sweetrpc_GetInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall
 
   /// Synchronous. Unary.
-  func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse
+  func setName(_ request: Sweetrpc_SetNameRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetNameResponse
   /// Asynchronous. Unary.
-  func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall
+  @discardableResult
+  func setName(_ request: Sweetrpc_SetNameRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall
 
   /// Synchronous. Unary.
-  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest) throws -> Sweetrpc_SetDispenseOnTouchResponse
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetDispenseOnTouchResponse
   /// Asynchronous. Unary.
-  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall
+  @discardableResult
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall
 
   /// Synchronous. Unary.
-  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest) throws -> Sweetrpc_SetBuzzOnDispenseResponse
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetBuzzOnDispenseResponse
   /// Asynchronous. Unary.
-  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall
+  @discardableResult
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall
 
   /// Synchronous. Unary.
-  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetWpaConnectionInfoResponse
   /// Asynchronous. Unary.
-  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall
+  @discardableResult
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall
 
   /// Synchronous. Unary.
-  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest) throws -> Sweetrpc_ConnectWpaNetworkResponse
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ConnectWpaNetworkResponse
   /// Asynchronous. Unary.
-  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall
+  @discardableResult
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall
 
   /// Synchronous. Unary.
-  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest) throws -> Sweetrpc_GetWpaNetworksResponse
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetWpaNetworksResponse
   /// Asynchronous. Unary.
-  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall
+  @discardableResult
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall
 
   /// Synchronous. Unary.
-  func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse
+  func update(_ request: Sweetrpc_UpdateRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_UpdateResponse
   /// Asynchronous. Unary.
-  func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall
+  @discardableResult
+  func update(_ request: Sweetrpc_UpdateRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall
 
   /// Synchronous. Unary.
-  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ConnectToRemoteNodeResponse
   /// Asynchronous. Unary.
-  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall
+  @discardableResult
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall
 
   /// Synchronous. Unary.
-  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse
   /// Asynchronous. Unary.
-  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall
+  @discardableResult
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall
 
   /// Synchronous. Unary.
-  func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse
+  func reboot(_ request: Sweetrpc_RebootRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_RebootResponse
   /// Asynchronous. Unary.
-  func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall
+  @discardableResult
+  func reboot(_ request: Sweetrpc_RebootRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall
 
   /// Synchronous. Unary.
-  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest) throws -> Sweetrpc_ToggleDispenserResponse
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ToggleDispenserResponse
   /// Asynchronous. Unary.
-  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall
+  @discardableResult
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall
 
   /// Asynchronous. Server-streaming.
   /// Send the initial message.
   /// Use methods on the returned object to get streamed responses.
-  func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall
+  func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall
+
+}
+
+internal extension Sweetrpc_SweetService {
+  /// Synchronous. Unary.
+  func getInfo(_ request: Sweetrpc_GetInfoRequest) throws -> Sweetrpc_GetInfoResponse {
+    return try self.getInfo(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall {
+    return try self.getInfo(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse {
+    return try self.setName(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall {
+    return try self.setName(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest) throws -> Sweetrpc_SetDispenseOnTouchResponse {
+    return try self.setDispenseOnTouch(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall {
+    return try self.setDispenseOnTouch(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest) throws -> Sweetrpc_SetBuzzOnDispenseResponse {
+    return try self.setBuzzOnDispense(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall {
+    return try self.setBuzzOnDispense(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse {
+    return try self.getWpaConnectionInfo(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall {
+    return try self.getWpaConnectionInfo(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest) throws -> Sweetrpc_ConnectWpaNetworkResponse {
+    return try self.connectWpaNetwork(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall {
+    return try self.connectWpaNetwork(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest) throws -> Sweetrpc_GetWpaNetworksResponse {
+    return try self.getWpaNetworks(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall {
+    return try self.getWpaNetworks(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse {
+    return try self.update(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall {
+    return try self.update(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse {
+    return try self.connectToRemoteNode(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall {
+    return try self.connectToRemoteNode(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse {
+    return try self.disconnectFromRemoteNode(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall {
+    return try self.disconnectFromRemoteNode(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse {
+    return try self.reboot(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall {
+    return try self.reboot(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest) throws -> Sweetrpc_ToggleDispenserResponse {
+    return try self.toggleDispenser(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall {
+    return try self.toggleDispenser(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Asynchronous. Server-streaming.
+  func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall {
+    return try self.subscribeDispenses(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 internal final class Sweetrpc_SweetServiceClient: ServiceClientBase, Sweetrpc_SweetService {
   /// Synchronous. Unary.
-  internal func getInfo(_ request: Sweetrpc_GetInfoRequest) throws -> Sweetrpc_GetInfoResponse {
+  internal func getInfo(_ request: Sweetrpc_GetInfoRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetInfoResponse {
     return try Sweetrpc_SweetGetInfoCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func getInfo(_ request: Sweetrpc_GetInfoRequest, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall {
+  @discardableResult
+  internal func getInfo(_ request: Sweetrpc_GetInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetInfoCall {
     return try Sweetrpc_SweetGetInfoCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func setName(_ request: Sweetrpc_SetNameRequest) throws -> Sweetrpc_SetNameResponse {
+  internal func setName(_ request: Sweetrpc_SetNameRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetNameResponse {
     return try Sweetrpc_SweetSetNameCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func setName(_ request: Sweetrpc_SetNameRequest, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall {
+  @discardableResult
+  internal func setName(_ request: Sweetrpc_SetNameRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetNameResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetNameCall {
     return try Sweetrpc_SweetSetNameCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest) throws -> Sweetrpc_SetDispenseOnTouchResponse {
+  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetDispenseOnTouchResponse {
     return try Sweetrpc_SweetSetDispenseOnTouchCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall {
+  @discardableResult
+  internal func setDispenseOnTouch(_ request: Sweetrpc_SetDispenseOnTouchRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetDispenseOnTouchResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetDispenseOnTouchCall {
     return try Sweetrpc_SweetSetDispenseOnTouchCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest) throws -> Sweetrpc_SetBuzzOnDispenseResponse {
+  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_SetBuzzOnDispenseResponse {
     return try Sweetrpc_SweetSetBuzzOnDispenseCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall {
+  @discardableResult
+  internal func setBuzzOnDispense(_ request: Sweetrpc_SetBuzzOnDispenseRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_SetBuzzOnDispenseResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetSetBuzzOnDispenseCall {
     return try Sweetrpc_SweetSetBuzzOnDispenseCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest) throws -> Sweetrpc_GetWpaConnectionInfoResponse {
+  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetWpaConnectionInfoResponse {
     return try Sweetrpc_SweetGetWpaConnectionInfoCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall {
+  @discardableResult
+  internal func getWpaConnectionInfo(_ request: Sweetrpc_GetWpaConnectionInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetWpaConnectionInfoResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaConnectionInfoCall {
     return try Sweetrpc_SweetGetWpaConnectionInfoCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest) throws -> Sweetrpc_ConnectWpaNetworkResponse {
+  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ConnectWpaNetworkResponse {
     return try Sweetrpc_SweetConnectWpaNetworkCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall {
+  @discardableResult
+  internal func connectWpaNetwork(_ request: Sweetrpc_ConnectWpaNetworkRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ConnectWpaNetworkResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectWpaNetworkCall {
     return try Sweetrpc_SweetConnectWpaNetworkCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest) throws -> Sweetrpc_GetWpaNetworksResponse {
+  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_GetWpaNetworksResponse {
     return try Sweetrpc_SweetGetWpaNetworksCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall {
+  @discardableResult
+  internal func getWpaNetworks(_ request: Sweetrpc_GetWpaNetworksRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_GetWpaNetworksResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetGetWpaNetworksCall {
     return try Sweetrpc_SweetGetWpaNetworksCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func update(_ request: Sweetrpc_UpdateRequest) throws -> Sweetrpc_UpdateResponse {
+  internal func update(_ request: Sweetrpc_UpdateRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_UpdateResponse {
     return try Sweetrpc_SweetUpdateCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func update(_ request: Sweetrpc_UpdateRequest, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall {
+  @discardableResult
+  internal func update(_ request: Sweetrpc_UpdateRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_UpdateResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetUpdateCall {
     return try Sweetrpc_SweetUpdateCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest) throws -> Sweetrpc_ConnectToRemoteNodeResponse {
+  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ConnectToRemoteNodeResponse {
     return try Sweetrpc_SweetConnectToRemoteNodeCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall {
+  @discardableResult
+  internal func connectToRemoteNode(_ request: Sweetrpc_ConnectToRemoteNodeRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ConnectToRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetConnectToRemoteNodeCall {
     return try Sweetrpc_SweetConnectToRemoteNodeCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse {
+  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_DisconnectFromRemoteNodeResponse {
     return try Sweetrpc_SweetDisconnectFromRemoteNodeCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall {
+  @discardableResult
+  internal func disconnectFromRemoteNode(_ request: Sweetrpc_DisconnectFromRemoteNodeRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_DisconnectFromRemoteNodeResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetDisconnectFromRemoteNodeCall {
     return try Sweetrpc_SweetDisconnectFromRemoteNodeCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func reboot(_ request: Sweetrpc_RebootRequest) throws -> Sweetrpc_RebootResponse {
+  internal func reboot(_ request: Sweetrpc_RebootRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_RebootResponse {
     return try Sweetrpc_SweetRebootCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func reboot(_ request: Sweetrpc_RebootRequest, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall {
+  @discardableResult
+  internal func reboot(_ request: Sweetrpc_RebootRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_RebootResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetRebootCall {
     return try Sweetrpc_SweetRebootCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest) throws -> Sweetrpc_ToggleDispenserResponse {
+  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, metadata customMetadata: Metadata) throws -> Sweetrpc_ToggleDispenserResponse {
     return try Sweetrpc_SweetToggleDispenserCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall {
+  @discardableResult
+  internal func toggleDispenser(_ request: Sweetrpc_ToggleDispenserRequest, metadata customMetadata: Metadata, completion: @escaping (Sweetrpc_ToggleDispenserResponse?, CallResult) -> Void) throws -> Sweetrpc_SweetToggleDispenserCall {
     return try Sweetrpc_SweetToggleDispenserCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Asynchronous. Server-streaming.
   /// Send the initial message.
   /// Use methods on the returned object to get streamed responses.
-  internal func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall {
+  internal func subscribeDispenses(_ request: Sweetrpc_SubscribeDispensesRequest, metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Sweetrpc_SweetSubscribeDispensesCall {
     return try Sweetrpc_SweetSubscribeDispensesCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }
